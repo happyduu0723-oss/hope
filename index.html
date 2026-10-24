@@ -584,6 +584,30 @@ html[data-theme=dark] .copy-section h3{color:#f2f5fc}
 .cloud-error-text{color:#bd6a59;font-size:11px;line-height:1.5;min-height:15px;margin-top:9px}
 @media(max-width:500px){.cloud-actions{grid-template-columns:1fr}.cloud-dialog .modal{max-height:calc(100dvh - 25px);overflow-y:auto}.cloud-toolbar{align-items:stretch}.cloud-toolbar button{flex:1}}
 
+
+
+
+
+/* hope - 긴 명언 스크롤 */
+.quote-card-text {
+  flex: 0 0 110px !important;
+  height: 110px !important;
+  max-height: 110px !important;
+  min-height: 0 !important;
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  white-space: pre-wrap !important;
+  scrollbar-width: thin;
+}
+
+@media (max-width: 560px) {
+  .quote-card-text {
+    flex-basis: 86px !important;
+    height: 86px !important;
+    max-height: 86px !important;
+  }
+}
+  
 </style>
 </head>
 <body>
