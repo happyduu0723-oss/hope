@@ -1311,7 +1311,303 @@ async function cloudBoot(){
  }}catch(e){cloudStatusMessage(e.message,true)}finally{cloudButtonState()}
 }
 function cloudWire(){const el=document.getElementById('cloudSyncBtn');if(el){el.innerHTML=ico('info');el.addEventListener('click',cloudDialog)}cloudButtonState();cloudBoot();setInterval(cloudBackgroundSync,4500);document.addEventListener('visibilitychange',()=>{if(!document.hidden)cloudBackgroundSync()})}
-cloudWire();
+
+
+  
+/* hope v1.8 - 일정 복사 및 선택 삭제 */
+(function installHopeCalendarActions() {
+  if (window.__hopeCalendarActionsV18) return;
+  window.__hopeCalendarActionsV18 = true;
+
+  const originalEditModal = editModal;
+
+  editModal = function(kind, id, prefill) {
+    const result = originalEditModal(kind, id, prefill);
+    if (kind !== 'event' || !id || !events.some(e => e.id === id)) {
+      return result;
+    }
+
+    const form = document.getElementById('itemForm');
+    if (!form || form.querySelector('[data-hope-copy-event]')) {
+      return result;
+    }
+
+    form.dataset.copyReady = '1';
+    form.querySelectorAll('[data-duplicate-event]')
+      .forEach(button => button.remove());
+
+    const firstField = form.querySelector('.form-field');
+    if (firstField) {
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText =
+        'display:flex;margin:-5px 0 14px';
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'secondary';
+      button.dataset.hopeCopyEvent = id;
+      button.textContent = '⧉ 이 일정 복사';
+      button.style.width = '100%';
+
+      wrapper.appendChild(button);
+      firstField.after(wrapper);
+    }
+    return result;
+  };
+
+  function copyEvent(id) {
+    const source = events.find(e => e.id === id);
+    if (!source) {
+      toast('복사할 일정을 찾지 못했어요.');
+      return;
+    }
+
+    const duration = Math.max(
+      0,
+      dateDiff(source.date, source.endDate || source.date)
+    );
+
+    editModal('event');
+
+    const form = document.getElementById('itemForm');
+    if (!form) return;
+
+    form.dataset.id = '';
+    form.dataset.duplicating = 'true';
+
+    const values = {
+      fTitle: source.title,
+      fDate: source.date,
+      fEndDate: source.endDate || source.date,
+      fTime: source.time || '09:00',
+      fEnd: source.end || '10:00',
+      fCat: source.category,
+      fMemo: source.memo || ''
+    };
+
+    Object.entries(values).forEach(([id, value]) => {
+      const input = document.getElementById(id);
+      if (input) input.value = value;
+    });
+
+    const allDay = document.getElementById('fAllDay');
+    if (allDay) {
+      allDay.checked = !!source.allDay;
+      const timeFields = document.getElementById('timeFields');
+      if (timeFields) timeFields.hidden = allDay.checked;
+    }
+
+    document.getElementById('modalTitle').textContent = '일정 복사';
+
+    const submit = form.querySelector('[type="submit"]');
+    if (submit) submit.textContent = '복사해서 저장';
+
+    const start = document.getElementById('fDate');
+    const end = document.getElementById('fEndDate');
+
+    if (start && end) {
+      end.min = start.value;
+      start.addEventListener('change', () => {
+        if (!start.value) return;
+        end.value = datekey(
+          addDays(parseDate(start.value), duration)
+        );
+        end.min = start.value;
+      });
+      start.focus();
+    }
+  }
+
+  function visibleEvents() {
+    let start, end, label;
+
+    if (state.calView === 'month') {
+      const y = state.visibleMonth.getFullYear();
+      const m = state.visibleMonth.getMonth();
+      start = datekey(new Date(y, m, 1));
+      end = datekey(new Date(y, m + 1, 0));
+      label = `${y}년 ${m + 1}월`;
+    } else if (state.calView === 'week') {
+      [start, end] = periodBounds('week', state.selected);
+      label = `${start} ~ ${end}`;
+    } else {
+      start = end = state.selected;
+      label = start;
+    }
+
+    const list = events
+      .filter(e =>
+        matchesCategory(e.category, 'calendar') &&
+        e.date <= end &&
+        (e.endDate || e.date) >= start
+      )
+      .sort((a, b) =>
+        a.date.localeCompare(b.date) ||
+        (a.time || '').localeCompare(b.time || '')
+      );
+
+    return { list, label };
+  }
+
+  function openBulkDelete() {
+    const { list, label } = visibleEvents();
+    const chosen = new Set();
+    const root = document.getElementById('modalRoot');
+
+    root.innerHTML = `
+      <div class="overlay" data-overlay>
+        <div class="modal" role="dialog" aria-modal="true">
+          <div class="modal-head">
+            <div>
+              <h2>일정 선택 삭제</h2>
+              <small>${esc(label)} · ${list.length}개 일정</small>
+            </div>
+            <button type="button" class="close-btn"
+              data-close aria-label="닫기">✕</button>
+          </div>
+
+          <p style="font-size:12px;color:var(--sub);line-height:1.6">
+            삭제할 일정을 체크하세요.
+            기간 일정은 전체 일정이 삭제돼요.
+          </p>
+
+          <label style="display:flex;gap:9px;align-items:center;
+            padding:12px 4px;font-size:12px;font-weight:750">
+            <input type="checkbox" id="hopeSelectAll"
+              ${list.length ? '' : 'disabled'}>
+            전체 선택
+          </label>
+
+          <div id="hopeBulkList" style="max-height:46vh;
+            overflow-y:auto;border:1px solid var(--stroke);
+            border-radius:14px;padding:5px">
+
+            ${list.length ? list.map(e => `
+              <label style="display:flex;align-items:center;
+                gap:11px;padding:12px 8px;cursor:pointer;
+                border-bottom:1px solid var(--stroke)">
+                <input type="checkbox"
+                  data-hope-select="${esc(e.id)}"
+                  style="width:18px;height:18px;flex-shrink:0">
+                <span style="width:6px;height:24px;
+                  border-radius:8px;flex-shrink:0;
+                  background:${catOf(e.category).color}"></span>
+                <span style="min-width:0;flex:1">
+                  <strong style="display:block;font-size:12px">
+                    ${esc(e.title)}
+                  </strong>
+                  <small style="display:block;line-height:1.6">
+                    ${esc(dateRangeText(e))} ·
+                    ${esc(timeText(e))}
+                  </small>
+                </span>
+              </label>
+            `).join('') :
+              '<p class="empty-note">선택할 일정이 없어요.</p>'}
+          </div>
+
+          <div class="form-foot" style="margin-top:15px">
+            <span id="hopeSelectCount" class="sample">0개 선택</span>
+            <button type="button" class="secondary" data-close>
+              취소
+            </button>
+            <button type="button" class="danger"
+              id="hopeDeleteSelected" disabled>
+              선택 삭제
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const all = root.querySelector('#hopeSelectAll');
+    const boxes = [...root.querySelectorAll('[data-hope-select]')];
+    const deleteButton = root.querySelector('#hopeDeleteSelected');
+
+    function update() {
+      root.querySelector('#hopeSelectCount').textContent =
+        `${chosen.size}개 선택`;
+      deleteButton.disabled = chosen.size === 0;
+      all.checked = boxes.length > 0 &&
+        chosen.size === boxes.length;
+      all.indeterminate =
+        chosen.size > 0 && chosen.size < boxes.length;
+    }
+
+    root.querySelector('#hopeBulkList')
+      .addEventListener('change', e => {
+        const box = e.target.closest('[data-hope-select]');
+        if (!box) return;
+
+        if (box.checked) chosen.add(box.dataset.hopeSelect);
+        else chosen.delete(box.dataset.hopeSelect);
+        update();
+      });
+
+    all.addEventListener('change', () => {
+      boxes.forEach(box => {
+        box.checked = all.checked;
+        if (box.checked) chosen.add(box.dataset.hopeSelect);
+        else chosen.delete(box.dataset.hopeSelect);
+      });
+      update();
+    });
+
+    deleteButton.addEventListener('click', () => {
+      if (chosen.size === 0) return;
+
+      const count = chosen.size;
+      if (!confirm(
+        `선택한 일정 ${count}개를 삭제할까요?\n` +
+        '삭제 내용은 다른 기기에도 동기화돼요.'
+      )) return;
+
+      events = events.filter(e => !chosen.has(e.id));
+      save();
+      closeModal();
+      render();
+      toast(`${count}개 일정을 삭제했어요.`);
+    });
+  }
+
+  const originalCalendar = calendarScreen;
+
+  calendarScreen = function() {
+    const html = originalCalendar();
+
+    return html.replace(
+      '<button class="primary" data-open="event">',
+      '<button type="button" class="secondary" ' +
+      'data-hope-bulk-open>☑ 선택 삭제</button>' +
+      '<button class="primary" data-open="event">'
+    );
+  };
+
+  document.addEventListener('click', e => {
+    const copyButton = e.target.closest(
+      '[data-hope-copy-event], [data-duplicate-event]'
+    );
+    const bulkButton = e.target.closest('[data-hope-bulk-open]');
+
+    if (!copyButton && !bulkButton) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    if (copyButton) {
+      copyEvent(
+        copyButton.dataset.hopeCopyEvent ||
+        copyButton.dataset.duplicateEvent
+      );
+    } else {
+      openBulkDelete();
+    }
+  }, true);
+
+  render();
+})();
+
+  cloudWire();
 
 })();
 </script>
