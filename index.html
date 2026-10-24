@@ -1607,6 +1607,95 @@ function cloudWire(){const el=document.getElementById('cloudSyncBtn');if(el){el.
   render();
 })();
 
+
+/* hope v1.9 - 타임트래커 시간 블록 복사 */
+(function installHopeTrackerCopy() {
+  if (window.__hopeTrackerCopyV19) return;
+  window.__hopeTrackerCopyV19 = true;
+
+  const oldJournalModal = journalModal;
+
+  journalModal = function(kind, date, hour, id) {
+    const result = oldJournalModal.apply(this, arguments);
+
+    if (!id || (kind !== 'plan' && kind !== 'actual')) {
+      return result;
+    }
+
+    const source = (kind === 'plan' ? plannerPlans : timeLogs)
+      .find(item => item.id === id);
+
+    const form = document.getElementById('journalForm');
+    const titleField = document.getElementById('jTitleInput');
+
+    if (!source || !source.start || !source.end ||
+        !form || !titleField ||
+        form.querySelector('[data-hope-tracker-copy]')) {
+      return result;
+    }
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'secondary';
+    button.dataset.hopeTrackerCopy = id;
+    button.textContent = '⧉ 이 시간 블록 복사';
+    button.style.cssText =
+      'width:100%;margin:3px 0 15px;min-height:42px';
+
+    titleField.closest('.form-field').after(button);
+
+    button.addEventListener('click', () => {
+      oldJournalModal(
+        kind,
+        source.date,
+        Number(source.start.slice(0, 2)) || 9,
+        ''
+      );
+
+      const newForm = document.getElementById('journalForm');
+      if (!newForm) return;
+
+      newForm.dataset.id = '';
+      newForm.dataset.originalKind = kind;
+
+      const values = {
+        jKind: kind,
+        jTitleInput: source.title || '',
+        jDate: source.date || '',
+        jCat: source.category || 'basic',
+        jStart: source.start,
+        jEnd: source.end,
+        jMemo: source.memo || ''
+      };
+
+      Object.entries(values).forEach(([field, value]) => {
+        const input = document.getElementById(field);
+        if (input) input.value = value;
+      });
+
+      document.getElementById('jTitle').textContent =
+        '시간 블록 복사';
+
+      const tip = document.querySelector(
+        '#modalRoot .modal-head small'
+      );
+      if (tip) {
+        tip.textContent =
+          '날짜를 바꿔 저장하면 원본은 그대로 남아요.';
+      }
+
+      const submit = newForm.querySelector(
+        'button[type="submit"]'
+      );
+      if (submit) submit.textContent = '복사해서 저장';
+
+      document.getElementById('jDate')?.focus();
+    });
+
+    return result;
+  };
+})();
+
   cloudWire();
 
 })();
