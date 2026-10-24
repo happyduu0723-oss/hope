@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>hope. — 나만의 올인원 플래너 v1.5</title>
+<title>hope. — 나만의 올인원 플래너 v1.6</title>
 <style>
 :root{--bg:#e9e9e8;--ink:#242526;--sub:#737578;--muted:#a2a3a5;--blue:#575b62;--blue-deep:#373c43;--lav:#aaa2b0;--mint:#67b0a0;--coral:#d48e87;--yellow:#d8b37d;--stroke:rgba(255,255,255,.72);--glass:rgba(255,255,255,.56);--glassstrong:rgba(255,255,255,.78);--weak:rgba(255,255,255,.4);--shadow:0 16px 44px rgba(52,55,61,.095),0 2px 7px rgba(52,55,61,.035);--radius:23px;--font:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Segoe UI',sans-serif}
 *{box-sizing:border-box}html{height:100%}body{min-height:100%;margin:0;font-family:var(--font);font-size:14px;color:var(--ink);background:var(--bg);letter-spacing:-.025em;-webkit-font-smoothing:antialiased}button,input,textarea,select{font:inherit}button{cursor:pointer;color:inherit}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(99,103,109,.38);outline-offset:2px}button:disabled{opacity:.48;cursor:not-allowed}.ambient{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(130deg,#e8e9e8 2%,#f6f6f5 52%,#e5e5e5 100%)}.orb{position:absolute;border-radius:50%;filter:blur(5px)}.orb.a{width:480px;height:480px;left:-140px;top:-160px;background:radial-gradient(circle,rgba(190,191,193,.40),rgba(144,190,255,0) 68%)}.orb.b{width:640px;height:640px;right:-160px;top:10%;background:radial-gradient(circle,rgba(195,197,199,.32),rgba(195,172,255,0) 69%)}.orb.c{width:580px;height:580px;bottom:-250px;left:28%;background:radial-gradient(circle,rgba(201,201,200,.25),rgba(143,233,214,0) 70%)}
@@ -499,13 +499,19 @@ html[data-theme="dark"] .cal-switch.on{background:#7a9bad}
 .affirmation-library-head p{font-size:12px;color:#7d8795;margin:0}
 .quote-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
 .quote-card,.quote-add-card{min-height:201px;border-radius:22px;display:flex;flex-direction:column;position:relative;overflow:hidden;padding:20px 21px 17px;min-width:0}
-.quote-card{background:linear-gradient(150deg,rgba(255,255,255,.37),rgba(255,255,255,.16));border:1px solid rgba(255,255,255,.64);box-shadow:0 11px 25px #53617a12,inset 0 1px 0 #ffffffa5}
+.quote-card{height:234px;min-height:0;background:linear-gradient(150deg,rgba(255,255,255,.37),rgba(255,255,255,.16));border:1px solid rgba(255,255,255,.64);box-shadow:0 11px 25px #53617a12,inset 0 1px 0 #ffffffa5}
 .quote-card.is-featured{background:linear-gradient(145deg,rgba(239,246,255,.50),rgba(255,255,255,.19));border-color:rgba(255,255,255,.87)}
 .quote-card-top,.quote-card-footer{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .quote-card-mark{font-family:Georgia,serif;font-size:42px;line-height:.9;color:#94a3b7;height:27px}
 .quote-current-tag{font-size:10px;display:inline-flex;align-items:center;gap:4px;color:#546881;font-weight:760;border-radius:999px;padding:6px 9px;background:#ffffff77}
-.quote-card-text{font-size:16px;font-weight:680;line-height:1.55;color:#344050;letter-spacing:-.035em;margin:18px 0 auto;white-space:pre-wrap;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
-.quote-card-footer{margin-top:20px}
+/* Full quote remains readable without expanding the glass card or hiding its buttons. */
+.quote-card-top,.quote-card-footer{flex:0 0 auto}
+.quote-card-text{display:block;flex:1 1 auto;min-height:0;margin:15px 0 0;padding:0 8px 1px 0;font-size:16px;font-weight:680;line-height:1.55;color:#344050;letter-spacing:-.035em;white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:rgba(112,127,149,.55) transparent}
+.quote-card-text::-webkit-scrollbar{width:6px}
+.quote-card-text::-webkit-scrollbar-thumb{background:rgba(112,127,149,.48);border-radius:999px}
+.quote-card-text::-webkit-scrollbar-track{background:transparent}
+.quote-card-text:focus-visible{outline:2px solid rgba(106,128,155,.55);outline-offset:2px;border-radius:4px}
+.quote-card-footer{margin-top:13px}
 .quote-author{color:#8a95a3;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:65%}
 .quote-actions{display:flex;align-items:center;gap:5px}
 .quote-actions button{width:29px;height:29px;display:grid;place-items:center;border-radius:9px;color:#6f7b8d;background:rgba(255,255,255,.36);border:1px solid rgba(255,255,255,.62)}
@@ -532,7 +538,7 @@ html[data-theme=dark] .quote-add-card strong{color:#e4ebf5}html[data-theme=dark]
 html[data-theme=dark] .quote-add-icon{color:#d3e0ee;background:#ffffff18;border-color:#ffffff30}
 @media(max-width:1200px){.quote-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.affirmation-hero{min-height:330px}}
 @media(max-width:800px){.shell.pledge-mode{grid-template-columns:minmax(0,1fr)}.affirmation-page{padding-top:8px}.affirmation-intro{align-items:flex-start}.affirmation-intro h1{font-size:31px}.affirmation-hero{min-height:315px;padding:22px}.affirmation-hero-center{padding:24px 8px 32px 16px}.affirmation-big-quote{font-size:clamp(27px,5.5vw,42px)}}
-@media(max-width:560px){.affirmation-intro{flex-direction:column;gap:15px}.affirmation-intro .secondary{align-self:flex-start}.affirmation-hero{border-radius:24px;padding:17px;min-height:330px}.affirmation-hero-top{gap:8px}.affirmation-hero-label{font-size:10px}.affirmation-today-pill{font-size:10px;padding:7px 9px}.affirmation-hero-center{padding:25px 6px 26px 14px}.affirmation-big-quote{font-size:clamp(26px,7.2vw,35px)}.affirmation-quote-mark{font-size:75px}.affirmation-hero-bottom{gap:8px;align-items:flex-start}.affirmation-library-head{margin-top:27px;align-items:flex-start}.affirmation-library-head h2{font-size:20px}.affirmation-library-head .primary{padding:8px 10px;font-size:11px}.quote-grid{grid-template-columns:1fr;gap:11px}.quote-card,.quote-add-card{min-height:164px;padding:17px}.quote-card-text{margin:10px 0 auto}.quote-add-card{min-height:135px}.affirmation-footer-note{line-height:1.65;padding-bottom:20px}}
+@media(max-width:560px){.affirmation-intro{flex-direction:column;gap:15px}.affirmation-intro .secondary{align-self:flex-start}.affirmation-hero{border-radius:24px;padding:17px;min-height:330px}.affirmation-hero-top{gap:8px}.affirmation-hero-label{font-size:10px}.affirmation-today-pill{font-size:10px;padding:7px 9px}.affirmation-hero-center{padding:25px 6px 26px 14px}.affirmation-big-quote{font-size:clamp(26px,7.2vw,35px)}.affirmation-quote-mark{font-size:75px}.affirmation-hero-bottom{gap:8px;align-items:flex-start}.affirmation-library-head{margin-top:27px;align-items:flex-start}.affirmation-library-head h2{font-size:20px}.affirmation-library-head .primary{padding:8px 10px;font-size:11px}.quote-grid{grid-template-columns:1fr;gap:11px}.quote-card,.quote-add-card{min-height:164px;padding:17px}.quote-card{height:213px;min-height:0}.quote-card-text{margin:11px 0 0}.quote-add-card{min-height:135px}.affirmation-footer-note{line-height:1.65;padding-bottom:20px}}
 
 
 /* v1.3 — editable copy controls */
@@ -852,7 +858,7 @@ function dailyQuote(){
 function fmtAffirmationDate(){return new Intl.DateTimeFormat('ko-KR',{month:'long',day:'numeric',weekday:'long'}).format(new Date())}
 function quoteCard(q,featured){return `<article class="quote-card glass ${featured?'is-featured':''}">
  <div class="quote-card-top"><span class="quote-card-mark">“</span>${featured?`<span class="quote-current-tag">${ico('sparkle','sm')} 오늘의 다짐</span>`:''}</div>
- <p class="quote-card-text">${esc(q.text)}</p>
+ <p class="quote-card-text" tabindex="0" aria-label="명언 내용, 스크롤하여 전체 문장 읽기">${esc(q.text)}</p>
  <div class="quote-card-footer"><span class="quote-author">${q.author?`— ${esc(q.author)}`:'나만의 문장'}</span><div class="quote-actions"><button type="button" data-quote-edit="${esc(q.id)}" aria-label="명언 수정" title="명언 수정">${ico('edit','sm')}</button><button type="button" data-quote-delete="${esc(q.id)}" aria-label="명언 삭제" title="명언 삭제">${ico('trash','sm')}</button></div></div>
  </article>`}
 function homeScreen(){const chosen=dailyQuote();return `<div class="affirmation-page">
