@@ -499,19 +499,13 @@ html[data-theme="dark"] .cal-switch.on{background:#7a9bad}
 .affirmation-library-head p{font-size:12px;color:#7d8795;margin:0}
 .quote-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
 .quote-card,.quote-add-card{min-height:201px;border-radius:22px;display:flex;flex-direction:column;position:relative;overflow:hidden;padding:20px 21px 17px;min-width:0}
-.quote-card{height:234px;min-height:0;background:linear-gradient(150deg,rgba(255,255,255,.37),rgba(255,255,255,.16));border:1px solid rgba(255,255,255,.64);box-shadow:0 11px 25px #53617a12,inset 0 1px 0 #ffffffa5}
+.quote-card{background:linear-gradient(150deg,rgba(255,255,255,.37),rgba(255,255,255,.16));border:1px solid rgba(255,255,255,.64);box-shadow:0 11px 25px #53617a12,inset 0 1px 0 #ffffffa5}
 .quote-card.is-featured{background:linear-gradient(145deg,rgba(239,246,255,.50),rgba(255,255,255,.19));border-color:rgba(255,255,255,.87)}
 .quote-card-top,.quote-card-footer{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .quote-card-mark{font-family:Georgia,serif;font-size:42px;line-height:.9;color:#94a3b7;height:27px}
 .quote-current-tag{font-size:10px;display:inline-flex;align-items:center;gap:4px;color:#546881;font-weight:760;border-radius:999px;padding:6px 9px;background:#ffffff77}
-/* Full quote remains readable without expanding the glass card or hiding its buttons. */
-.quote-card-top,.quote-card-footer{flex:0 0 auto}
-.quote-card-text{display:block;flex:1 1 auto;min-height:0;margin:15px 0 0;padding:0 8px 1px 0;font-size:16px;font-weight:680;line-height:1.55;color:#344050;letter-spacing:-.035em;white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:rgba(112,127,149,.55) transparent}
-.quote-card-text::-webkit-scrollbar{width:6px}
-.quote-card-text::-webkit-scrollbar-thumb{background:rgba(112,127,149,.48);border-radius:999px}
-.quote-card-text::-webkit-scrollbar-track{background:transparent}
-.quote-card-text:focus-visible{outline:2px solid rgba(106,128,155,.55);outline-offset:2px;border-radius:4px}
-.quote-card-footer{margin-top:13px}
+.quote-card-text{font-size:16px;font-weight:680;line-height:1.55;color:#344050;letter-spacing:-.035em;margin:18px 0 auto;white-space:pre-wrap;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.quote-card-footer{margin-top:20px}
 .quote-author{color:#8a95a3;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:65%}
 .quote-actions{display:flex;align-items:center;gap:5px}
 .quote-actions button{width:29px;height:29px;display:grid;place-items:center;border-radius:9px;color:#6f7b8d;background:rgba(255,255,255,.36);border:1px solid rgba(255,255,255,.62)}
@@ -538,7 +532,7 @@ html[data-theme=dark] .quote-add-card strong{color:#e4ebf5}html[data-theme=dark]
 html[data-theme=dark] .quote-add-icon{color:#d3e0ee;background:#ffffff18;border-color:#ffffff30}
 @media(max-width:1200px){.quote-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.affirmation-hero{min-height:330px}}
 @media(max-width:800px){.shell.pledge-mode{grid-template-columns:minmax(0,1fr)}.affirmation-page{padding-top:8px}.affirmation-intro{align-items:flex-start}.affirmation-intro h1{font-size:31px}.affirmation-hero{min-height:315px;padding:22px}.affirmation-hero-center{padding:24px 8px 32px 16px}.affirmation-big-quote{font-size:clamp(27px,5.5vw,42px)}}
-@media(max-width:560px){.affirmation-intro{flex-direction:column;gap:15px}.affirmation-intro .secondary{align-self:flex-start}.affirmation-hero{border-radius:24px;padding:17px;min-height:330px}.affirmation-hero-top{gap:8px}.affirmation-hero-label{font-size:10px}.affirmation-today-pill{font-size:10px;padding:7px 9px}.affirmation-hero-center{padding:25px 6px 26px 14px}.affirmation-big-quote{font-size:clamp(26px,7.2vw,35px)}.affirmation-quote-mark{font-size:75px}.affirmation-hero-bottom{gap:8px;align-items:flex-start}.affirmation-library-head{margin-top:27px;align-items:flex-start}.affirmation-library-head h2{font-size:20px}.affirmation-library-head .primary{padding:8px 10px;font-size:11px}.quote-grid{grid-template-columns:1fr;gap:11px}.quote-card,.quote-add-card{min-height:164px;padding:17px}.quote-card{height:213px;min-height:0}.quote-card-text{margin:11px 0 0}.quote-add-card{min-height:135px}.affirmation-footer-note{line-height:1.65;padding-bottom:20px}}
+@media(max-width:560px){.affirmation-intro{flex-direction:column;gap:15px}.affirmation-intro .secondary{align-self:flex-start}.affirmation-hero{border-radius:24px;padding:17px;min-height:330px}.affirmation-hero-top{gap:8px}.affirmation-hero-label{font-size:10px}.affirmation-today-pill{font-size:10px;padding:7px 9px}.affirmation-hero-center{padding:25px 6px 26px 14px}.affirmation-big-quote{font-size:clamp(26px,7.2vw,35px)}.affirmation-quote-mark{font-size:75px}.affirmation-hero-bottom{gap:8px;align-items:flex-start}.affirmation-library-head{margin-top:27px;align-items:flex-start}.affirmation-library-head h2{font-size:20px}.affirmation-library-head .primary{padding:8px 10px;font-size:11px}.quote-grid{grid-template-columns:1fr;gap:11px}.quote-card,.quote-add-card{min-height:164px;padding:17px}.quote-card-text{margin:10px 0 auto}.quote-add-card{min-height:135px}.affirmation-footer-note{line-height:1.65;padding-bottom:20px}}
 
 
 /* v1.3 — editable copy controls */
@@ -585,29 +579,51 @@ html[data-theme=dark] .copy-section h3{color:#f2f5fc}
 @media(max-width:500px){.cloud-actions{grid-template-columns:1fr}.cloud-dialog .modal{max-height:calc(100dvh - 25px);overflow-y:auto}.cloud-toolbar{align-items:stretch}.cloud-toolbar button{flex:1}}
 
 
-
-
-
-/* hope - 긴 명언 스크롤 */
-.quote-card-text {
-  flex: 0 0 110px !important;
-  height: 110px !important;
-  max-height: 110px !important;
-  min-height: 0 !important;
-  overflow-y: scroll !important;
-  overflow-x: hidden !important;
-  white-space: pre-wrap !important;
-  scrollbar-width: thin;
-}
-
-@media (max-width: 560px) {
-  .quote-card-text {
-    flex-basis: 86px !important;
-    height: 86px !important;
-    max-height: 86px !important;
+/* hope v1.6 — Mobile navigation: all 6 buttons stay within narrow screens.
+   The previous 70px min-width clipped the final "더보기" button on phones. */
+@media (max-width:800px) {
+  .shell { padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
+  .mobile-bar {
+    width: min(calc(100% - 24px), 580px);
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    display:flex;
+    justify-content:space-between;
+    gap:2px;
+    padding-left:6px;
+    padding-right:6px;
+    overflow:hidden;
   }
+  .mobile-tab {
+    flex:1 1 0;
+    width:0;
+    min-width:0;
+    max-width:none;
+    padding:1px 1px;
+    overflow:hidden;
+    border-radius:14px;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .mobile-tab .icon { width:19px; height:19px; }
+  .mobile-tab span {
+    display:block;
+    max-width:100%;
+    min-width:0;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    font-size:clamp(8px, 2.35vw, 10px);
+    line-height:1.3;
+  }
+  .mobile-more-list button .icon:last-child { margin-left:auto;opacity:.6; }
 }
-  
+/* Tiny-screen header: avoid making the entire page horizontally scroll. */
+@media (max-width:350px) {
+  .topbar { gap:4px; padding-left:0; padding-right:0; }
+  .breadcrumb { flex:1 1 auto; min-width:0; font-size:10px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+  .top-right { flex:0 0 auto; gap:3px; }
+  .top-right .icon-btn { width:31px; height:31px; border-radius:10px; }
+  .top-right .avatar { width:30px; height:30px; border-radius:10px; }
+}
 </style>
 </head>
 <body>
@@ -617,7 +633,7 @@ html[data-theme=dark] .copy-section h3{color:#f2f5fc}
     <div class="brand"><div class="brand-mark" id="brandIcon"></div><div class="brand-name" id="editableBrandName">hope.</div><button class="copy-brand-btn" type="button" data-copy-group="navigation" aria-label="앱 이름과 메뉴 수정" title="앱 이름과 메뉴 수정">✎</button></div>
     <div class="nav-label">WORKSPACE</div><nav id="navMain"></nav>
     <div class="nav-label" style="margin-top:14px">TOOLS & MORE</div><nav id="navOther"></nav>
-    <div class="sidebar-bottom"><div class="tipbox"><button type="button" class="copy-sidebar-btn" data-copy-group="sidebar" aria-label="사이드바 문구 수정" title="문구 변경">✎</button><strong id="sideCopyHeadline">하루의 흐름을 기록해요 ✦</strong><p id="sideCopyDescription">계획하고, 집중하고, 달성하는 나만의 공간.</p><div class="outline-pill">올인원 플래너 · v1.5</div></div></div>
+    <div class="sidebar-bottom"><div class="tipbox"><button type="button" class="copy-sidebar-btn" data-copy-group="sidebar" aria-label="사이드바 문구 수정" title="문구 변경">✎</button><strong id="sideCopyHeadline">하루의 흐름을 기록해요 ✦</strong><p id="sideCopyDescription">계획하고, 집중하고, 달성하는 나만의 공간.</p><div class="outline-pill">올인원 플래너 · v1.6</div></div></div>
   </aside>
   <main class="workspace"><div class="topbar"><div class="breadcrumb">Workspace&nbsp; / &nbsp;<b id="breadcrumbPage">홈</b></div><div class="top-right"><button class="icon-btn" id="cloudSyncBtn" aria-label="기기 간 동기화" title="클라우드 동기화">☁</button><button class="icon-btn" id="searchBtn" aria-label="검색" title="일정과 할 일 검색"></button><button class="icon-btn" id="themeToggleBtn" aria-label="다크 모드 전환" title="라이트 / 다크 전환"></button><button class="icon-btn" id="copySettingsBtn" aria-label="화면 문구 편집" title="화면 문구 편집"></button><button class="icon-btn" id="settingsBtn" aria-label="디자인 설정" title="디자인 설정"></button><div class="avatar" title="개인용 플래너">me</div></div></div><div id="screen"></div></main>
   <aside class="right-rail glass" id="rightRail" aria-label="오늘 요약"></aside>
@@ -882,7 +898,7 @@ function dailyQuote(){
 function fmtAffirmationDate(){return new Intl.DateTimeFormat('ko-KR',{month:'long',day:'numeric',weekday:'long'}).format(new Date())}
 function quoteCard(q,featured){return `<article class="quote-card glass ${featured?'is-featured':''}">
  <div class="quote-card-top"><span class="quote-card-mark">“</span>${featured?`<span class="quote-current-tag">${ico('sparkle','sm')} 오늘의 다짐</span>`:''}</div>
- <p class="quote-card-text" tabindex="0" aria-label="명언 내용, 스크롤하여 전체 문장 읽기">${esc(q.text)}</p>
+ <p class="quote-card-text">${esc(q.text)}</p>
  <div class="quote-card-footer"><span class="quote-author">${q.author?`— ${esc(q.author)}`:'나만의 문장'}</span><div class="quote-actions"><button type="button" data-quote-edit="${esc(q.id)}" aria-label="명언 수정" title="명언 수정">${ico('edit','sm')}</button><button type="button" data-quote-delete="${esc(q.id)}" aria-label="명언 삭제" title="명언 삭제">${ico('trash','sm')}</button></div></div>
  </article>`}
 function homeScreen(){const chosen=dailyQuote();return `<div class="affirmation-page">
@@ -1016,7 +1032,7 @@ function saveJournalForm(form){const id=form.dataset.id,oldKind=form.dataset.ori
 function manageHabits(){document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>매일 체크할 습관</h2><small>주간·일간 플래너에 함께 표시돼요.</small></div><button class="close-btn" data-close>${ico('close')}</button></div><div class="utility-list">${plannerHabitNames.map((h,i)=>`<div class="utility-item"><strong style="flex:1;font-size:13px">${esc(h)}</strong><button class="danger" data-delete-habit="${i}" type="button">삭제</button></div>`).join('')}</div><form id="habitForm" style="margin-top:15px;display:flex;gap:8px"><input class="field-input" id="habitName" placeholder="새 습관 이름" maxlength="18" required style="min-width:0;flex:1"><button class="primary" type="submit">추가</button></form></div></div>`}
 function goalsScreen(){let period=state.goalPeriod||'week',data=goals.filter(g=>g.period===period&&matchesCategory(g.category,'goals'));return `${pageHeader('WEEKLY & MONTHLY GOALS','작은 목표를 꾸준하게.','할 일 완료 수와 타임트래커 기록이 목표에 자동 반영돼요',`<div class="title-actions"><button class="secondary" data-manage-categories>${ico('settings','sm')} 카테고리 관리</button><button class="primary" data-open-goal>${ico('plus')} 목표 추가</button></div>`)}<div class="action-row"><div class="segment"><button class="${period==='week'?'selected':''}" data-goal-period="week">주간 목표</button><button class="${period==='month'?'selected':''}" data-goal-period="month">월간 목표</button></div><span class="muted-label">${period==='week'?'이번 주 (월~일)':'이번 달'} 목표</span></div>${categoryFilterBar('goals','카테고리별 목표와 달성률만 표시')}<div class="metric-grid"><div class="card glass metric"><small>등록된 목표</small><strong>${data.length}개</strong><span>현재 ${period==='week'?'주':'월'}</span></div><div class="card glass metric"><small>달성한 목표</small><strong>${data.filter(g=>goalStatus(g).pct===100).length}개</strong><span>진행률 100%</span></div><div class="card glass metric"><small>평균 달성률</small><strong>${data.length?Math.round(data.reduce((a,g)=>a+goalStatus(g).pct,0)/data.length):0}%</strong><span>현재 목표 기준</span></div></div><div class="goal-list">${data.map(g=>{let a=goalStatus(g);return `<article class="card glass goal-card"><div class="goal-card-head"><div><strong>${esc(g.title)}</strong><small style="display:block;margin-top:5px">${g.mode==='time'?'⏱ 시간 누적':g.mode==='todo'?'☑ 투두 완료':'✦ 직접 체크'} · ${g.mode==='manual'?'수동':esc(g.category==='all'?'전체':catOf(g.category).label)}</small></div><button class="secondary" data-edit-goal="${esc(g.id)}" style="padding:7px 10px;min-height:30px">수정 ${ico('edit','sm')}</button></div><div class="goal-progress-text">${esc(a.label)} <small>달성</small></div><div class="thin-progress"><div style="width:${a.pct}%"></div></div><div class="goal-card-head"><span class="goal-percent">${a.pct}% 진행</span>${g.mode==='manual'?`<div class="item-actions"><button class="secondary" data-goal-step="${esc(g.id)}" data-step="-1" aria-label="진행률 줄이기">−</button><button class="secondary" data-goal-step="${esc(g.id)}" data-step="1" aria-label="진행률 올리기">＋</button></div>`:`<small>자동 업데이트</small>`}</div></article>`}).join('')||emptyUi('아직 목표가 없어요','시간형·투두형·직접 체크형 목표를 만들 수 있어요.',`<button class="primary" data-open-goal>${ico('plus')} 목표 만들기</button>`)}</div><p class="focus-note">시간형 목표는 해당 기간의 타임트래커 기록, 투두형 목표는 완료된 할 일의 카테고리와 완료일을 기준으로 계산해요.</p>`}
 function focusScreen(){const tab=state.focusTab||'pom',modes=[['pom','뽀모도로'],['timer','타이머'],['stopwatch','스톱워치']];return `${pageHeader('FOCUS STUDIO','집중할 시간.','타이머·스톱워치·뽀모도로를 하나의 공간에서 사용해요',`<div class="title-actions"><button class="secondary" data-manage-categories>${ico('settings','sm')} 카테고리 관리</button><button class="secondary" data-nav="tracker">${ico('chart','sm')} 시간 기록</button></div>`)}<div class="action-row"><div class="segment">${modes.map(([k,label])=>`<button class="${tab===k?'selected':''}" data-focus-tab="${k}">${label}</button>`).join('')}</div></div><div class="utility-layout"><section class="card glass timer-shell">${tab==='pom'?`<div class="timer-sub">${pom.phase==='focus'?'FOCUS':pom.phase==='short'?'SHORT BREAK':'LONG BREAK'}</div><div class="timer-circle"><div class="timer-display" id="pomDisplay">${timeFmt(pom.remaining)}</div><div class="timer-sub">${pom.phase==='focus'?'집중 중':pom.phase==='short'?'짧은 휴식':'긴 휴식'}</div></div><div class="session-counter">${Array.from({length:focusConfig.cycles},(_,i)=>`<div class="session-dot ${i<pom.cycle%focusConfig.cycles?'done':''}"></div>`).join('')}</div><div style="height:18px"></div><div class="timer-buttons"><button class="primary" data-clock="pom-toggle">${ico(pom.running?'pause':'play','sm')} ${pom.running?'일시정지':'시작하기'}</button><button class="secondary" data-clock="pom-reset">${ico('close','sm')} 초기화</button></div>`:tab==='timer'?`<div class="timer-sub">COUNTDOWN TIMER</div><div class="timer-circle"><div class="timer-display" id="timerDisplay">${timeFmt(timer.remaining)}</div><div class="timer-sub">${timer.running?'카운트다운 중':'시간을 설정하세요'}</div></div><div class="timer-buttons"><button class="primary" data-clock="timer-toggle">${ico(timer.running?'pause':'play','sm')} ${timer.running?'일시정지':'시작하기'}</button><button class="secondary" data-clock="timer-reset">초기화</button><button class="secondary" data-clock="timer-save">경과 시간 기록</button></div>`:`<div class="timer-sub">STOPWATCH</div><div class="timer-circle"><div class="timer-display" style="font-size:clamp(35px,4vw,55px)" id="stopwatchDisplay">${clockHMS(elapsedStopwatch())}</div><div class="timer-sub">측정 중 ${stopwatch.laps.length}개 랩</div></div><div class="timer-buttons"><button class="primary" data-clock="stopwatch-toggle">${ico(stopwatch.running?'pause':'play','sm')} ${stopwatch.running?'일시정지':'시작하기'}</button><button class="secondary" data-clock="stopwatch-lap">랩</button><button class="secondary" data-clock="stopwatch-save">시간 기록</button><button class="secondary" data-clock="stopwatch-reset">초기화</button></div><div class="utility-list" style="margin-top:18px;text-align:left">${stopwatch.laps.map((n,i)=>`<div class="utility-item" style="justify-content:space-between"><small>Lap ${i+1}</small><strong>${clockHMS(n)}</strong></div>`).join('')}</div>`}</section><section class="card glass"><div class="card-heading"><div><h2 class="card-title">${tab==='pom'?'집중 설정':tab==='timer'?'타이머 설정':'스톱워치 기록'}</h2><div class="card-muted">현재 세션과 연동돼요</div></div>${ico('settings')}</div>${tab==='pom'?`<div class="focus-settings"><div class="form-field"><label for="cfgFocus">집중 (분)</label><input class="field-input" id="cfgFocus" type="number" min="1" max="180" value="${focusConfig.focus}"></div><div class="form-field"><label for="cfgShort">짧은 휴식 (분)</label><input class="field-input" id="cfgShort" type="number" min="1" max="60" value="${focusConfig.short}"></div><div class="form-field"><label for="cfgLong">긴 휴식 (분)</label><input class="field-input" id="cfgLong" type="number" min="1" max="90" value="${focusConfig.long}"></div><div class="form-field"><label for="cfgCycles">긴 휴식 간격 (회)</label><input class="field-input" id="cfgCycles" type="number" min="2" max="8" value="${focusConfig.cycles}"></div></div><div class="inline-manage" style="margin-top:13px"><div class="form-field"><label for="cfgCategory">집중 카테고리</label><select class="field-input" id="cfgCategory">${categoryOptions(focusConfig.category,false)}</select></div><button class="secondary" type="button" data-manage-categories>${ico('settings','sm')} 관리</button></div><button class="secondary" style="margin-top:13px;width:100%" data-clock="pom-settings">설정 적용</button><p class="focus-note">완료한 집중 세션만 타임트래커에 자동 기록돼요. 휴식 시간은 제외돼요.</p>`:tab==='timer'?`<div class="focus-settings"><div class="form-field"><label for="timerMinutes">분</label><input class="field-input" type="number" id="timerMinutes" min="0" max="599" value="${Math.floor(timer.duration/60)}" ${timer.running?'disabled':''}></div><div class="form-field"><label for="timerSeconds">초</label><input class="field-input" type="number" id="timerSeconds" min="0" max="59" value="${timer.duration%60}" ${timer.running?'disabled':''}></div></div><button class="secondary" style="margin-top:13px;width:100%" data-clock="timer-set">시간 적용</button><div class="inline-manage" style="margin-top:16px"><div class="form-field"><label for="clockCategory">기록할 카테고리</label><select class="field-input" id="clockCategory">${categoryOptions(timer.category,false)}</select></div><button class="secondary" type="button" data-manage-categories>${ico('settings','sm')} 관리</button></div><p class="focus-note">경과 시간 기록 버튼을 누르면 타임트래커에 저장돼요.</p>`:`<div class="inline-manage"><div class="form-field"><label for="clockCategory">기록할 카테고리</label><select class="field-input" id="clockCategory">${categoryOptions(stopwatch.category,false)}</select></div><button class="secondary" type="button" data-manage-categories>${ico('settings','sm')} 관리</button></div><p class="focus-note">시간 기록을 누르면 현재까지 측정한 시간이 타임트래커에 저장되고 스톱워치가 초기화돼요. 랩은 시간을 따로 저장하지 않아요.</p>`}<div style="margin-top:19px;padding:14px;background:#ffffff8a;border-radius:15px;font-size:11px;line-height:1.9;color:var(--sub)">다른 화면으로 이동해도 실행 중인 측정은 계속돼요. 브라우저가 완전히 종료된 뒤에는 환경에 따라 알림이 전달되지 않을 수 있어요.</div></section></div><section class="card glass focus-recent"><div class="focus-recent-top"><h3>최근 집중 기록</h3><span class="muted-label">완료되거나 저장된 측정 기록</span></div>${categoryFilterBar('focus','기록 목록만 필터링 · 측정 카테고리는 위에서 선택')}<div class="focus-recent-items">${timeLogs.filter(l=>['뽀모도로','타이머','스톱워치'].includes(l.source)&&matchesCategory(l.category,'focus')).slice(0,12).map(l=>`<button class="focus-recent-item" data-edit-log="${esc(l.id)}"><span class="category-dot" style="background:${catOf(l.category).color};height:9px;width:9px;border-radius:50%"></span><span>${esc(l.title)} · ${esc(l.date)} · ${fmtDuration(l.minutes)}</span></button>`).join('')||'<p class="empty-note">선택한 카테고리에 기록이 없어요.</p>'}</div></section>`}
-function moreModal(){document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true"><div class="modal-head"><h2>더보기</h2><button class="close-btn" data-close>${ico('close')}</button></div><div class="mobile-more-list">${others.map(([k,i,n])=>`<button data-extra-nav="${k}">${ico(i)} ${n} ${ico('right','sm')}</button>`).join('')}</div></div></div>`}
+function moreModal(){document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true"><div class="modal-head"><h2>더보기</h2><button class="close-btn" data-close>${ico('close')}</button></div><div class="mobile-more-list">${others.map(([k,i,n])=>`<button data-extra-nav="${k}">${ico(i)}<span>${esc(ct('nav.'+k))}</span>${ico('right','sm')}</button>`).join('')}</div></div></div>`}
 function utilityModal(kind,id){const item=kind==='dday'?ddays.find(x=>x.id===id):kind==='log'?timeLogs.find(x=>x.id===id):goals.find(x=>x.id===id),editing=!!item;
 let fields='';if(kind==='dday'){const o=item||{title:'',date:todayKey,emoji:'📅',category:'personal',yearly:false,pinned:false};fields=`${inputField('uTitle','디데이 이름','text',o.title,'required maxlength="80" placeholder="예: 중간고사"')}${inputField('uDate','기준 날짜','date',o.date,'required')}<div class="form-row"><div class="form-field"><label for="uEmoji">아이콘 (이모지)</label><input id="uEmoji" class="field-input" maxlength="5" value="${esc(o.emoji||'📅')}"></div><div class="inline-manage"><div class="form-field"><label for="uCat">카테고리</label><select id="uCat" class="field-input">${categoryOptions(o.category,false)}</select></div><button type="button" class="secondary" data-manage-categories>${ico('settings','sm')} 관리</button></div></div><label class="all-day-toggle"><input type="checkbox" id="uYearly" ${o.yearly?'checked':''}> 매년 반복</label><label class="all-day-toggle"><input type="checkbox" id="uPinned" ${o.pinned?'checked':''}> 상단 고정</label>`}
 if(kind==='log'){const o=item||{title:'',date:todayKey,minutes:60,category:'basic',memo:'',start:'09:00',end:'10:00'};const isMeasured=item&&!(item.start&&item.end);fields=`${inputField('uTitle','활동 이름','text',o.title,'required maxlength="100"')}${inputField('uDate','기록 날짜','date',o.date,'required')}${isMeasured?inputField('uMinutes','측정된 시간 (분)','number',o.minutes,'required min="1" max="10080" step="1"'):`<div class="form-row">${inputField('uStart','시작 시간','time',o.start||'09:00','required')}${inputField('uEnd','종료 시간','time',o.end||'10:00','required')}</div>`}<div class="inline-manage"><div class="form-field"><label for="uCat">카테고리</label><select id="uCat" class="field-input">${categoryOptions(o.category,false)}</select></div><button type="button" class="secondary" data-manage-categories>${ico('settings','sm')} 관리</button></div><div class="form-field"><label for="uMemo">메모</label><textarea id="uMemo" class="field-input textarea">${esc(o.memo||'')}</textarea></div><p class="input-help">${isMeasured?'자동 측정 기록의 소요 시간을 직접 보정할 수 있어요.':'시작·종료 시각으로 소요 시간을 계산해요. 자정을 넘는 기록은 날짜별로 나눠 추가해 주세요.'}</p>`}
@@ -1073,7 +1089,7 @@ function appearanceModal(){
  </div></div>`;
  applyAppearance();
 }
-function infoModal(){document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>hope. v1.5</h2><small>일정과 메모를 한곳에 모은 개인 플래너</small></div><button class="close-btn" data-close>${ico('close')}</button></div><p style="font-size:12px;color:var(--sub);line-height:1.9">캘린더의 이어지는 기간 일정, 일정·카테고리 수정, 투두와 메모, 디데이, 일간·주간 타임트래커, 주간·월간 목표, 타이머·스톱워치·뽀모도로를 사용할 수 있어요.</p><p style="font-size:12px;color:var(--sub);line-height:1.9">데이터는 <b>현재 브라우저의 로컬 저장소</b>에 저장됩니다. 클라우드 연결 전에는 이 기기에만 저장됩니다. 상단 구름 아이콘에서 Supabase를 연결하면 기기 간 동기화할 수 있어요.</p><button class="primary" data-close>확인</button></div></div>`}
+function infoModal(){document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>hope. v1.6</h2><small>일정과 메모를 한곳에 모은 개인 플래너</small></div><button class="close-btn" data-close>${ico('close')}</button></div><p style="font-size:12px;color:var(--sub);line-height:1.9">캘린더의 이어지는 기간 일정, 일정·카테고리 수정, 투두와 메모, 디데이, 일간·주간 타임트래커, 주간·월간 목표, 타이머·스톱워치·뽀모도로를 사용할 수 있어요.</p><p style="font-size:12px;color:var(--sub);line-height:1.9">데이터는 <b>현재 브라우저의 로컬 저장소</b>에 저장됩니다. 클라우드 연결 전에는 이 기기에만 저장됩니다. 상단 구름 아이콘에서 Supabase를 연결하면 기기 간 동기화할 수 있어요.</p><button class="primary" data-close>확인</button></div></div>`}
 
 function searchModal(){document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true" aria-labelledby="searchTitle"><div class="modal-head"><div><h2 id="searchTitle">빠른 검색</h2><small>일정과 할 일의 제목을 검색해요.</small></div><button class="close-btn" data-close aria-label="닫기">${ico('close')}</button></div><input id="searchInput" class="field-input" type="search" placeholder="예: 강의, 과제, 운동..." autofocus/><div id="searchResults" style="margin-top:16px;color:var(--sub);font-size:12px">검색어를 입력해 주세요.</div></div></div>`;document.getElementById('searchInput').focus()}
 function handleSave(form){let k=form.dataset.kind,id=form.dataset.id,title=document.getElementById('fTitle').value.trim(),date=document.getElementById('fDate').value,memo=document.getElementById('fMemo').value.trim(),cat=document.getElementById('fCat').value;if(!title||!date){toast('제목과 날짜를 입력해 주세요.');return}if(!hasCat(cat)){toast('카테고리를 선택해 주세요.');return}if(k==='event'){const endDate=document.getElementById('fEndDate').value,allDay=document.getElementById('fAllDay').checked,time=document.getElementById('fTime').value,end=document.getElementById('fEnd').value;if(!endDate||endDate<date){toast('종료 날짜는 시작 날짜와 같거나 이후여야 해요.');return}if(!allDay&&(!time||!end||(endDate===date&&end<=time))){toast('같은 날 일정은 종료 시간이 시작 시간보다 늦어야 해요.');return}let obj={id:id||'e'+Date.now(),title,date,endDate,time:allDay?'00:00':time,end:allDay?'23:59':end,allDay,category:cat,memo};events=id?events.map(v=>v.id===id?obj:v):[...events,obj];state.selected=date;state.visibleMonth=new Date(parseDate(date).getFullYear(),parseDate(date).getMonth(),1)}else{let prev=tasks.find(v=>v.id===id),obj={id:id||'t'+Date.now(),title,date,category:cat,memo,priority:document.getElementById('fPriority').value,done:prev?prev.done:false,completedAt:prev?.completedAt||null};tasks=id?tasks.map(v=>v.id===id?obj:v):[...tasks,obj]}save();closeModal();render();toast(k==='todo'?'할 일이 저장되었어요.':'일정이 저장되었어요.')}
@@ -1311,392 +1327,7 @@ async function cloudBoot(){
  }}catch(e){cloudStatusMessage(e.message,true)}finally{cloudButtonState()}
 }
 function cloudWire(){const el=document.getElementById('cloudSyncBtn');if(el){el.innerHTML=ico('info');el.addEventListener('click',cloudDialog)}cloudButtonState();cloudBoot();setInterval(cloudBackgroundSync,4500);document.addEventListener('visibilitychange',()=>{if(!document.hidden)cloudBackgroundSync()})}
-
-
-  
-/* hope v1.8 - 일정 복사 및 선택 삭제 */
-(function installHopeCalendarActions() {
-  if (window.__hopeCalendarActionsV18) return;
-  window.__hopeCalendarActionsV18 = true;
-
-  const originalEditModal = editModal;
-
-  editModal = function(kind, id, prefill) {
-    const result = originalEditModal(kind, id, prefill);
-    if (kind !== 'event' || !id || !events.some(e => e.id === id)) {
-      return result;
-    }
-
-    const form = document.getElementById('itemForm');
-    if (!form || form.querySelector('[data-hope-copy-event]')) {
-      return result;
-    }
-
-    form.dataset.copyReady = '1';
-    form.querySelectorAll('[data-duplicate-event]')
-      .forEach(button => button.remove());
-
-    const firstField = form.querySelector('.form-field');
-    if (firstField) {
-      const wrapper = document.createElement('div');
-      wrapper.style.cssText =
-        'display:flex;margin:-5px 0 14px';
-
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'secondary';
-      button.dataset.hopeCopyEvent = id;
-      button.textContent = '⧉ 이 일정 복사';
-      button.style.width = '100%';
-
-      wrapper.appendChild(button);
-      firstField.after(wrapper);
-    }
-    return result;
-  };
-
-  function copyEvent(id) {
-    const source = events.find(e => e.id === id);
-    if (!source) {
-      toast('복사할 일정을 찾지 못했어요.');
-      return;
-    }
-
-    const duration = Math.max(
-      0,
-      dateDiff(source.date, source.endDate || source.date)
-    );
-
-    editModal('event');
-
-    const form = document.getElementById('itemForm');
-    if (!form) return;
-
-    form.dataset.id = '';
-    form.dataset.duplicating = 'true';
-
-    const values = {
-      fTitle: source.title,
-      fDate: source.date,
-      fEndDate: source.endDate || source.date,
-      fTime: source.time || '09:00',
-      fEnd: source.end || '10:00',
-      fCat: source.category,
-      fMemo: source.memo || ''
-    };
-
-    Object.entries(values).forEach(([id, value]) => {
-      const input = document.getElementById(id);
-      if (input) input.value = value;
-    });
-
-    const allDay = document.getElementById('fAllDay');
-    if (allDay) {
-      allDay.checked = !!source.allDay;
-      const timeFields = document.getElementById('timeFields');
-      if (timeFields) timeFields.hidden = allDay.checked;
-    }
-
-    document.getElementById('modalTitle').textContent = '일정 복사';
-
-    const submit = form.querySelector('[type="submit"]');
-    if (submit) submit.textContent = '복사해서 저장';
-
-    const start = document.getElementById('fDate');
-    const end = document.getElementById('fEndDate');
-
-    if (start && end) {
-      end.min = start.value;
-      start.addEventListener('change', () => {
-        if (!start.value) return;
-        end.value = datekey(
-          addDays(parseDate(start.value), duration)
-        );
-        end.min = start.value;
-      });
-      start.focus();
-    }
-  }
-
-  function visibleEvents() {
-    let start, end, label;
-
-    if (state.calView === 'month') {
-      const y = state.visibleMonth.getFullYear();
-      const m = state.visibleMonth.getMonth();
-      start = datekey(new Date(y, m, 1));
-      end = datekey(new Date(y, m + 1, 0));
-      label = `${y}년 ${m + 1}월`;
-    } else if (state.calView === 'week') {
-      [start, end] = periodBounds('week', state.selected);
-      label = `${start} ~ ${end}`;
-    } else {
-      start = end = state.selected;
-      label = start;
-    }
-
-    const list = events
-      .filter(e =>
-        matchesCategory(e.category, 'calendar') &&
-        e.date <= end &&
-        (e.endDate || e.date) >= start
-      )
-      .sort((a, b) =>
-        a.date.localeCompare(b.date) ||
-        (a.time || '').localeCompare(b.time || '')
-      );
-
-    return { list, label };
-  }
-
-  function openBulkDelete() {
-    const { list, label } = visibleEvents();
-    const chosen = new Set();
-    const root = document.getElementById('modalRoot');
-
-    root.innerHTML = `
-      <div class="overlay" data-overlay>
-        <div class="modal" role="dialog" aria-modal="true">
-          <div class="modal-head">
-            <div>
-              <h2>일정 선택 삭제</h2>
-              <small>${esc(label)} · ${list.length}개 일정</small>
-            </div>
-            <button type="button" class="close-btn"
-              data-close aria-label="닫기">✕</button>
-          </div>
-
-          <p style="font-size:12px;color:var(--sub);line-height:1.6">
-            삭제할 일정을 체크하세요.
-            기간 일정은 전체 일정이 삭제돼요.
-          </p>
-
-          <label style="display:flex;gap:9px;align-items:center;
-            padding:12px 4px;font-size:12px;font-weight:750">
-            <input type="checkbox" id="hopeSelectAll"
-              ${list.length ? '' : 'disabled'}>
-            전체 선택
-          </label>
-
-          <div id="hopeBulkList" style="max-height:46vh;
-            overflow-y:auto;border:1px solid var(--stroke);
-            border-radius:14px;padding:5px">
-
-            ${list.length ? list.map(e => `
-              <label style="display:flex;align-items:center;
-                gap:11px;padding:12px 8px;cursor:pointer;
-                border-bottom:1px solid var(--stroke)">
-                <input type="checkbox"
-                  data-hope-select="${esc(e.id)}"
-                  style="width:18px;height:18px;flex-shrink:0">
-                <span style="width:6px;height:24px;
-                  border-radius:8px;flex-shrink:0;
-                  background:${catOf(e.category).color}"></span>
-                <span style="min-width:0;flex:1">
-                  <strong style="display:block;font-size:12px">
-                    ${esc(e.title)}
-                  </strong>
-                  <small style="display:block;line-height:1.6">
-                    ${esc(dateRangeText(e))} ·
-                    ${esc(timeText(e))}
-                  </small>
-                </span>
-              </label>
-            `).join('') :
-              '<p class="empty-note">선택할 일정이 없어요.</p>'}
-          </div>
-
-          <div class="form-foot" style="margin-top:15px">
-            <span id="hopeSelectCount" class="sample">0개 선택</span>
-            <button type="button" class="secondary" data-close>
-              취소
-            </button>
-            <button type="button" class="danger"
-              id="hopeDeleteSelected" disabled>
-              선택 삭제
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-
-    const all = root.querySelector('#hopeSelectAll');
-    const boxes = [...root.querySelectorAll('[data-hope-select]')];
-    const deleteButton = root.querySelector('#hopeDeleteSelected');
-
-    function update() {
-      root.querySelector('#hopeSelectCount').textContent =
-        `${chosen.size}개 선택`;
-      deleteButton.disabled = chosen.size === 0;
-      all.checked = boxes.length > 0 &&
-        chosen.size === boxes.length;
-      all.indeterminate =
-        chosen.size > 0 && chosen.size < boxes.length;
-    }
-
-    root.querySelector('#hopeBulkList')
-      .addEventListener('change', e => {
-        const box = e.target.closest('[data-hope-select]');
-        if (!box) return;
-
-        if (box.checked) chosen.add(box.dataset.hopeSelect);
-        else chosen.delete(box.dataset.hopeSelect);
-        update();
-      });
-
-    all.addEventListener('change', () => {
-      boxes.forEach(box => {
-        box.checked = all.checked;
-        if (box.checked) chosen.add(box.dataset.hopeSelect);
-        else chosen.delete(box.dataset.hopeSelect);
-      });
-      update();
-    });
-
-    deleteButton.addEventListener('click', () => {
-      if (chosen.size === 0) return;
-
-      const count = chosen.size;
-      if (!confirm(
-        `선택한 일정 ${count}개를 삭제할까요?\n` +
-        '삭제 내용은 다른 기기에도 동기화돼요.'
-      )) return;
-
-      events = events.filter(e => !chosen.has(e.id));
-      save();
-      closeModal();
-      render();
-      toast(`${count}개 일정을 삭제했어요.`);
-    });
-  }
-
-  const originalCalendar = calendarScreen;
-
-  calendarScreen = function() {
-    const html = originalCalendar();
-
-    return html.replace(
-      '<button class="primary" data-open="event">',
-      '<button type="button" class="secondary" ' +
-      'data-hope-bulk-open>☑ 선택 삭제</button>' +
-      '<button class="primary" data-open="event">'
-    );
-  };
-
-  document.addEventListener('click', e => {
-    const copyButton = e.target.closest(
-      '[data-hope-copy-event], [data-duplicate-event]'
-    );
-    const bulkButton = e.target.closest('[data-hope-bulk-open]');
-
-    if (!copyButton && !bulkButton) return;
-
-    e.preventDefault();
-    e.stopImmediatePropagation();
-
-    if (copyButton) {
-      copyEvent(
-        copyButton.dataset.hopeCopyEvent ||
-        copyButton.dataset.duplicateEvent
-      );
-    } else {
-      openBulkDelete();
-    }
-  }, true);
-
-  render();
-})();
-
-
-/* hope v1.9 - 타임트래커 시간 블록 복사 */
-(function installHopeTrackerCopy() {
-  if (window.__hopeTrackerCopyV19) return;
-  window.__hopeTrackerCopyV19 = true;
-
-  const oldJournalModal = journalModal;
-
-  journalModal = function(kind, date, hour, id) {
-    const result = oldJournalModal.apply(this, arguments);
-
-    if (!id || (kind !== 'plan' && kind !== 'actual')) {
-      return result;
-    }
-
-    const source = (kind === 'plan' ? plannerPlans : timeLogs)
-      .find(item => item.id === id);
-
-    const form = document.getElementById('journalForm');
-    const titleField = document.getElementById('jTitleInput');
-
-    if (!source || !source.start || !source.end ||
-        !form || !titleField ||
-        form.querySelector('[data-hope-tracker-copy]')) {
-      return result;
-    }
-
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'secondary';
-    button.dataset.hopeTrackerCopy = id;
-    button.textContent = '⧉ 이 시간 블록 복사';
-    button.style.cssText =
-      'width:100%;margin:3px 0 15px;min-height:42px';
-
-    titleField.closest('.form-field').after(button);
-
-    button.addEventListener('click', () => {
-      oldJournalModal(
-        kind,
-        source.date,
-        Number(source.start.slice(0, 2)) || 9,
-        ''
-      );
-
-      const newForm = document.getElementById('journalForm');
-      if (!newForm) return;
-
-      newForm.dataset.id = '';
-      newForm.dataset.originalKind = kind;
-
-      const values = {
-        jKind: kind,
-        jTitleInput: source.title || '',
-        jDate: source.date || '',
-        jCat: source.category || 'basic',
-        jStart: source.start,
-        jEnd: source.end,
-        jMemo: source.memo || ''
-      };
-
-      Object.entries(values).forEach(([field, value]) => {
-        const input = document.getElementById(field);
-        if (input) input.value = value;
-      });
-
-      document.getElementById('jTitle').textContent =
-        '시간 블록 복사';
-
-      const tip = document.querySelector(
-        '#modalRoot .modal-head small'
-      );
-      if (tip) {
-        tip.textContent =
-          '날짜를 바꿔 저장하면 원본은 그대로 남아요.';
-      }
-
-      const submit = newForm.querySelector(
-        'button[type="submit"]'
-      );
-      if (submit) submit.textContent = '복사해서 저장';
-
-      document.getElementById('jDate')?.focus();
-    });
-
-    return result;
-  };
-})();
-
-  cloudWire();
+cloudWire();
 
 })();
 </script>
