@@ -633,6 +633,59 @@ html[data-theme=dark] .copy-section h3{color:#f2f5fc}
 .appearance-dialog .week-start-choice{margin-top:8px}
 @media(max-width:800px){.calendar-switches{width:100%;justify-content:space-between;gap:6px}.calendar-switches>.segment button{padding:7px 10px}.week-start-choice{gap:5px}.week-start-choice>span{font-size:10px}.week-start-choice .segment button{font-size:10px;padding:7px 8px}}
 @media(max-width:365px){.calendar-switches{flex-wrap:wrap}.week-start-choice .segment button{padding:7px 7px}}
+
+/* v1.8 — playlist & weekly song */
+.weekly-song-hero{position:relative;overflow:hidden;padding:26px 28px;margin-bottom:18px;background:linear-gradient(140deg,rgba(54,62,76,.50),rgba(255,255,255,.16) 38%,rgba(68,85,112,.34) 100%);border:1px solid rgba(255,255,255,.58);box-shadow:0 18px 50px rgba(59,72,97,.14),inset 0 1px 0 rgba(255,255,255,.65)}
+.weekly-song-hero::before{content:'';position:absolute;inset:-25% auto auto -7%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.42),rgba(255,255,255,0) 70%);filter:blur(12px);pointer-events:none}
+.weekly-song-hero::after{content:'';position:absolute;right:-10%;bottom:-30%;width:260px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(117,145,184,.20),rgba(255,255,255,0) 68%);filter:blur(14px);pointer-events:none}
+.weekly-song-wrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.92fr);gap:22px;align-items:center;position:relative;z-index:1}
+.weekly-song-left{min-width:0}
+.weekly-song-label{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:8px 12px;background:rgba(255,255,255,.34);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.5);font-size:11px;font-weight:760;letter-spacing:.08em;color:#4d5d76;text-transform:uppercase}
+.weekly-song-title{font-size:clamp(28px,2.95vw,42px);letter-spacing:-.055em;line-height:1.16;color:#1d2431;font-weight:840;margin:14px 0 6px}
+.weekly-song-sub{font-size:14px;line-height:1.7;color:#617081;max-width:560px}
+.weekly-song-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:20px}
+.song-count-badge{display:inline-flex;align-items:center;gap:7px;padding:10px 13px;border-radius:999px;background:rgba(255,255,255,.28);border:1px solid rgba(255,255,255,.45);font-size:12px;font-weight:680;color:#556274}
+.song-feature-card{position:relative;display:flex;align-items:center;gap:18px;padding:18px 18px 18px 16px;border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(255,255,255,.10));border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(20px);box-shadow:0 14px 32px rgba(48,58,79,.14);overflow:hidden;min-width:0}
+.song-feature-card.empty{display:block;padding:22px}
+.song-cover{position:relative;flex:0 0 92px;width:92px;height:92px;border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.40),rgba(80,97,126,.34));box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 14px 28px rgba(52,63,87,.18);display:grid;place-items:center;overflow:hidden}
+.song-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 22% 18%,rgba(255,255,255,.8),rgba(255,255,255,0) 42%),linear-gradient(135deg,rgba(255,255,255,.12),rgba(0,0,0,.08));mix-blend-mode:screen}
+.song-cover .icon{width:36px;height:36px;stroke-width:1.6;color:#ffffffd8}
+.song-wave{position:absolute;left:12px;right:12px;bottom:14px;height:18px;display:flex;align-items:flex-end;gap:3px;opacity:.72}
+.song-wave span{display:block;flex:1 1 0;background:rgba(255,255,255,.8);border-radius:999px}
+.song-wave span:nth-child(1){height:34%}.song-wave span:nth-child(2){height:68%}.song-wave span:nth-child(3){height:46%}.song-wave span:nth-child(4){height:85%}.song-wave span:nth-child(5){height:40%}.song-wave span:nth-child(6){height:72%}.song-wave span:nth-child(7){height:32%}
+.song-main{min-width:0;display:flex;flex-direction:column;gap:9px;align-items:flex-start}
+.song-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.38);border:1px solid rgba(255,255,255,.52);font-size:11px;font-weight:720;color:#5a6981}
+.song-main h3{margin:0;font-size:28px;line-height:1.18;letter-spacing:-.05em;color:#1f2733;overflow-wrap:anywhere}
+.song-main p{margin:0;font-size:15px;color:#6a788a}
+.song-meta-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.song-small-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.24);font-size:11px;color:#677487;border:1px solid rgba(255,255,255,.38)}
+.song-link{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.36);border:1px solid rgba(255,255,255,.52);font-size:12px;font-weight:680;color:#495970;text-decoration:none}
+.song-link:hover{transform:translateY(-1px)}
+.song-ghost-note{font-size:12px;line-height:1.75;color:#7f8996;max-width:340px}
+.playlist-shell{display:grid;grid-template-columns:330px minmax(0,1fr);gap:18px;align-items:start}
+.playlist-side-card,.playlist-main-card{padding:22px;border-radius:30px}
+.playlist-side-stack{display:flex;flex-direction:column;gap:15px}
+.playlist-search{width:100%;height:44px;border-radius:16px;border:1px solid rgba(255,255,255,.65);background:rgba(255,255,255,.52);padding:0 14px;color:var(--ink);outline:none}
+.playlist-side-note{font-size:12px;line-height:1.75;color:#7d8795;padding:4px 2px 0}
+.playlist-hero-mini{padding:18px;border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.30),rgba(255,255,255,.14));border:1px solid rgba(255,255,255,.54)}
+.playlist-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.playlist-card{position:relative;padding:16px 16px 15px;border-radius:24px;background:linear-gradient(150deg,rgba(255,255,255,.34),rgba(255,255,255,.14));border:1px solid rgba(255,255,255,.62);box-shadow:0 12px 28px rgba(76,87,108,.08);overflow:hidden;display:flex;gap:14px;align-items:flex-start;min-width:0}
+.playlist-card::after{content:'';position:absolute;inset:auto -12% -42% auto;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(124,142,176,.16),rgba(255,255,255,0) 72%);pointer-events:none}
+.playlist-card-main{min-width:0;flex:1 1 auto}
+.playlist-card-title{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.playlist-card-title strong{font-size:18px;line-height:1.25;letter-spacing:-.04em;color:#26303d;display:block;overflow-wrap:anywhere}
+.playlist-card-title .playlist-actions{display:flex;gap:4px;flex:0 0 auto}
+.playlist-card-title .playlist-actions button{width:30px;height:30px;border-radius:10px;background:rgba(255,255,255,.54);border:1px solid rgba(255,255,255,.65);display:grid;place-items:center;color:#6c7889}
+.playlist-card-artist{font-size:13px;color:#6f7b8c;margin:0 0 12px}
+.playlist-card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.playlist-empty{padding:42px 20px;text-align:center;color:#7e8795;border-radius:24px;border:1px dashed rgba(134,146,165,.35);background:rgba(255,255,255,.24)}
+.playlist-empty strong{display:block;color:#2d3643;font-size:18px;margin-bottom:8px}
+.playlist-filter-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.58);font-size:11px;font-weight:700;color:#677485}
+.playlist-mini-count{font-size:12px;color:#7b8796}
+@media(max-width:1200px){.weekly-song-wrap,.playlist-shell{grid-template-columns:1fr}.playlist-side-card{order:-1}}
+@media(max-width:800px){.weekly-song-hero{padding:22px 18px}.weekly-song-title{font-size:26px}.song-feature-card{padding:15px}.song-cover{width:82px;height:82px;border-radius:20px;flex-basis:82px}.song-main h3{font-size:24px}.playlist-grid{grid-template-columns:1fr}.playlist-main-card,.playlist-side-card{padding:18px}}
+@media(max-width:520px){.song-feature-card{flex-direction:column;align-items:flex-start}.song-cover{width:100%;height:130px}.song-cover .icon{width:32px;height:32px}.song-wave{left:18px;right:18px}.playlist-card{padding:14px 14px 13px;gap:10px}.playlist-card-title strong{font-size:16px}}
+
 </style>
 </head>
 <body>
@@ -642,7 +695,7 @@ html[data-theme=dark] .copy-section h3{color:#f2f5fc}
     <div class="brand"><div class="brand-mark" id="brandIcon"></div><div class="brand-name" id="editableBrandName">hope.</div><button class="copy-brand-btn" type="button" data-copy-group="navigation" aria-label="앱 이름과 메뉴 수정" title="앱 이름과 메뉴 수정">✎</button></div>
     <div class="nav-label">WORKSPACE</div><nav id="navMain"></nav>
     <div class="nav-label" style="margin-top:14px">TOOLS & MORE</div><nav id="navOther"></nav>
-    <div class="sidebar-bottom"><div class="tipbox"><button type="button" class="copy-sidebar-btn" data-copy-group="sidebar" aria-label="사이드바 문구 수정" title="문구 변경">✎</button><strong id="sideCopyHeadline">하루의 흐름을 기록해요 ✦</strong><p id="sideCopyDescription">계획하고, 집중하고, 달성하는 나만의 공간.</p><div class="outline-pill">올인원 플래너 · v1.7</div></div></div>
+    <div class="sidebar-bottom"><div class="tipbox"><button type="button" class="copy-sidebar-btn" data-copy-group="sidebar" aria-label="사이드바 문구 수정" title="문구 변경">✎</button><strong id="sideCopyHeadline">하루의 흐름을 기록해요 ✦</strong><p id="sideCopyDescription">계획하고, 집중하고, 달성하는 나만의 공간.</p><div class="outline-pill">올인원 플래너 · v1.8</div></div></div>
   </aside>
   <main class="workspace"><div class="topbar"><div class="breadcrumb">Workspace&nbsp; / &nbsp;<b id="breadcrumbPage">홈</b></div><div class="top-right"><button class="icon-btn" id="cloudSyncBtn" aria-label="기기 간 동기화" title="클라우드 동기화">☁</button><button class="icon-btn" id="searchBtn" aria-label="검색" title="일정과 할 일 검색"></button><button class="icon-btn" id="themeToggleBtn" aria-label="다크 모드 전환" title="라이트 / 다크 전환"></button><button class="icon-btn" id="copySettingsBtn" aria-label="화면 문구 편집" title="화면 문구 편집"></button><button class="icon-btn" id="settingsBtn" aria-label="디자인 설정" title="디자인 설정"></button><div class="avatar" title="개인용 플래너">me</div></div></div><div id="screen"></div></main>
   <aside class="right-rail glass" id="rightRail" aria-label="오늘 요약"></aside>
@@ -675,7 +728,7 @@ function storeAppearance(){try{localStorage.setItem(APPEARANCE_KEY,JSON.stringif
 function setAppearance(values){appearance={...appearance,...values};applyAppearance();storeAppearance()}
 if(appearanceMedia){const onThemeChange=()=>{if(appearance.theme==='system')applyAppearance()};if(appearanceMedia.addEventListener)appearanceMedia.addEventListener('change',onThemeChange);else if(appearanceMedia.addListener)appearanceMedia.addListener(onThemeChange)}
 'use strict';
-const paths={sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>',moon:'<path d="M20.98 13.01A9 9 0 0 1 10.99 3.02 9 9 0 1 0 20.98 13.01Z"/>',home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>',check:'<path d="m5 12 4 4L19 6"/>',todo:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="m7 12 3 3 6-6"/>',chart:'<path d="M4 20V11M10 20V5M16 20v-9M22 20V7"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 3"/>',timer:'<circle cx="12" cy="13" r="8"/><path d="M12 13V9M9 2h6M19 5l2-2"/>',flag:'<path d="M5 21V4m0 1q5-3 9 0t6 0v10q-5 3-10 0t-5 0"/>',plus:'<path d="M12 5v14M5 12h14"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',settings:'<path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2"/><circle cx="16" cy="17" r="2"/>',left:'<path d="m15 18-6-6 6-6"/>',right:'<path d="m9 18 6-6-6-6"/>',close:'<path d="M18 6 6 18M6 6l12 12"/>',note:'<path d="M6 3h9l5 5v13H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M15 3v6h5M8 13h8M8 17h6"/>',sparkle:'<path d="m12 3 1.7 6.3L20 11l-6.3 1.7L12 19l-1.7-6.3L4 11l6.3-1.7L12 3z"/>',edit:'<path d="M12 20h9M4 16l-1 5 5-1L20 8l-4-4z"/>',trash:'<path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15M10 10v7M14 10v7"/>',play:'<path d="m8 5 12 7-12 7z"/>',pause:'<path d="M8 5v14M16 5v14"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/>',dots:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>'};
+const paths={sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>',moon:'<path d="M20.98 13.01A9 9 0 0 1 10.99 3.02 9 9 0 1 0 20.98 13.01Z"/>',home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>',check:'<path d="m5 12 4 4L19 6"/>',todo:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="m7 12 3 3 6-6"/>',chart:'<path d="M4 20V11M10 20V5M16 20v-9M22 20V7"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 3"/>',timer:'<circle cx="12" cy="13" r="8"/><path d="M12 13V9M9 2h6M19 5l2-2"/>',flag:'<path d="M5 21V4m0 1q5-3 9 0t6 0v10q-5 3-10 0t-5 0"/>',plus:'<path d="M12 5v14M5 12h14"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',settings:'<path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2"/><circle cx="16" cy="17" r="2"/>',left:'<path d="m15 18-6-6 6-6"/>',right:'<path d="m9 18 6-6-6-6"/>',close:'<path d="M18 6 6 18M6 6l12 12"/>',note:'<path d="M6 3h9l5 5v13H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M15 3v6h5M8 13h8M8 17h6"/>',sparkle:'<path d="m12 3 1.7 6.3L20 11l-6.3 1.7L12 19l-1.7-6.3L4 11l6.3-1.7L12 3z"/>',edit:'<path d="M12 20h9M4 16l-1 5 5-1L20 8l-4-4z"/>',trash:'<path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15M10 10v7M14 10v7"/>',play:'<path d="m8 5 12 7-12 7z"/>',pause:'<path d="M8 5v14M16 5v14"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/>',dots:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',music:'<path d="M9 18V6l10-2v12"/><circle cx="7" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>'};
 const ico=(name,cls='')=>`<svg class="icon ${cls}" viewBox="0 0 24 24" aria-hidden="true">${paths[name]||paths.info}</svg>`;
 const fmtLong=new Intl.DateTimeFormat('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'long'});
 const fmtDay=new Intl.DateTimeFormat('ko-KR',{month:'long',day:'numeric',weekday:'long'});
@@ -811,7 +864,7 @@ function categoryFilterBar(scope,desc=''){
 }
 function calendarGoalOverview(){const period=state.calView==='month'?'month':'week';if(state.calView==='day')return '';const anchor=period==='month'?state.visibleMonth:parseDate(state.selected);const visible=goals.filter(g=>g.period===period&&matchesCategory(g.category,'calendar'));const [start,end]=periodBounds(period,anchor);const label=period==='month'?'월 목표':'주 목표';return `<section class="calendar-goal-overview" aria-label="${label}"><div class="calendar-goal-top"><div><h3>${ico('target','sm')} ${label} <small>· ${period==='month'?`${anchor.getFullYear()}년 ${anchor.getMonth()+1}월`:`${start.slice(5).replace('-','/')} ~ ${end.slice(5).replace('-','/')}`}</small></h3></div><button class="text-button" data-nav="goals">목표 관리 ${ico('right','sm')}</button></div>${visible.length?`<div class="calendar-goal-items">${visible.map(g=>{const a=goalStatus(g,anchor),c=g.category==='all'?{color:'#777b80',label:'전체'}:catOf(g.category);return `<button class="calendar-goal-card" data-edit-goal="${esc(g.id)}" aria-label="${esc(g.title)} 목표 수정"><span class="goal-heading"><i class="category-dot" style="width:10px;height:10px;flex:none;background:${c.color};border-radius:50%"></i><span>${esc(g.title)}</span></span><span class="goal-meta"><span>${esc(a.label)}</span><strong>${a.pct}%</strong></span><span class="thin-progress"><span style="display:block;width:${a.pct}%;height:100%;border-radius:inherit;background:${c.color}"></span></span></button>`}).join('')}</div>`:`<div class="calendar-goal-empty">${calendarAllOn()?'등록된':`선택한 카테고리의`} ${label}가 없어요. <button class="text-button" data-open-goal>＋ 새 목표</button></div>`}</section>`}
 
-const names={home:'오늘의 다짐',dashboard:'대시보드',calendar:'캘린더',todo:'투두',notes:'메모',tracker:'타임트래커',goals:'목표',focus:'집중 도구',dday:'디데이'};
+const names={home:'오늘의 다짐',dashboard:'대시보드',calendar:'캘린더',todo:'투두',notes:'메모',playlist:'플레이리스트',tracker:'타임트래커',goals:'목표',focus:'집중 도구',dday:'디데이'};
 function esc(str){return String(str??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function categoryTag(v){const c=catOf(v);return `<span class="tag custom" style="--tag-bg:${c.color}24;--tag-fg:${c.color}">${esc(c.label)}</span>`}
 const progress=()=>{const arr=tasks.filter(t=>t.date===todayKey),done=arr.filter(t=>t.done).length;return {all:arr.length,done,pct:arr.length?Math.round(done/arr.length*100):0}};
@@ -819,7 +872,7 @@ function toast(msg){const el=document.getElementById('toast');el.textContent=msg
 
 function navTo(name){if(!names[name])return;state.page=name;render();window.scrollTo({top:0,behavior:'smooth'})}
 const core=[['home','sparkle','오늘의 다짐'],['dashboard','home','대시보드'],['calendar','calendar','캘린더'],['todo','todo','투두'],['notes','note','메모']];
-const others=[['tracker','chart','타임트래커'],['goals','target','주·월 목표'],['focus','timer','집중 도구'],['dday','flag','디데이']];
+const others=[['playlist','music','플레이리스트'],['tracker','chart','타임트래커'],['goals','target','주·월 목표'],['focus','timer','집중 도구'],['dday','flag','디데이']];
 function renderNav(){document.getElementById('navMain').innerHTML=core.map(([k,i,n])=>`<button class="side-link ${state.page===k?'active':''}" data-nav="${k}">${ico(i)}${esc(ct('nav.'+k))}</button>`).join('');document.getElementById('navOther').innerHTML=others.map(([k,i,n])=>`<button class="side-link ${state.page===k?'active':''}" data-nav="${k}">${ico(i)}${esc(ct('nav.'+k))}</button>`).join('');document.getElementById('mobileBar').innerHTML=[...core,['other','dots','더보기']].map(([k,i,n])=>`<button class="mobile-tab ${(state.page===k||(k==='other'&&others.some(v=>v[0]===state.page)))?'active':''}" data-nav="${k}">${ico(i)}<span>${k==='other'?n:esc(ct('nav.'+k))}</span></button>`).join('')}
 
 // v1.3 — editable UI microcopy (independent from the randomly selected daily affirmation)
@@ -831,6 +884,7 @@ const COPY_FIELDS=[
  {key:'nav.calendar',group:'navigation',section:'앱 이름과 메뉴',label:'캘린더 메뉴 이름',default:'캘린더'},
  {key:'nav.todo',group:'navigation',section:'앱 이름과 메뉴',label:'투두 메뉴 이름',default:'투두'},
  {key:'nav.notes',group:'navigation',section:'앱 이름과 메뉴',label:'메모 메뉴 이름',default:'메모'},
+ {key:'nav.playlist',group:'navigation',section:'앱 이름과 메뉴',label:'플레이리스트 메뉴 이름',default:'플레이리스트'},
  {key:'nav.tracker',group:'navigation',section:'앱 이름과 메뉴',label:'타임트래커 메뉴 이름',default:'타임트래커'},
  {key:'nav.goals',group:'navigation',section:'앱 이름과 메뉴',label:'주·월 목표 메뉴 이름',default:'주·월 목표'},
  {key:'nav.focus',group:'navigation',section:'앱 이름과 메뉴',label:'집중 도구 메뉴 이름',default:'집중 도구'},
@@ -840,6 +894,9 @@ const COPY_FIELDS=[
  {key:'pledge.eyebrow',group:'pledge',section:'오늘의 다짐',label:'위쪽 작은 영문 문구',default:'MY DAILY INTENTION'},
  {key:'pledge.title',group:'pledge',section:'오늘의 다짐',label:'메인 화면 제목',default:'오늘의 다짐'},
  {key:'pledge.desc',group:'pledge',section:'오늘의 다짐',label:'메인 화면 안내',default:'마음에 남는 문장을 모아두면, 매일 하나가 오늘의 다짐이 돼요.'},
+ {key:'pledge.songLabel',group:'pledge',section:'오늘의 다짐',label:'금주의 노래 작은 라벨',default:'WEEKLY PICK'},
+ {key:'pledge.songTitle',group:'pledge',section:'오늘의 다짐',label:'금주의 노래 제목',default:'금주의 노래'},
+ {key:'pledge.songDesc',group:'pledge',section:'오늘의 다짐',label:'금주의 노래 안내',default:'플레이리스트에 저장한 곡 중에서 이번 주의 한 곡을 추천해요.'},
  {key:'pledge.feature',group:'pledge',section:'오늘의 다짐',label:'큰 다짐 카드 라벨',default:"TODAY'S THOUGHT"},
  {key:'pledge.daily',group:'pledge',section:'오늘의 다짐',label:'오늘 카드 우측 라벨',default:'오늘의 한 문장'},
  {key:'pledge.stable',group:'pledge',section:'오늘의 다짐',label:'카드 하단 왼쪽',default:'하루 동안 고정되는 다짐'},
@@ -859,6 +916,9 @@ const COPY_FIELDS=[
  {key:'notes.eyebrow',group:'notes',section:'메모',label:'작은 영문 제목',default:'MEMO STUDIO'},
  {key:'notes.title',group:'notes',section:'메모',label:'큰 제목',default:'메모'},
  {key:'notes.desc',group:'notes',section:'메모',label:'설명 문구',default:'제목과 본문을 자유롭게 기록하고 서식을 적용해요'},
+ {key:'playlist.eyebrow',group:'playlist',section:'플레이리스트',label:'작은 영문 제목',default:'PLAYLIST MEMORY'},
+ {key:'playlist.title',group:'playlist',section:'플레이리스트',label:'큰 제목',default:'플레이리스트'},
+ {key:'playlist.desc',group:'playlist',section:'플레이리스트',label:'설명 문구',default:'좋아하는 노래 제목과 가수, 링크를 간단하게 저장해요'},
  {key:'tracker.eyebrow',group:'tracker',section:'타임트래커',label:'작은 영문 제목',default:'TIME JOURNAL'},
  {key:'tracker.title',group:'tracker',section:'타임트래커',label:'큰 제목',default:'나만의 시간 기록'},
  {key:'tracker.desc',group:'tracker',section:'타임트래커',label:'설명 문구',default:'참고한 플래너처럼 계획과 실제 시간을 나란히 기록해요'},
@@ -877,7 +937,7 @@ const COPY_FIELDS=[
  {key:'rail.focus',group:'rail',section:'오른쪽 요약 패널',label:'집중 섹션 제목',default:'FOCUS SESSION'},
  {key:'rail.progress',group:'rail',section:'오른쪽 요약 패널',label:'완료율 섹션 제목',default:'오늘의 완료율'},
 ];
-const COPY_PAGE_MAP={'MY DASHBOARD':'dashboard','SCHEDULE & EVENTS':'calendar','TASKS & NOTES':'todo','TASKS & TO-DO':'todo','MEMO STUDIO':'notes','YOUR NOTES':'notes','TIME JOURNAL':'tracker','WEEKLY & MONTHLY GOALS':'goals','FOCUS STUDIO':'focus','D-DAY & MILESTONES':'dday'};
+const COPY_PAGE_MAP={'MY DASHBOARD':'dashboard','SCHEDULE & EVENTS':'calendar','TASKS & NOTES':'todo','TASKS & TO-DO':'todo','MEMO STUDIO':'notes','YOUR NOTES':'notes','PLAYLIST MEMORY':'playlist','TIME JOURNAL':'tracker','WEEKLY & MONTHLY GOALS':'goals','FOCUS STUDIO':'focus','D-DAY & MILESTONES':'dday'};
 let customCopy={};
 try{const x=JSON.parse(localStorage.getItem(COPY_KEY)||'{}');if(x&&typeof x==='object'&&!Array.isArray(x))customCopy=x}catch(e){}
 const ct=k=>{const f=COPY_FIELDS.find(x=>x.key===k);return typeof customCopy[k]==='string'&&customCopy[k].trim()?customCopy[k]:f?.default||''};
@@ -918,13 +978,45 @@ function dailyQuote(){
  return chosen;
 }
 function fmtAffirmationDate(){return new Intl.DateTimeFormat('ko-KR',{month:'long',day:'numeric',weekday:'long'}).format(new Date())}
+
+const PLAYLIST_KEY='hope-v18-playlist';
+const WEEKLY_SONG_KEY='hope-v18-weekly-song';
+let playlist=restore(PLAYLIST_KEY,[]).filter(s=>s&&typeof s.id==='string'&&typeof s.title==='string'&&typeof s.artist==='string').map(s=>({id:s.id,title:s.title.slice(0,120),artist:s.artist.slice(0,120),link:typeof s.link==='string'?s.link:'',createdAt:s.createdAt||Date.now()}));
+let weeklySongState=null;
+let playlistSearchTerm='';
+try{const stored=JSON.parse(localStorage.getItem(WEEKLY_SONG_KEY)||'null');if(stored&&typeof stored.week==='string'&&typeof stored.id==='string')weeklySongState=stored}catch(e){}
+function savePlaylist(){try{localStorage.setItem(PLAYLIST_KEY,JSON.stringify(playlist));}catch(e){toast('플레이리스트 저장 공간을 확인해 주세요.')}}
+function playlistWeekKey(){return periodId('week',new Date())}
+function weeklySong(){
+ const week=playlistWeekKey();
+ if(!playlist.length)return null;
+ if(weeklySongState?.week===week){const kept=playlist.find(song=>song.id===weeklySongState.id);if(kept)return kept}
+ let pool=playlist;
+ if(weeklySongState?.id&&playlist.length>1){const different=playlist.filter(song=>song.id!==weeklySongState.id);if(different.length)pool=different}
+ const chosen=pool[Math.floor(Math.random()*pool.length)];
+ weeklySongState={week,id:chosen.id};
+ try{localStorage.setItem(WEEKLY_SONG_KEY,JSON.stringify(weeklySongState))}catch(e){}
+ return chosen;
+}
+function cleanSongLink(url){const raw=String(url||'').trim();if(!raw)return'';if(/^https?:\/\//i.test(raw))return raw;return 'https://'+raw.replace(/^\/+/, '')}
+function songHost(url){try{return new URL(cleanSongLink(url)).hostname.replace(/^www\./,'')}catch(e){return '링크 열기'}}
+function formatSongDate(ts){return new Intl.DateTimeFormat('ko-KR',{month:'short',day:'numeric'}).format(new Date(ts||Date.now()))}
+function songFeatureCard(song){if(!song)return `<div class="song-feature-card empty"><span class="song-pill">${ico('music','sm')} 이번 주 추천 준비 중</span><h3 style="margin:14px 0 8px;font-size:26px;line-height:1.22;letter-spacing:-.045em;color:#26303d">플레이리스트를 만들어 보세요.</h3><p class="song-ghost-note">노래 제목과 가수 이름, 링크를 저장하면 이번 주에 들을 곡을 자동으로 추천해 드려요.</p><div class="weekly-song-actions"><button type="button" class="primary" data-song-new>${ico('plus','sm')} 첫 노래 추가</button><button type="button" class="secondary" data-nav="playlist">플레이리스트 보기</button></div></div>`;
+ return `<div class="song-feature-card"><div class="song-cover">${ico('music')}<div class="song-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div><div class="song-main"><span class="song-pill">${ico('sparkle','sm')} ${esc(weekLabel(new Date()))} 추천곡</span><h3>${esc(song.title)}</h3><p>${esc(song.artist)}</p><div class="song-meta-row"><span class="song-small-pill">${ico('calendar','sm')} 이번 주 고정 추천</span>${song.link?`<a class="song-link" href="${esc(cleanSongLink(song.link))}" target="_blank" rel="noopener noreferrer">${ico('arrow','sm')} ${esc(songHost(song.link))}</a>`:''}</div><div class="weekly-song-actions"><button type="button" class="secondary" data-nav="playlist">전체 플레이리스트</button><button type="button" class="secondary" data-song-edit="${esc(song.id)}">${ico('edit','sm')} 곡 수정</button></div></div></div>`;
+}
+function playlistCard(song,featured=false){return `<article class="playlist-card glass ${featured?'is-featured':''}"><div class="song-cover" style="width:74px;height:74px;flex-basis:74px;border-radius:20px">${ico('music','sm')}<div class="song-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div><div class="playlist-card-main"><div class="playlist-card-title"><strong>${esc(song.title)}</strong><div class="playlist-actions"><button type="button" data-song-edit="${esc(song.id)}" aria-label="노래 수정">${ico('edit','sm')}</button><button type="button" data-song-delete="${esc(song.id)}" aria-label="노래 삭제">${ico('trash','sm')}</button></div></div><p class="playlist-card-artist">${esc(song.artist)}</p><div class="playlist-card-foot"><span class="playlist-filter-chip">${featured?ico('sparkle','sm')+' 금주의 노래':''||ico('music','sm')+' 저장한 곡'}</span>${song.link?`<a class="song-link" href="${esc(cleanSongLink(song.link))}" target="_blank" rel="noopener noreferrer">${ico('arrow','sm')} 링크</a>`:`<span class="playlist-mini-count">${formatSongDate(song.createdAt)} 추가</span>`}</div></div></article>`}
+function playlistScreen(){const weekly=weeklySong();const filtered=[...playlist].filter(song=>!playlistSearchTerm||`${song.title} ${song.artist} ${song.link||''}`.toLocaleLowerCase().includes(playlistSearchTerm.toLocaleLowerCase())).sort((a,b)=>b.createdAt-a.createdAt);return `${pageHeader('PLAYLIST MEMORY','플레이리스트','좋아하는 노래 제목과 가수, 링크를 간단하게 저장해요',`<button class="primary" data-song-new>${ico('plus','sm')} 새 노래</button>`)}<div class="playlist-shell"><section class="card glass playlist-side-card"><div class="playlist-side-stack"><div><h2 class="card-title" style="margin-bottom:7px">이번 주 추천</h2><div class="card-muted">저장한 노래 중 매주 한 곡을 골라 메인 화면에도 보여줘요.</div></div><div class="playlist-hero-mini">${songFeatureCard(weekly)}</div><div><input type="search" class="playlist-search" id="playlistSearch" value="${esc(playlistSearchTerm)}" placeholder="노래 제목 / 가수 검색" aria-label="플레이리스트 검색"><div class="playlist-side-note">링크는 선택이에요. 유튜브, 멜론, 스포티파이 등 원하는 주소를 붙여 넣을 수 있어요.</div></div><div class="song-count-badge">${ico('music','sm')} 전체 ${playlist.length}곡</div></div></section><section class="card glass playlist-main-card"><div class="card-heading"><div><h2 class="card-title">저장된 노래</h2><div class="card-muted">${filtered.length}곡 표시 중</div></div><button type="button" class="secondary" data-song-new>${ico('plus','sm')} 노래 추가</button></div>${filtered.length?`<div class="playlist-grid">${filtered.map(song=>playlistCard(song,weekly?.id===song.id)).join('')}</div>`:`<div class="playlist-empty"><strong>아직 저장한 노래가 없어요.</strong><span>자주 듣는 노래나 그 주의 분위기를 남기고 싶은 곡을 추가해 보세요.</span><div style="margin-top:18px"><button type="button" class="primary" data-song-new>${ico('plus','sm')} 첫 노래 추가</button></div></div>`}</section></div>`}
+function songModal(id){const item=playlist.find(s=>s.id===id),editing=!!item;document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true" aria-labelledby="songModalTitle"><div class="modal-head"><div><h2 id="songModalTitle">${editing?'노래 수정':'새 노래 추가'}</h2><small>노래 제목과 가수, 링크를 간단하게 기록해요.</small></div><button type="button" class="close-btn" data-close aria-label="닫기">${ico('close')}</button></div><form id="songForm" data-id="${esc(id||'')}"><div class="form-field"><label for="songTitle">노래 제목</label><input id="songTitle" class="field-input" maxlength="120" placeholder="예: 바다로 떠나" value="${esc(item?.title||'')}" required></div><div class="form-field"><label for="songArtist">가수</label><input id="songArtist" class="field-input" maxlength="120" placeholder="예: 키라라" value="${esc(item?.artist||'')}" required></div><div class="form-field"><label for="songLink">링크 <small style="font-weight:400">(선택)</small></label><input id="songLink" class="field-input" maxlength="300" placeholder="https://..." value="${esc(item?.link||'')}"></div><p class="input-help">저장한 곡 중에서 매주 한 곡을 무작위로 골라 메인 화면 상단의 금주의 노래로 보여줘요.</p><div class="form-foot"><button type="button" class="secondary" data-close>취소</button><button type="submit" class="primary">${ico('check','sm')} 저장하기</button></div></form></div></div>`;document.getElementById('songTitle').focus()}
+function saveSongForm(form){const id=form.dataset.id;const title=document.getElementById('songTitle').value.trim();const artist=document.getElementById('songArtist').value.trim();const link=document.getElementById('songLink').value.trim();if(!title||!artist){toast('노래 제목과 가수를 입력해 주세요.');return}const old=playlist.find(song=>song.id===id);const payload={title,artist,link:cleanSongLink(link)};if(old){Object.assign(old,payload)}else{playlist.push({id:newId('song'),...payload,createdAt:Date.now()})}savePlaylist();closeModal();render();toast(old?'노래를 수정했어요.':'노래를 추가했어요.')}
+
 function quoteCard(q,featured){return `<article class="quote-card glass ${featured?'is-featured':''}">
  <div class="quote-card-top"><span class="quote-card-mark">“</span>${featured?`<span class="quote-current-tag">${ico('sparkle','sm')} 오늘의 다짐</span>`:''}</div>
  <p class="quote-card-text">${esc(q.text)}</p>
  <div class="quote-card-footer"><span class="quote-author">${q.author?`— ${esc(q.author)}`:'나만의 문장'}</span><div class="quote-actions"><button type="button" data-quote-edit="${esc(q.id)}" aria-label="명언 수정" title="명언 수정">${ico('edit','sm')}</button><button type="button" data-quote-delete="${esc(q.id)}" aria-label="명언 삭제" title="명언 삭제">${ico('trash','sm')}</button></div></div>
  </article>`}
-function homeScreen(){const chosen=dailyQuote();return `<div class="affirmation-page">
+function homeScreen(){const chosen=dailyQuote(),song=weeklySong();return `<div class="affirmation-page">
  <div class="affirmation-intro"><div><div class="affirmation-overline">${esc(ct('pledge.eyebrow'))} <span class="affirmation-divider">/</span> ${esc(fmtAffirmationDate())}</div><div class="copy-headline"><h1>${esc(ct('pledge.title'))}</h1>${copyButton('pledge','오늘의 다짐 화면 문구 수정')}</div><p>${esc(ct('pledge.desc'))}</p></div><button type="button" class="secondary" data-nav="dashboard">${ico('home','sm')} 일정 대시보드 ${ico('right','sm')}</button></div>
+ <section class="glass weekly-song-hero" aria-label="금주의 노래"><div class="weekly-song-wrap"><div class="weekly-song-left"><span class="weekly-song-label">${ico('music','sm')} ${esc(ct('pledge.songLabel'))}</span><h2 class="weekly-song-title">${esc(ct('pledge.songTitle'))}</h2><p class="weekly-song-sub">${esc(ct('pledge.songDesc'))}</p><div class="weekly-song-actions"><button type="button" class="primary" data-nav="playlist">${ico('music','sm')} 플레이리스트 열기</button><button type="button" class="secondary" data-song-new>${ico('plus','sm')} 노래 추가</button><span class="song-count-badge">${ico('sparkle','sm')} ${playlist.length}곡 저장됨</span></div></div><div>${songFeatureCard(song)}</div></div></section>
  <section class="glass affirmation-hero" aria-label="오늘의 다짐"><div class="affirmation-hero-top"><span class="affirmation-hero-label">${ico('sparkle','sm')} ${esc(ct('pledge.feature'))}</span><span class="affirmation-today-pill">${esc(fmtAffirmationDate())} · ${esc(ct('pledge.daily'))}</span></div>
  <div class="affirmation-hero-center"><div class="affirmation-quote-mark">“</div>${chosen?`<div class="affirmation-big-quote" id="todayAffirmation">${esc(chosen.text)}</div><button type="button" class="hero-quote-edit" data-quote-edit="${esc(chosen.id)}" aria-label="오늘의 다짐 문장 수정">${ico('edit','sm')} 이 문장 수정</button>${chosen.author?`<p class="affirmation-by">— ${esc(chosen.author)}</p>`:''}`:`<div class="affirmation-big-quote is-empty" id="todayAffirmation">나만의 문장을 적어보세요.</div><p class="affirmation-by">아래 명언을 추가하면 오늘의 다짐이 선택돼요.</p>`}</div>
  <div class="affirmation-hero-bottom"><span><span class="affirmation-live-dot"></span> ${esc(ct('pledge.stable'))}</span><span>${esc(ct('pledge.tomorrow'))} ${ico('right','sm')}</span></div></section>
@@ -1078,7 +1170,7 @@ else if(action==='stopwatch-save'){const spent=elapsedStopwatch();if(spent<30){t
 saveClocks();render()}
 
 
-function render(){document.querySelector('.shell').classList.toggle('tracker-mode',state.page==='tracker');document.querySelector('.shell').classList.toggle('pledge-mode',state.page==='home');document.getElementById('breadcrumbPage').textContent=ct('nav.'+state.page)||names[state.page]||'홈';renderNav();document.getElementById('editableBrandName').textContent=ct('app.brand');document.getElementById('sideCopyHeadline').textContent=ct('sidebar.title');document.getElementById('sideCopyDescription').textContent=ct('sidebar.desc');const routes={home:homeScreen,dashboard:dashboardScreen,calendar:calendarScreen,todo:todoScreen,notes:notesScreen,tracker:trackerScreen,goals:goalsScreen,focus:focusScreen,dday:ddayScreen};document.getElementById('screen').innerHTML=(routes[state.page]||homeScreen)();document.getElementById('rightRail').innerHTML=rightRail();updateClockUI()}
+function render(){document.querySelector('.shell').classList.toggle('tracker-mode',state.page==='tracker');document.querySelector('.shell').classList.toggle('pledge-mode',state.page==='home');document.getElementById('breadcrumbPage').textContent=ct('nav.'+state.page)||names[state.page]||'홈';renderNav();document.getElementById('editableBrandName').textContent=ct('app.brand');document.getElementById('sideCopyHeadline').textContent=ct('sidebar.title');document.getElementById('sideCopyDescription').textContent=ct('sidebar.desc');const routes={home:homeScreen,dashboard:dashboardScreen,calendar:calendarScreen,todo:todoScreen,notes:notesScreen,playlist:playlistScreen,tracker:trackerScreen,goals:goalsScreen,focus:focusScreen,dday:ddayScreen};document.getElementById('screen').innerHTML=(routes[state.page]||homeScreen)();document.getElementById('rightRail').innerHTML=rightRail();updateClockUI()}
 
 function inputField(id,title,type,value,extra=''){return `<div class="form-field"><label for="${id}">${title}</label><input class="field-input" id="${id}" type="${type}" value="${esc(value||'')}" ${extra}></div>`}
 function editModal(kind,id){let isTodo=kind==='todo',origin=isTodo?tasks.find(x=>x.id===id):events.find(x=>x.id===id),isEdit=!!origin,record=origin||{title:'',date:state.page==='calendar'?state.selected:todayKey,endDate:state.page==='calendar'?state.selected:todayKey,time:'09:00',end:'10:00',allDay:false,category:'basic',memo:'',priority:'normal'};
@@ -1133,6 +1225,10 @@ if(btn?.hasAttribute('data-note-select')){noteUpdate();currentMemoId=btn.dataset
 if(btn?.hasAttribute('data-note-delete')){if(!confirm('이 메모를 삭제할까요?'))return;memos=memos.filter(n=>n.id!==btn.dataset.noteDelete);currentMemoId=memos[0]?.id||null;persistMemos();render();toast('메모를 삭제했어요.');return}
 if(btn?.hasAttribute('data-note-command')){noteCommand(btn.dataset.noteCommand);return}
 if(btn?.hasAttribute('data-note-check')){const row=btn.closest('.memo-check-item');if(row){row.classList.toggle('checked');btn.setAttribute('aria-pressed',row.classList.contains('checked')?'true':'false');noteUpdate();queueMemoRefresh()}return}
+
+if(btn?.hasAttribute('data-song-new')){songModal();return}
+if(btn?.hasAttribute('data-song-edit')){songModal(btn.dataset.songEdit);return}
+if(btn?.hasAttribute('data-song-delete')){if(!confirm('이 노래를 삭제할까요?'))return;playlist=playlist.filter(song=>song.id!==btn.dataset.songDelete);savePlaylist();render();toast('노래를 삭제했어요.');return}
 
 if(btn?.hasAttribute('data-week-start')){updateWeekStart(btn.dataset.weekStart);return}
 if(btn?.hasAttribute('data-cal-all')){calendarVisibleCats=null;saveCalendarVisibility();render();return}
@@ -1193,8 +1289,8 @@ if(button.dataset.searchResult){if(button.dataset.searchResult==='todo'){const i
 
 document.addEventListener('change',e=>{const scope=e.target?.dataset?.categoryFilter;if(!scope||!(scope in state.categoryFilters))return;const v=e.target.value;state.categoryFilters[scope]=v==='all'||hasCat(v)?v:'all';try{localStorage.setItem('hope-v07-category-filters',JSON.stringify(state.categoryFilters))}catch(_){}render()});
 document.addEventListener('click',handleClick);
-document.addEventListener('submit',e=>{if(e.target.id==='copyForm'){e.preventDefault();saveCopyForm()}else if(e.target.id==='quoteForm'){e.preventDefault();saveQuoteForm(e.target)}else if(e.target.id==='itemForm'){e.preventDefault();handleSave(e.target)}else if(e.target.id==='categoryForm'){e.preventDefault();handleCategorySave()}else if(e.target.id==='utilityForm'){e.preventDefault();saveUtility(e.target)}else if(e.target.id==='journalForm'){e.preventDefault();saveJournalForm(e.target)}else if(e.target.id==='habitForm'){e.preventDefault();const n=document.getElementById('habitName').value.trim();if(!n)return;if(plannerHabitNames.includes(n)){toast('이미 있는 습관이에요.');return}plannerHabitNames.push(n);savePlanner();manageHabits();render()}});
-document.addEventListener('input',e=>{if(e.target.id==='memoTitle'||e.target.id==='memoBody'||e.target.closest?.('#memoBody')){noteUpdate();queueMemoRefresh();return}if(e.target.id==='memoSearch'){memoSearchTerm=e.target.value;refreshMemoList();return}if(e.target?.dataset?.appearanceSlider){const key=e.target.dataset.appearanceSlider;setAppearance({[key]:Math.max(0,Math.min(100,Number(e.target.value)))});return}if(e.target.dataset.journalNote){const d=e.target.dataset.date,key=e.target.dataset.journalNote;plannerNotes[d]||={};plannerNotes[d][key]=e.target.value;savePlanner()}if(e.target.id==='searchInput')updateSearch(e.target.value);if(e.target.id==='uMode'){const f=document.getElementById('manualField');if(f)f.hidden=e.target.value!=='manual'}});
+document.addEventListener('submit',e=>{if(e.target.id==='copyForm'){e.preventDefault();saveCopyForm()}else if(e.target.id==='quoteForm'){e.preventDefault();saveQuoteForm(e.target)}else if(e.target.id==='songForm'){e.preventDefault();saveSongForm(e.target)}else if(e.target.id==='itemForm'){e.preventDefault();handleSave(e.target)}else if(e.target.id==='categoryForm'){e.preventDefault();handleCategorySave()}else if(e.target.id==='utilityForm'){e.preventDefault();saveUtility(e.target)}else if(e.target.id==='journalForm'){e.preventDefault();saveJournalForm(e.target)}else if(e.target.id==='habitForm'){e.preventDefault();const n=document.getElementById('habitName').value.trim();if(!n)return;if(plannerHabitNames.includes(n)){toast('이미 있는 습관이에요.');return}plannerHabitNames.push(n);savePlanner();manageHabits();render()}});
+document.addEventListener('input',e=>{if(e.target.id==='memoTitle'||e.target.id==='memoBody'||e.target.closest?.('#memoBody')){noteUpdate();queueMemoRefresh();return}if(e.target.id==='memoSearch'){memoSearchTerm=e.target.value;refreshMemoList();return}if(e.target.id==='playlistSearch'){playlistSearchTerm=e.target.value;render();return}if(e.target?.dataset?.appearanceSlider){const key=e.target.dataset.appearanceSlider;setAppearance({[key]:Math.max(0,Math.min(100,Number(e.target.value)))});return}if(e.target.dataset.journalNote){const d=e.target.dataset.date,key=e.target.dataset.journalNote;plannerNotes[d]||={};plannerNotes[d][key]=e.target.value;savePlanner()}if(e.target.id==='searchInput')updateSearch(e.target.value);if(e.target.id==='uMode'){const f=document.getElementById('manualField');if(f)f.hidden=e.target.value!=='manual'}});
 document.addEventListener('mousedown',e=>{if(e.target.closest('[data-note-command]'))e.preventDefault()});
 document.addEventListener('paste',e=>{if(!e.target.closest?.('#memoBody'))return;e.preventDefault();const txt=e.clipboardData?.getData('text/plain')||'';document.execCommand('insertText',false,txt);noteUpdate();queueMemoRefresh()});
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList?.contains('memo-check-text')){e.preventDefault();const old=e.target.closest('.memo-check-item');const row=document.createElement('div');row.className='memo-check-item';row.contentEditable='false';row.innerHTML='<button type="button" class="memo-check-box" data-note-check aria-label="완료 여부 변경"></button><span class="memo-check-text" contenteditable="true"></span>';old.after(row);const target=row.querySelector('.memo-check-text');target.focus();const r=document.createRange();r.selectNodeContents(target);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);noteUpdate();queueMemoRefresh();return}if(e.key==='Escape')closeModal();if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();searchModal()}});
@@ -1213,7 +1309,7 @@ const CLOUD_KEYS=[
  'hope-v05-plans','hope-v05-habits','hope-v05-habit-names','hope-v05-notes',
  'hope-v07-category-filters','hope-v10-calendar-visible-categories',
  'hope-v11-rich-memos','hope-v12-affirmations','hope-v12-daily-affirmation',
- 'hope-v13-custom-texts','hope-v09-appearance','hope-v17-week-start'
+ 'hope-v13-custom-texts','hope-v09-appearance','hope-v17-week-start','hope-v18-playlist','hope-v18-weekly-song'
 ];
 function cloudRead(key){try{return JSON.parse(localStorage.getItem(key)||'null')}catch(e){return null}}
 function cloudWrite(key,value){try{if(value===null)localStorage.removeItem(key);else localStorage.setItem(key,JSON.stringify(value))}catch(e){throw new Error('브라우저 저장 공간이 부족하거나 차단됐어요.')}}
