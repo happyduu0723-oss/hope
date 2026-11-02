@@ -733,7 +733,7 @@ html[data-theme="dark"] .song-lyric-feature,html[data-theme="dark"] .song-lyric-
 .copy-dialog-form .copy-hint{font-size:11px;line-height:1.7;color:#758192;margin:-1px 0 9px}
 @media(max-width:800px){.copy-dialog-form .form-foot{flex-wrap:wrap}.copy-dialog-form .form-foot button{flex:1 1 auto;min-width:0}.form-foot:has(> .copy-action){flex-wrap:wrap}.form-foot:has(> .copy-action)>.primary{flex:1 1 100%}.form-foot:has(> .copy-action)>.danger,.form-foot:has(> .copy-action)>.copy-action{flex:1 1 0}.copy-action{font-size:11px}.detail-copy{margin-left:auto}}
 
-/* hope v2.4: visible export actions and full-image preview on mobile/desktop */
+/* hope v2.5: visible export actions and full-image preview on mobile/desktop */
 .tracker-export-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:linear-gradient(145deg,#546f8e,#72859d);border:1px solid rgba(255,255,255,.65);box-shadow:0 4px 12px rgba(55,82,111,.16);border-radius:11px;color:#fff;font-size:12px;font-weight:780;white-space:nowrap;padding:10px 13px;cursor:pointer}
 .tracker-export-button:hover{filter:brightness(1.1)}
 .tracker-png-modal{width:min(850px,100%);max-width:850px;max-height:calc(100dvh - 30px);overflow:auto}
@@ -743,6 +743,61 @@ html[data-theme="dark"] .song-lyric-feature,html[data-theme="dark"] .song-lyric-
 .tracker-png-help{font-size:12px;color:#728194;line-height:1.8;margin:12px 2px 0}
 @media(max-width:800px){.tracker-export-button{padding:9px 10px;font-size:11px}.tracker-png-modal{padding:17px}.tracker-png-preview{max-height:55vh;padding:6px}}
 
+
+/* v2.6 — mobile edit dialog: fix invisible lower actions and natural touch scrolling. */
+.item-edit-dialog .modal {
+  overflow-x: hidden;
+  overflow-y: auto; /* override glass UI's generic .modal { overflow:hidden } */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(110,125,148,.46) transparent;
+}
+.item-edit-dialog .modal::-webkit-scrollbar { width: 5px; }
+.item-edit-dialog .modal::-webkit-scrollbar-thumb { background:rgba(110,125,148,.4);border-radius:12px; }
+@media (max-width:800px) {
+  .overlay.item-edit-dialog {
+    box-sizing: border-box;
+    align-items: center;
+    padding: max(12px, env(safe-area-inset-top, 0px)) 12px max(12px, env(safe-area-inset-bottom, 0px));
+  }
+  .item-edit-dialog .modal {
+    width: 100%;
+    max-width: 520px;
+    min-height: 0;
+    max-height: calc(100vh - 24px); /* fallback for older browsers */
+    max-height: calc(100dvh - 24px);
+    box-sizing: border-box;
+    padding: 22px 19px 15px;
+  }
+  .item-edit-dialog #itemForm .form-foot {
+    position: sticky;
+    z-index: 4;
+    bottom: -15px;
+    margin-top: 10px;
+    padding: 15px 0 max(14px, env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid rgba(255,255,255,.52);
+    background: linear-gradient(180deg, rgba(240,244,249,.85), rgba(240,244,249,.97));
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-radius: 0 0 12px 12px;
+  }
+  html[data-theme="dark"] .item-edit-dialog #itemForm .form-foot {
+    background: linear-gradient(180deg, rgba(41,48,59,.9), rgba(41,48,59,.97));
+    border-top-color: rgba(255,255,255,.14);
+  }
+  .item-edit-dialog .modal-head { position: relative; z-index: 2; }
+  .item-edit-dialog .modal .form-foot .primary,
+  .item-edit-dialog .modal .form-foot .copy-action,
+  .item-edit-dialog .modal .form-foot .danger { min-height: 43px; }
+}
+@media (max-width:370px) {
+  .item-edit-dialog .modal { padding: 18px 14px 12px; }
+  .item-edit-dialog .form-row { gap: 8px; }
+  .item-edit-dialog #itemForm .form-foot { column-gap: 6px; }
+  .item-edit-dialog #itemForm .form-foot button { font-size: 11px; }
+}
 </style>
 </head>
 <body>
@@ -752,7 +807,7 @@ html[data-theme="dark"] .song-lyric-feature,html[data-theme="dark"] .song-lyric-
     <div class="brand"><div class="brand-mark" id="brandIcon"></div><div class="brand-name" id="editableBrandName">hope.</div><button class="copy-brand-btn" type="button" data-copy-group="navigation" aria-label="앱 이름과 메뉴 수정" title="앱 이름과 메뉴 수정">✎</button></div>
     <div class="nav-label">WORKSPACE</div><nav id="navMain"></nav>
     <div class="nav-label" style="margin-top:14px">TOOLS & MORE</div><nav id="navOther"></nav>
-    <div class="sidebar-bottom"><div class="tipbox"><button type="button" class="copy-sidebar-btn" data-copy-group="sidebar" aria-label="사이드바 문구 수정" title="문구 변경">✎</button><strong id="sideCopyHeadline">하루의 흐름을 기록해요 ✦</strong><p id="sideCopyDescription">계획하고, 집중하고, 달성하는 나만의 공간.</p><div class="outline-pill">올인원 플래너 · v2.4</div></div></div>
+    <div class="sidebar-bottom"><div class="tipbox"><button type="button" class="copy-sidebar-btn" data-copy-group="sidebar" aria-label="사이드바 문구 수정" title="문구 변경">✎</button><strong id="sideCopyHeadline">하루의 흐름을 기록해요 ✦</strong><p id="sideCopyDescription">계획하고, 집중하고, 달성하는 나만의 공간.</p><div class="outline-pill">올인원 플래너 · v2.6</div></div></div>
   </aside>
   <main class="workspace"><div class="topbar"><div class="breadcrumb">Workspace&nbsp; / &nbsp;<b id="breadcrumbPage">홈</b></div><div class="top-right"><button class="icon-btn" id="cloudSyncBtn" aria-label="기기 간 동기화" title="클라우드 동기화">☁</button><button class="icon-btn" id="searchBtn" aria-label="검색" title="일정과 할 일 검색"></button><button class="icon-btn" id="themeToggleBtn" aria-label="다크 모드 전환" title="라이트 / 다크 전환"></button><button class="icon-btn" id="copySettingsBtn" aria-label="화면 문구 편집" title="화면 문구 편집"></button><button class="icon-btn" id="settingsBtn" aria-label="디자인 설정" title="디자인 설정"></button><div class="avatar" title="개인용 플래너">me</div></div></div><div id="screen"></div></main>
   <aside class="right-rail glass" id="rightRail" aria-label="오늘 요약"></aside>
@@ -1413,11 +1468,11 @@ function render(){document.querySelector('.shell').classList.toggle('tracker-mod
 
 function inputField(id,title,type,value,extra=''){return `<div class="form-field"><label for="${id}">${title}</label><input class="field-input" id="${id}" type="${type}" value="${esc(value||'')}" ${extra}></div>`}
 function editModal(kind,id){let isTodo=kind==='todo',origin=isTodo?tasks.find(x=>x.id===id):events.find(x=>x.id===id),isEdit=!!origin,record=origin||{title:'',date:state.page==='calendar'?state.selected:todayKey,endDate:state.page==='calendar'?state.selected:todayKey,time:'09:00',end:'10:00',allDay:false,category:'basic',memo:'',priority:'normal'};
-document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><h2 id="modalTitle">${isEdit?(isTodo?'할 일 수정':'일정 수정'):isTodo?'새 할 일 추가':'새 일정 추가'}</h2><small>${isTodo?'제목과 상세 메모, 시작일·종료일을 설정하세요.':'하루 일정 또는 여러 날에 걸친 일정을 등록해요.'}</small></div><button class="close-btn" data-close aria-label="닫기">${ico('close')}</button></div><form id="itemForm" data-kind="${kind}" data-id="${id||''}">${inputField('fTitle',isTodo?'할 일 제목':'일정 제목','text',record.title,'required maxlength="100" placeholder="제목을 입력하세요"')}${isTodo?`<div class="form-row">${inputField('fDate','시작일','date',record.date,'required')}${inputField('fEndDate','종료일 (마감일)','date',record.endDate||record.date,'required')}</div><p class="todo-period-help">하루짜리 할 일은 시작일과 종료일을 같게 설정하세요. 기간 동안 매일 할 일에 표시돼요.</p>`:`<div class="form-row">${inputField('fDate','시작 날짜','date',record.date,'required')}${inputField('fEndDate','종료 날짜','date',record.endDate||record.date,'required')}</div><label class="all-day-toggle"><input id="fAllDay" type="checkbox" ${record.allDay?'checked':''}/> 하루 종일 / 시간 미지정</label><div class="form-row" id="timeFields" ${record.allDay?'hidden':''}>${inputField('fTime','시작 시간','time',record.time||'09:00')}${inputField('fEnd','종료 시간','time',record.end||'10:00')}</div>`}
+document.getElementById('modalRoot').innerHTML=`<div class="overlay item-edit-dialog" data-overlay><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><h2 id="modalTitle">${isEdit?(isTodo?'할 일 수정':'일정 수정'):isTodo?'새 할 일 추가':'새 일정 추가'}</h2><small>${isTodo?'제목과 상세 메모, 시작일·종료일을 설정하세요.':'하루 일정 또는 여러 날에 걸친 일정을 등록해요.'}</small></div><button class="close-btn" data-close aria-label="닫기">${ico('close')}</button></div><form id="itemForm" data-kind="${kind}" data-id="${id||''}">${inputField('fTitle',isTodo?'할 일 제목':'일정 제목','text',record.title,'required maxlength="100" placeholder="제목을 입력하세요"')}${isTodo?`<div class="form-row">${inputField('fDate','시작일','date',record.date,'required')}${inputField('fEndDate','종료일 (마감일)','date',record.endDate||record.date,'required')}</div><p class="todo-period-help">하루짜리 할 일은 시작일과 종료일을 같게 설정하세요. 기간 동안 매일 할 일에 표시돼요.</p>`:`<div class="form-row">${inputField('fDate','시작 날짜','date',record.date,'required')}${inputField('fEndDate','종료 날짜','date',record.endDate||record.date,'required')}</div><label class="all-day-toggle"><input id="fAllDay" type="checkbox" ${record.allDay?'checked':''}/> 하루 종일 / 시간 미지정</label><div class="form-row" id="timeFields" ${record.allDay?'hidden':''}>${inputField('fTime','시작 시간','time',record.time||'09:00')}${inputField('fEnd','종료 시간','time',record.end||'10:00')}</div>`}
 <div class="form-row"><div class="form-field"><label for="fCat">카테고리</label><select class="field-input" id="fCat">${Object.entries(cats).map(([k,v])=>`<option value="${esc(k)}" ${record.category===k?'selected':''}>${esc(v.label)}</option>`).join('')}</select></div>${isTodo?`<div class="form-field"><label for="fPriority">우선순위</label><select class="field-input" id="fPriority"><option value="normal" ${record.priority==='normal'?'selected':''}>보통</option><option value="high" ${record.priority==='high'?'selected':''}>높음</option><option value="low" ${record.priority==='low'?'selected':''}>낮음</option></select></div>`:`<div class="form-field" style="display:flex;align-items:end"><button type="button" class="secondary" data-manage-categories style="width:100%;height:42px">${ico('settings','sm')} 카테고리 관리</button></div>`}</div>
 <div class="form-field"><label for="fMemo">${isTodo?'투두 메모':'일정 메모'} (선택)</label><textarea class="field-input textarea" id="fMemo" placeholder="내용을 자유롭게 기록하세요">${esc(record.memo)}</textarea></div><div class="form-foot">${isEdit?`<button type="button" class="danger" data-delete="${esc(id)}" data-kind="${kind}">${ico('trash','sm')} 삭제</button>${!isTodo?`<button type="button" class="copy-action" data-copy-event="${esc(id)}">${ico('copy','sm')} 일정 복사</button>`:''}`:'<span class="sample">이 기기에 자동 저장돼요</span>'}<button type="submit" class="primary">${ico('check')} ${isEdit?'변경사항 저장':'저장하기'}</button></div></form></div></div>`;
 const endDate=document.getElementById('fEndDate');const startDate=document.getElementById('fDate');if(endDate){startDate.addEventListener('change',()=>{if(endDate.value<startDate.value)endDate.value=startDate.value;endDate.min=startDate.value});endDate.min=startDate.value;if(!isTodo)document.getElementById('fAllDay').addEventListener('change',e=>{document.getElementById('timeFields').hidden=e.target.checked})}
-document.getElementById('fTitle').focus()}
+if(window.matchMedia('(min-width:801px)').matches)document.getElementById('fTitle').focus({preventScroll:true})}
 
 function copyScheduleModal(kind,id,date){
  const source=kind==='event'?events.find(x=>x.id===id):kind==='plan'?plannerPlans.find(x=>x.id===id):kind==='actual'?timeLogs.find(x=>x.id===id):null;
@@ -1610,6 +1665,106 @@ let cloudBusy=false,cloudConflict=false,cloudError='',cloudLastCheck=0,cloudSeen
 const cloudValidConfig=()=>!!(cloudConfig&&/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(cloudConfig.url||'')&&typeof cloudConfig.key==='string'&&cloudConfig.key.length>12);
 function cloudSnapshot(){const data={};for(const key of CLOUD_KEYS){const val=localStorage.getItem(key);if(val!==null)data[key]=val}return data}
 function cloudFingerprint(data){const s=JSON.stringify(data);let h=2166136261;for(let i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),16777619)}return (h>>>0).toString(16)+':'+s.length}
+
+// v2.5: Keep an on-device base snapshot for three-way merges; never send base/credentials to Supabase.
+const CLOUD_BASE_KEY='hope-cloud-merge-base-v2';
+const CLOUD_CONFLICT_NOTE='hope-cloud-merge-warning-v2';
+let cloudBase=cloudRead(CLOUD_BASE_KEY)||null;
+let cloudMergeWarning=cloudRead(CLOUD_CONFLICT_NOTE)||null;
+const cloudEqual=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const cloudIsObject=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
+const cloudParseRaw=raw=>{if(raw===undefined)return undefined;try{return JSON.parse(raw)}catch(e){return raw}};
+const cloudStringifyValue=value=>value===undefined?undefined:JSON.stringify(value);
+const cloudSnapshotRev=row=>Number(row?.revision||0);
+function cloudSetBase(uid,rev,snapshot){
+ cloudBase={userId:uid,rev,snapshot};cloudWrite(CLOUD_BASE_KEY,cloudBase);
+}
+function cloudSetMergeWarning(message,details=[]){
+ cloudMergeWarning={message,details,date:new Date().toISOString()};
+ try{cloudWrite(CLOUD_CONFLICT_NOTE,cloudMergeWarning)}catch(e){}
+}
+function cloudClearMergeWarning(){cloudMergeWarning=null;cloudWrite(CLOUD_CONFLICT_NOTE,null)}
+function cloudMergeItemList(base,local,remote,key,report){
+ const indexed=arr=>new Map((arr||[]).map(row=>[String(row.id),row]));
+ const b=indexed(base),l=indexed(local),r=indexed(remote);
+ const ids=[...new Set([...r.keys(),...l.keys(),...b.keys()])],out=[],taken=new Set(ids);
+ for(const id of ids){
+  const B=b.get(id),L=l.get(id),R=r.get(id);
+  if(cloudEqual(L,B)){if(R!==undefined)out.push(R);continue}
+  if(cloudEqual(R,B)){if(L!==undefined)out.push(L);continue}
+  if(cloudEqual(L,R)){if(L!==undefined)out.push(L);continue}
+  // Simultaneous edit/delete: preserve the edited record instead of discarding it.
+  if(L===undefined){if(R!==undefined)out.push(R);report.push('다른 기기에서 수정한 항목을 삭제하지 않고 보존했어요.');continue}
+  if(R===undefined){out.push(L);report.push('한 기기의 수정본을 복구했어요.');continue}
+  // If each device changed different fields of one record, merge that record directly.
+  if(cloudIsObject(B)){
+   const fieldsInConflict=[];
+   const combined=cloudMergeObject(B,L,R,key+'.'+id,report,fieldsInConflict);
+   if(!fieldsInConflict.length){out.push(combined);continue}
+  }
+  out.push(R);
+  const copy={...L};let newKey;do{newKey=newId('merge')}while(taken.has(newKey));taken.add(newKey);copy.id=newKey;
+  if(typeof copy.title==='string')copy.title=(copy.title+' · 충돌 보관본').slice(0,130);
+  else if(typeof copy.name==='string')copy.name=(copy.name+' · 충돌 보관본').slice(0,130);
+  else if(typeof copy.text==='string')copy.text=copy.text+' (충돌 보관본)';
+  out.push(copy);
+  report.push('같은 항목을 동시에 수정해서 수정본 2개를 모두 보존했어요.');
+ }
+ return out;
+}
+function cloudMergeStringList(base,local,remote){
+ const b=new Set(base||[]),l=new Set(local||[]),r=new Set(remote||[]);
+ const items=[...new Set([...(remote||[]),...(local||[]),...(base||[])])];
+ return items.filter(item=>{
+  const inB=b.has(item),inL=l.has(item),inR=r.has(item);
+  if(inL===inB)return inR;
+  if(inR===inB)return inL;
+  return inL||inR;
+ });
+}
+function cloudMergeObject(base,local,remote,key,report,unresolved){
+ const b=cloudIsObject(base)?base:{},l=cloudIsObject(local)?local:{},r=cloudIsObject(remote)?remote:{};
+ const keys=[...new Set([...Object.keys(r),...Object.keys(l),...Object.keys(b)])],merged={};
+ for(const field of keys){
+  const B=b[field],L=l[field],R=r[field];let v;
+  if(cloudEqual(L,B))v=R;
+  else if(cloudEqual(R,B))v=L;
+  else if(cloudEqual(L,R))v=L;
+  else if(cloudIsObject(L)&&cloudIsObject(R))v=cloudMergeObject(B,L,R,key+'.'+field,report,unresolved);
+  else{unresolved.push(key+'.'+field);continue}
+  if(v!==undefined)merged[field]=v;
+ }
+ return merged;
+}
+const CLOUD_ID_LISTS=new Set(['hope-demo-tasks-v1','hope-demo-events-v1','hope-v04-ddays','hope-v04-time-logs','hope-v04-goals','hope-v05-plans','hope-v11-rich-memos','hope-v12-affirmations','hope-v18-playlist']);
+const CLOUD_STRING_LISTS=new Set(['hope-v05-habits','hope-v05-habit-names','hope-v10-calendar-visible-categories']);
+// Convert original JSON-in-string snapshot fields back to JSON after merging.
+function cloudMergeSnapshots(base,local,remote){
+ const merged={},report=[],unresolved=[];
+ for(const key of CLOUD_KEYS){
+  const B=base?.[key],L=local?.[key],R=remote?.[key];
+  if(L===B){if(R!==undefined)merged[key]=R;continue}
+  if(R===B){if(L!==undefined)merged[key]=L;continue}
+  if(L===R){if(L!==undefined)merged[key]=L;continue}
+  const b=cloudParseRaw(B),l=cloudParseRaw(L),r=cloudParseRaw(R);let result;
+  if(CLOUD_ID_LISTS.has(key)&&Array.isArray(l)&&Array.isArray(r)&&l.every(x=>cloudIsObject(x)&&typeof x.id==='string')&&r.every(x=>cloudIsObject(x)&&typeof x.id==='string'))result=cloudMergeItemList(Array.isArray(b)?b:[],l,r,key,report);
+  else if(CLOUD_STRING_LISTS.has(key)&&Array.isArray(l)&&Array.isArray(r)&&l.every(x=>typeof x==='string')&&r.every(x=>typeof x==='string'))result=cloudMergeStringList(Array.isArray(b)?b:[],l,r);
+  else if(['hope-v12-daily-affirmation','hope-v18-weekly-song'].includes(key)){result=r;report.push('일별·주별 자동 추천을 클라우드 기준으로 유지했어요.')}
+  else if(cloudIsObject(l)&&cloudIsObject(r))result=cloudMergeObject(b,l,r,key,report,unresolved);
+  else{unresolved.push(key);continue}
+  if(result!==undefined)merged[key]=cloudStringifyValue(result);
+ }
+ return{snapshot:merged,report,unresolved};
+}
+function cloudDownloadJSON(name,data){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),link=document.createElement('a'),url=URL.createObjectURL(blob);link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),3000)}
+function cloudEditingInProgress(){
+ // A user's unsaved modal form may contain input not in localStorage yet.
+ const open=document.querySelector('#modalRoot .overlay:not(.cloud-dialog)');
+ if(open)return true;
+ const el=document.activeElement;
+ return !!(el&&(el.matches?.('input,textarea,[contenteditable="true"]')||el.closest?.('[contenteditable="true"]')));
+}
+
 const cloudBound=()=>!!(cloudValidConfig()&&cloudSession?.user?.id&&cloudBinding?.userId===cloudSession.user.id);
 function cloudButtonState(){const btn=document.getElementById('cloudSyncBtn');if(!btn)return;btn.classList.toggle('cloud-active',cloudBound()&&!cloudConflict);btn.classList.toggle('cloud-error',cloudConflict||!!cloudError);btn.title=cloudConflict?'동기화 충돌 — 확인 필요':cloudBound()?'클라우드 동기화 중':cloudSession?.user?'연결 준비':'기기 간 동기화 연결'}
 function cloudStatusMessage(txt,err=false){cloudError=err?txt:'';cloudButtonState();const el=document.getElementById('cloudResult');if(el)el.textContent=txt}
@@ -1637,21 +1792,90 @@ async function cloudEnsureSession(){
  return cloudRefreshPromise
 }
 async function cloudFetchRemote(){const uid=cloudSession.user.id;const query='/rest/v1/dayflow_snapshots?user_id=eq.'+encodeURIComponent(uid)+'&select=user_id,revision,payload,updated_at&limit=1';const rows=await cloudRequest(query);return Array.isArray(rows)?(rows[0]||null):null}
+
 async function cloudUpload(force=false){
  if(cloudBusy)return;cloudBusy=true;
  try{
-  const existing=await cloudFetchRemote();
-  const uid=cloudSession.user.id,rev=Number(existing?.revision||0);
-  if(!force&&rev!==Number(cloudBinding?.rev||0)){
-   cloudConflict=true;cloudStatusMessage('다른 기기에서 데이터가 변경됐어요. 어느 데이터를 유지할지 선택해 주세요.',true);return
+  if(force){
+   const existing=await cloudFetchRemote(),snapshot=cloudSnapshot();
+   const forced=await cloudCommitSnapshot(existing,snapshot);
+   if(!forced)throw Error('다른 기기에서 먼저 저장했어요. 다시 확인한 뒤 업로드해 주세요.');
+   cloudConflict=false;cloudClearMergeWarning();cloudStatusMessage('클라우드에 저장했어요.');return;
   }
-  const snapshot=cloudSnapshot(),payload={user_id:uid,payload:snapshot,revision:rev+1,updated_at:new Date().toISOString()};
-  let result;
-  if(existing){result=await cloudRequest('/rest/v1/dayflow_snapshots?user_id=eq.'+encodeURIComponent(uid)+'&revision=eq.'+rev,{method:'PATCH',body:payload,headers:{Prefer:'return=representation'}})}
-  else{result=await cloudRequest('/rest/v1/dayflow_snapshots',{method:'POST',body:payload,headers:{Prefer:'return=representation'}})}
-  if(!Array.isArray(result)||result.length!==1){cloudConflict=true;throw Error('다른 기기에서 먼저 수정했어요. 동기화 충돌을 확인해 주세요.')}
-  cloudBinding={userId:uid,rev:rev+1,fingerprint:cloudFingerprint(snapshot)};cloudWrite(CLOUD_BIND,cloudBinding);cloudConflict=false;cloudLastCheck=Date.now();cloudStatusMessage('클라우드에 저장됐어요.');cloudButtonState()
- }catch(e){cloudStatusMessage(e.message,true);throw e}finally{cloudBusy=false}
+  await cloudSyncCore();
+ }catch(e){cloudStatusMessage(e.message,true);throw e}
+ finally{cloudBusy=false}
+}
+async function cloudCommitSnapshot(remote,snapshot){
+ const uid=cloudSession.user.id,rev=cloudSnapshotRev(remote);
+ const payload={user_id:uid,payload:snapshot,revision:rev+1,updated_at:new Date().toISOString()};
+ let result;
+ if(remote)result=await cloudRequest('/rest/v1/dayflow_snapshots?user_id=eq.'+encodeURIComponent(uid)+'&revision=eq.'+rev,{method:'PATCH',body:payload,headers:{Prefer:'return=representation'}});
+ else result=await cloudRequest('/rest/v1/dayflow_snapshots',{method:'POST',body:payload,headers:{Prefer:'return=representation'}});
+ if(!Array.isArray(result)||result.length!==1)return null;
+ const next=result[0],newRev=Number(next.revision||rev+1);
+ cloudSetBase(uid,newRev,snapshot);
+ cloudBinding={userId:uid,rev:newRev,fingerprint:cloudFingerprint(snapshot)};cloudWrite(CLOUD_BIND,cloudBinding);
+ cloudConflict=false;cloudLastCheck=Date.now();cloudButtonState();
+ return next;
+}
+async function cloudSyncCore(){
+ if(!cloudBound())return;
+ const uid=cloudSession.user.id;
+ for(let attempt=0;attempt<4;attempt++){
+  const remote=await cloudFetchRemote();
+  if(!remote)throw Error('클라우드에 저장된 기록을 찾지 못했어요.');
+  const local=cloudSnapshot(),rev=cloudSnapshotRev(remote),localFp=cloudFingerprint(local),dirty=localFp!==cloudBinding.fingerprint;
+  const baseGood=cloudBase?.userId===uid&&Number(cloudBase?.rev)===Number(cloudBinding.rev)&&cloudIsObject(cloudBase?.snapshot);
+  // Upgrading from v2.4: if cloud revision is unchanged, its contents are the common base.
+  if(!baseGood&&rev===Number(cloudBinding.rev))cloudSetBase(uid,rev,remote.payload);
+  let desired=local,report=[];
+  if(rev!==Number(cloudBinding.rev)){
+   if(!dirty){cloudImport(remote);return}
+   const base=(baseGood?cloudBase.snapshot:rev===Number(cloudBinding.rev)?remote.payload:null);
+   if(!base){
+    cloudConflict=true;cloudSetMergeWarning('첫 업그레이드 시점에 두 기기의 데이터가 이미 달라 자동 병합할 기준본이 없어요. 먼저 양쪽 데이터를 백업해 주세요.');
+    cloudStatusMessage('안전한 자동 병합을 위한 기준본이 없어요. 데이터 백업 후 확인이 필요해요.',true);return;
+   }
+   const result=cloudMergeSnapshots(base,local,remote.payload);
+   if(result.unresolved.length){
+    cloudConflict=true;cloudSetMergeWarning('같은 설정 또는 텍스트를 두 기기에서 동시에 수정해 수동 확인이 필요해요.',result.unresolved);
+    cloudStatusMessage('일부 설정이 동시에 수정됐어요. 양쪽 기록을 백업한 뒤 선택해 주세요.',true);return;
+   }
+   desired=result.snapshot;report=result.report;
+   if(cloudFingerprint(desired)===cloudFingerprint(remote.payload)){
+    cloudImport(remote);return;
+   }
+  }else if(!dirty){
+   cloudConflict=false;cloudClearMergeWarning();cloudLastCheck=Date.now();cloudStatusMessage('최신 상태예요.');return;
+  }
+  // Compare-and-swap: if another device writes first, refetch and merge, never overwrite it.
+  let committed;
+  try{committed=await cloudCommitSnapshot(remote,desired)}catch(e){
+   if(e.message.includes('duplicate key')||e.message.includes('23505'))continue;
+   throw e;
+  }
+  if(!committed)continue;
+  const latestLocal=cloudSnapshot();
+  if(!cloudEqual(latestLocal,local)){
+   // Protect edits made while the upload was in flight.
+   const midflight=cloudMergeSnapshots(local,latestLocal,desired);
+   if(midflight.unresolved.length){cloudConflict=true;cloudSetMergeWarning('동기화 도중 추가 수정이 있었어요. 이 기기의 수정 내용은 그대로 보존했어요.',midflight.unresolved);cloudStatusMessage('수정 중 동기화 충돌이 발생해 보존했어요.',true);return}
+   if(!cloudEqual(midflight.snapshot,latestLocal)){
+    // Preserve the merged remote version as the base and keep this device's new edits until next sync.
+    cloudSetBase(uid,Number(committed.revision),desired);
+    cloudConflict=true;cloudSetMergeWarning('동기화 중 입력이 계속되어 새 변경 사항을 안전하게 보류했어요. 다른 기기 기록을 수동으로 확인해 주세요.');
+    cloudStatusMessage('저장 중 입력이 추가됐어요. 기존 기록을 덮어쓰지 않고 보호했어요.',true);return
+   }
+   cloudStatusMessage('추가 변경 사항이 있어 다시 동기화할게요.');return;
+  }
+  cloudConflict=false;
+  if(report.length)cloudSetMergeWarning('서로 다른 항목을 자동 병합했어요. 같은 항목 수정본은 별도로 보관했어요.',report);
+  else cloudClearMergeWarning();
+  if(!cloudEqual(desired,local)){cloudImport({...committed,payload:desired});return}
+  cloudStatusMessage(report.length?'두 기기 변경 사항을 안전하게 병합했어요.':'클라우드에 저장됐어요.');return;
+ }
+ cloudConflict=false;cloudStatusMessage('다른 기기도 저장 중이에요. 잠시 후 자동으로 다시 시도해요.');
 }
 function cloudImport(row){
  const data=row?.payload;
@@ -1659,6 +1883,7 @@ function cloudImport(row){
  if(Object.keys(data).some(k=>k.startsWith('dayflow-'))&&!Object.keys(data).some(k=>k.startsWith('hope-')))throw Error('기존 dayflow 클라우드 기록이 있어요. 새 hope를 빈 상태로 시작하려면 이 기기 데이터를 업로드해 교체해 주세요. 이전 기록은 먼저 백업하세요.');
  // No auth/session/config/binding credentials are ever included in snapshots.
  for(const k of CLOUD_KEYS){if(Object.prototype.hasOwnProperty.call(data,k)&&typeof data[k]==='string')localStorage.setItem(k,data[k]);else localStorage.removeItem(k)}
+ cloudSetBase(cloudSession.user.id,Number(row.revision||1),cloudSnapshot());
  cloudBinding={userId:cloudSession.user.id,rev:Number(row.revision||1),fingerprint:cloudFingerprint(cloudSnapshot())};cloudWrite(CLOUD_BIND,cloudBinding);
  cloudConflict=false;location.reload()
 }
@@ -1675,34 +1900,31 @@ async function cloudFirstChoice(action){
   await cloudUpload(true);cloudDialog();return
  }
 }
+
 async function cloudSyncNow(){
- if(!cloudBound())return;
- if(cloudBusy)return;
- await cloudEnsureSession();
- const snapshot=cloudSnapshot(),dirty=cloudFingerprint(snapshot)!==cloudBinding.fingerprint;
- if(dirty){await cloudUpload();return}
+ if(!cloudBound()||cloudBusy)return;
  cloudBusy=true;
- try{const remote=await cloudFetchRemote();cloudLastCheck=Date.now();if(remote&&Number(remote.revision)!==Number(cloudBinding.rev)){
-  cloudBusy=false;cloudImport(remote);return
- }cloudStatusMessage('최신 상태예요.');cloudButtonState()}
- catch(e){cloudStatusMessage(e.message,true);throw e}finally{cloudBusy=false}
+ try{await cloudEnsureSession();await cloudSyncCore()}
+ catch(e){cloudStatusMessage(e.message,true);throw e}
+ finally{cloudBusy=false;cloudButtonState()}
 }
 async function cloudBackgroundSync(){
- if(document.hidden||!cloudBound()||cloudBusy||cloudConflict)return;
+ if(document.hidden||!cloudBound()||cloudBusy||cloudConflict||cloudEditingInProgress())return;
  try{await cloudSyncNow()}catch(e){}
 }
 const cloudEsc=s=>esc(s);
 function cloudDialog(){
  const logged=!!cloudSession?.user?.id,paired=cloudBound(),email=cloudSession?.user?.email||'';
- const status=cloudConflict?'서로 다른 기기의 데이터가 충돌했어요.':paired?'자동 동기화가 연결됐어요.':logged?'로그인됐어요. 첫 데이터 선택이 필요해요.':'연결 전에는 이 기기에만 저장돼요.';
+ const status=cloudConflict?'자동 병합이 어려워 확인이 필요해요.':paired?'자동 동기화가 연결됐어요.':logged?'로그인됐어요. 첫 데이터 선택이 필요해요.':'연결 전에는 이 기기에만 저장돼요.';
  const html=`<div class="overlay cloud-dialog" data-overlay><div class="modal" role="dialog" aria-modal="true" aria-labelledby="cloudTitle"><div class="modal-head"><div><h2 id="cloudTitle">☁ 클라우드 동기화</h2><small>PC와 휴대폰의 데이터를 같은 계정으로 연결해요.</small></div><button class="close-btn" type="button" data-close aria-label="닫기">${ico('close')}</button></div>
  <div class="cloud-status ${cloudConflict?'error':paired?'ok':logged?'warn':''}"><i></i><div><strong>${status}</strong><p>${logged?'계정: '+cloudEsc(email):'로그인 전까지는 브라우저에만 기록돼요.'}</p></div></div>
  ${!cloudValidConfig()?`<p class="cloud-intro">먼저 Supabase 프로젝트와 데이터베이스 테이블을 만든 뒤 <strong>프로젝트 URL과 Publishable(또는 anon) 키</strong>를 입력해 주세요.</p>
  <form id="cloudConfigForm"><div class="form-field"><label for="cloudUrl">Supabase 프로젝트 URL</label><input class="field-input" id="cloudUrl" type="url" placeholder="https://프로젝트ID.supabase.co" required></div><div class="form-field"><label for="cloudKey">Publishable / anon 키 (공개 키)</label><input class="field-input" id="cloudKey" autocomplete="off" placeholder="sb_publishable_... 또는 eyJ..." required></div><p class="cloud-helper">기존에 실행한 dayflow_snapshots SQL 테이블을 그대로 사용하면 돼요. <strong>service_role / secret 키는 절대 입력하지 마세요.</strong></p><button class="primary" type="submit">연결 정보 저장</button></form>`:''}
  ${cloudValidConfig()&&!logged?`<form id="cloudAuthForm"><div class="form-field"><label for="cloudEmail">이메일</label><input class="field-input" id="cloudEmail" type="email" autocomplete="username" placeholder="example@email.com" required></div><div class="form-field"><label for="cloudPassword">비밀번호 (최소 6자)</label><input class="field-input" id="cloudPassword" type="password" autocomplete="current-password" minlength="6" required></div><div class="cloud-actions"><button class="primary" name="login" type="submit" data-cloud-auth="login">로그인</button><button class="secondary" name="signup" type="submit" data-cloud-auth="signup">회원가입</button></div><p class="cloud-helper">회원가입 시 이메일 인증 메일이 전송될 수 있어요. 인증 후 같은 이메일과 비밀번호로 로그인해 주세요.</p></form>`:''}
  ${logged&&!paired?`<p class="cloud-note">첫 연결은 안전을 위해 자동으로 데이터를 덮어쓰지 않아요. 어느 쪽 기록을 기준으로 할지 선택해 주세요.</p><div class="cloud-actions"><button class="secondary" data-cloud-action="pull">☁ 클라우드 데이터 가져오기</button><button class="primary" data-cloud-action="push">↑ 이 기기 데이터를 업로드</button></div>`:''}
- ${paired?`<p class="cloud-note">자동 동기화: 이 기기에서 수정한 내용은 인터넷 연결 시 업로드되고, 다른 기기의 변경을 주기적으로 확인해요.<br>동시에 서로 다르게 수정하면 <strong>충돌을 알리고 자동 덮어쓰기를 중지</strong>해요.</p><div class="cloud-actions"><button class="primary" data-cloud-action="sync">↻ 지금 동기화</button><button class="secondary" data-cloud-action="pull">☁ 클라우드 기록으로 복원</button><button class="secondary" data-cloud-action="push">↑ 이 기기 기록으로 덮어쓰기</button><button class="secondary" data-cloud-action="disconnect">이 기기 동기화 해제</button></div>`:''}
- <div class="cloud-divider"></div><div class="cloud-toolbar"><button class="secondary" data-cloud-action="backup">${ico('note','sm')} 이 기기 백업 다운로드</button>${logged?'<button class="secondary" data-cloud-action="logout">로그아웃</button>':''}${cloudValidConfig()?'<button class="secondary" data-cloud-action="resetconfig">연결 설정 변경</button>':''}</div>
+ ${paired?`<p class="cloud-note">자동 동기화: 이 기기에서 수정한 내용은 인터넷 연결 시 업로드되고, 다른 기기의 변경을 주기적으로 확인해요.<br>서로 다른 항목은 <strong>자동으로 병합</strong>하고 같은 항목의 수정본은 별도로 보관해요. 일부 설정 충돌은 수동 확인이 필요할 수 있어요.</p><div class="cloud-actions"><button class="primary" data-cloud-action="sync">↻ 지금 동기화</button><button class="secondary" data-cloud-action="pull">☁ 클라우드 기록으로 복원</button><button class="secondary" data-cloud-action="push">↑ 이 기기 기록으로 덮어쓰기</button><button class="secondary" data-cloud-action="disconnect">이 기기 동기화 해제</button></div>`:''}
+ ${cloudMergeWarning?`<p class="cloud-note"><strong>동기화 안내:</strong> ${cloudEsc(cloudMergeWarning.message)}${cloudMergeWarning.details?.length?`<br>${cloudMergeWarning.details.length}개 항목을 확인해 주세요.`:''}</p>`:''}
+ <div class="cloud-divider"></div><div class="cloud-toolbar"><button class="secondary" data-cloud-action="backup">${ico('note','sm')} 이 기기 백업 다운로드</button>${logged?'<button class="secondary" data-cloud-action="backupremote">클라우드 기록 백업</button><button class="secondary" data-cloud-action="logout">로그아웃</button>':''}${cloudValidConfig()?'<button class="secondary" data-cloud-action="resetconfig">연결 설정 변경</button>':''}</div>
  <p class="cloud-helper">로그인 비밀번호는 앱에 저장하지 않아요. 인증 세션과 연결 설정은 이 브라우저에 저장돼요. 타이머의 현재 카운트다운은 기기별로 유지돼요.</p><p id="cloudResult" class="cloud-error-text" aria-live="polite">${cloudEsc(cloudError)}</p></div></div>`;
  document.getElementById('modalRoot').innerHTML=html;
  const form=document.getElementById('cloudConfigForm');if(form)form.addEventListener('submit',async e=>{e.preventDefault();let url=document.getElementById('cloudUrl').value.trim().replace(/\/+$/,'');const key=document.getElementById('cloudKey').value.trim();if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url)||key.length<12){cloudStatusMessage('프로젝트 URL과 공개 키를 확인해 주세요.',true);return}cloudConfig={url,key};cloudWrite(CLOUD_CFG,cloudConfig);cloudError='';cloudDialog()});
@@ -1713,28 +1935,25 @@ function cloudDialog(){
  }catch(err){cloudStatusMessage(err.message,true)}finally{submitter.disabled=false}});
  const overlay=document.querySelector('.cloud-dialog');overlay?.addEventListener('click',async e=>{
   const btn=e.target.closest('[data-cloud-action]');if(!btn)return;e.preventDefault();e.stopPropagation();const action=btn.dataset.cloudAction;
-  if(action==='backup'){const blob=new Blob([JSON.stringify({format:'hope-backup-v1',createdAt:new Date().toISOString(),payload:cloudSnapshot()},null,2)],{type:'application/json'});const a=document.createElement('a');const u=URL.createObjectURL(blob);a.href=u;a.download='hope-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);return}
+  if(action==='backup'){cloudDownloadJSON('hope-이기기-'+new Date().toISOString().slice(0,10)+'.json',{format:'hope-backup-v2',createdAt:new Date().toISOString(),payload:cloudSnapshot()});return}
+  if(action==='backupremote'){try{const remote=await cloudFetchRemote();if(!remote)throw Error('클라우드 기록이 없어요.');cloudDownloadJSON('hope-클라우드-'+new Date().toISOString().slice(0,10)+'.json',{format:'hope-backup-v2',createdAt:new Date().toISOString(),revision:remote.revision,payload:remote.payload})}catch(e){cloudStatusMessage(e.message,true)}return}
   if(action==='logout'||action==='disconnect'||action==='resetconfig'){
    if(action==='resetconfig'&&!confirm('클라우드 연결 설정을 지울까요? 기기에 저장된 일정은 유지돼요.'))return;
    if(action==='logout'||action==='resetconfig'){cloudSession=null;cloudWrite(CLOUD_SESSION,null)}
    if(action==='resetconfig'){cloudConfig=null;cloudWrite(CLOUD_CFG,null)}
-   cloudBinding=null;cloudWrite(CLOUD_BIND,null);cloudConflict=false;cloudError='';cloudDialog();cloudButtonState();return
+   cloudBinding=null;cloudWrite(CLOUD_BIND,null);cloudBase=null;cloudWrite(CLOUD_BASE_KEY,null);cloudClearMergeWarning();cloudConflict=false;cloudError='';cloudDialog();cloudButtonState();return
   }
   btn.disabled=true;
   try{if(action==='pull'||action==='push')await cloudFirstChoice(action);else if(action==='sync'){await cloudSyncNow();cloudDialog()}}
   catch(err){cloudStatusMessage(err.message,true)}finally{btn.disabled=false}
  });
 }
+
 async function cloudBoot(){
  if(!cloudValidConfig()||!cloudSession)return;
- try{await cloudEnsureSession();if(cloudBound()){
-  const row=await cloudFetchRemote();if(!row){cloudConflict=true;cloudStatusMessage('클라우드 기록을 찾을 수 없어요. 확인해 주세요.',true);return}
-  const localFp=cloudFingerprint(cloudSnapshot()),dirty=localFp!==cloudBinding.fingerprint;
-  if(row.revision!==cloudBinding.rev&&dirty){cloudConflict=true;cloudStatusMessage('두 기기에서 각각 수정한 내용이 있어요. 충돌을 해결해 주세요.',true)}
-  else if(row.revision!==cloudBinding.rev&&!dirty){cloudImport(row);return}
-  else if(dirty)await cloudUpload();
-  cloudLastCheck=Date.now()
- }}catch(e){cloudStatusMessage(e.message,true)}finally{cloudButtonState()}
+ try{await cloudEnsureSession();if(cloudBound())await cloudSyncNow()}
+ catch(e){cloudStatusMessage(e.message,true)}
+ finally{cloudButtonState()}
 }
 function cloudWire(){const el=document.getElementById('cloudSyncBtn');if(el){el.innerHTML=ico('info');el.addEventListener('click',cloudDialog)}cloudButtonState();cloudBoot();setInterval(cloudBackgroundSync,4500);document.addEventListener('visibilitychange',()=>{if(!document.hidden)cloudBackgroundSync()})}
 cloudWire();
