@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>hope. — 나만의 올인원 플래너 v2.7</title>
+<title>hope. — 나만의 올인원 플래너 v3.0</title>
 <style>
 :root{--bg:#e9e9e8;--ink:#242526;--sub:#737578;--muted:#a2a3a5;--blue:#575b62;--blue-deep:#373c43;--lav:#aaa2b0;--mint:#67b0a0;--coral:#d48e87;--yellow:#d8b37d;--stroke:rgba(255,255,255,.72);--glass:rgba(255,255,255,.56);--glassstrong:rgba(255,255,255,.78);--weak:rgba(255,255,255,.4);--shadow:0 16px 44px rgba(52,55,61,.095),0 2px 7px rgba(52,55,61,.035);--radius:23px;--font:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Segoe UI',sans-serif}
 *{box-sizing:border-box}html{height:100%}body{min-height:100%;margin:0;font-family:var(--font);font-size:14px;color:var(--ink);background:var(--bg);letter-spacing:-.025em;-webkit-font-smoothing:antialiased}button,input,textarea,select{font:inherit}button{cursor:pointer;color:inherit}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(99,103,109,.38);outline-offset:2px}button:disabled{opacity:.48;cursor:not-allowed}.ambient{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(130deg,#e8e9e8 2%,#f6f6f5 52%,#e5e5e5 100%)}.orb{position:absolute;border-radius:50%;filter:blur(5px)}.orb.a{width:480px;height:480px;left:-140px;top:-160px;background:radial-gradient(circle,rgba(190,191,193,.40),rgba(144,190,255,0) 68%)}.orb.b{width:640px;height:640px;right:-160px;top:10%;background:radial-gradient(circle,rgba(195,197,199,.32),rgba(195,172,255,0) 69%)}.orb.c{width:580px;height:580px;bottom:-250px;left:28%;background:radial-gradient(circle,rgba(201,201,200,.25),rgba(143,233,214,0) 70%)}
@@ -898,6 +898,104 @@ html[data-theme="dark"] .weight-goal-metric.remaining strong{color:#b0d2e2}
 .overlay.record-dialog{align-items:center;overflow:hidden}.record-dialog .modal{max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 @media(max-width:800px){.record-dialog .modal{max-height:calc(100dvh - 28px);padding:18px 16px 23px}}
 
+
+/* hope v3.0 — time block editing on small phones: a real scrollable form and a fixed action row. */
+.overlay.journal-edit-dialog{
+  align-items:center;
+  box-sizing:border-box;
+  overflow:hidden;
+  padding:12px max(12px, env(safe-area-inset-right, 0px)) 12px max(12px, env(safe-area-inset-left, 0px));
+}
+.journal-edit-dialog .modal{
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
+  width:100%;
+  max-width:490px;
+  min-height:0;
+  max-height:calc(100vh - 24px);
+  max-height:calc(100dvh - 24px);
+  overflow:hidden !important;
+  padding:22px 20px 0;
+}
+.journal-edit-dialog .modal-head{
+  flex:0 0 auto;
+  position:relative;
+  z-index:1;
+  padding:0 0 8px;
+  margin-bottom:8px;
+}
+.journal-edit-dialog #journalForm{
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+  overflow:hidden;
+}
+.journal-edit-dialog .journal-form-fields{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-x:hidden;
+  overflow-y:auto;
+  overscroll-behavior-y:contain;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y;
+  padding:4px 5px 15px 3px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(115,125,140,.45) transparent;
+}
+.journal-edit-dialog .journal-form-fields::-webkit-scrollbar{width:5px}
+.journal-edit-dialog .journal-form-fields::-webkit-scrollbar-thumb{background:rgba(115,125,140,.45);border-radius:10px}
+.journal-edit-dialog .journal-form-actions{
+  display:flex;
+  flex:0 0 auto;
+  justify-content:flex-end;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0;
+  padding:13px 2px max(16px, env(safe-area-inset-bottom, 0px));
+  border-top:1px solid rgba(255,255,255,.55);
+  position:relative;
+  z-index:2;
+  background:linear-gradient(180deg, rgba(238,243,250,.20), rgba(232,238,246,.36));
+}
+.journal-edit-dialog .journal-form-actions .primary{
+  min-width:110px;
+  min-height:42px;
+}
+.journal-edit-dialog .journal-form-actions .copy-action,
+.journal-edit-dialog .journal-form-actions .danger{min-height:42px}
+html[data-theme=dark] .journal-edit-dialog .journal-form-actions{
+  border-top-color:rgba(255,255,255,.16);
+  background:linear-gradient(180deg,rgba(44,52,66,.18),rgba(44,52,66,.34));
+}
+@media(max-width:800px){
+ .journal-edit-dialog .modal{
+   height:min(740px,calc(100dvh - 24px));
+   padding:20px 17px 0;
+ }
+ .journal-edit-dialog .modal-head{margin-bottom:8px}
+ .journal-edit-dialog .journal-form-fields{padding-bottom:20px}
+ .journal-edit-dialog .journal-form-fields > .journal-date-category{grid-template-columns:minmax(0,1fr)}
+ .journal-edit-dialog .journal-form-fields .inline-manage{min-width:0;width:100%}
+ .journal-edit-dialog .journal-form-fields .inline-manage .form-field{min-width:0;flex:1}
+ .journal-edit-dialog .journal-form-actions .primary{flex:1 1 100%;min-width:0;order:3}
+ .journal-edit-dialog .journal-form-actions .danger,
+ .journal-edit-dialog .journal-form-actions .copy-action{flex:1 1 0;min-width:0;order:1}
+}
+@media(max-width:355px){
+ .journal-edit-dialog .modal{padding:18px 12px 0}
+ .journal-edit-dialog .journal-form-actions{gap:6px}
+ .journal-edit-dialog .journal-form-actions button{font-size:11px;padding-left:6px;padding-right:6px}
+ .journal-edit-dialog .journal-form-fields > .form-row:not(:first-of-type){gap:8px}
+}
+
+/* v3.0 : Overnight schedule notes and mobile event editor */
+.overnight-hint{line-height:1.75;margin:-2px 0 16px;color:var(--sub);font-size:11px;word-break:keep-all}
+@media(max-width:800px){
+ .item-edit-dialog .overnight-hint{font-size:11px;line-height:1.6}
+}
 </style>
 </head>
 <body>
@@ -907,7 +1005,7 @@ html[data-theme="dark"] .weight-goal-metric.remaining strong{color:#b0d2e2}
     <div class="brand"><div class="brand-mark" id="brandIcon"></div><div class="brand-name" id="editableBrandName">hope.</div><button class="copy-brand-btn" type="button" data-copy-group="navigation" aria-label="앱 이름과 메뉴 수정" title="앱 이름과 메뉴 수정">✎</button></div>
     <div class="nav-label">WORKSPACE</div><nav id="navMain"></nav>
     <div class="nav-label" style="margin-top:14px">TOOLS & MORE</div><nav id="navOther"></nav>
-    <div class="sidebar-bottom"><div class="tipbox"><button type="button" class="copy-sidebar-btn" data-copy-group="sidebar" aria-label="사이드바 문구 수정" title="문구 변경">✎</button><strong id="sideCopyHeadline">하루의 흐름을 기록해요 ✦</strong><p id="sideCopyDescription">계획하고, 집중하고, 달성하는 나만의 공간.</p><div class="outline-pill">올인원 플래너 · v2.8</div></div></div>
+    <div class="sidebar-bottom"><div class="tipbox"><button type="button" class="copy-sidebar-btn" data-copy-group="sidebar" aria-label="사이드바 문구 수정" title="문구 변경">✎</button><strong id="sideCopyHeadline">하루의 흐름을 기록해요 ✦</strong><p id="sideCopyDescription">계획하고, 집중하고, 달성하는 나만의 공간.</p><div class="outline-pill">올인원 플래너 · v3.0</div></div></div>
   </aside>
   <main class="workspace"><div class="topbar"><div class="breadcrumb">Workspace&nbsp; / &nbsp;<b id="breadcrumbPage">홈</b></div><div class="top-right"><button class="icon-btn" id="cloudSyncBtn" aria-label="기기 간 동기화" title="클라우드 동기화">☁</button><button class="icon-btn" id="searchBtn" aria-label="검색" title="일정과 할 일 검색"></button><button class="icon-btn" id="themeToggleBtn" aria-label="다크 모드 전환" title="라이트 / 다크 전환"></button><button class="icon-btn" id="copySettingsBtn" aria-label="화면 문구 편집" title="화면 문구 편집"></button><button class="icon-btn" id="settingsBtn" aria-label="디자인 설정" title="디자인 설정"></button><div class="avatar" title="개인용 플래너">me</div></div></div><div id="screen"></div></main>
   <aside class="right-rail glass" id="rightRail" aria-label="오늘 요약"></aside>
@@ -1018,13 +1116,32 @@ function updateClockUI(){const pc=document.getElementById('pomDisplay');if(pc)pc
 
 const hasCat=id=>Object.prototype.hasOwnProperty.call(cats,id);
 const catOf=id=>cats[id]||(Object.values(cats)[0]||{label:'기타',color:'#858585'});
-const inEvent=(e,date)=>e.date<=date&&(e.endDate||e.date)>=date;
+// 종료 시간이 시작 시간보다 빠른 하루 일정은 자정 이후까지 이어진 것으로 판단해요.
+// 예전 버전에서 저장한 기록도 읽을 때 보정해 다음 날에 나타나게 합니다.
+const eventEndDate=e=>{
+ const last=e.endDate||e.date;
+ return !e.allDay&&last===e.date&&e.time&&e.end&&e.end<=e.time
+   ?datekey(addDays(parseDate(e.date),1)):last;
+};
+const inEvent=(e,date)=>e.date<=date&&eventEndDate(e)>=date;
 const eventsOn=date=>events.filter(e=>inEvent(e,date));
-const isRange=e=>(e.endDate||e.date)>e.date;
-const dateRangeText=e=>isRange(e)?`${e.date} ~ ${e.endDate}`:e.date;
-const timeText=e=>e.allDay?`종일 · ${dateRangeText(e)}`:isRange(e)?`${e.date} ${e.time} → ${e.endDate} ${e.end}`:`${e.time}–${e.end}`;
-const rangeLabel=(e,day)=>isRange(e)?(e.date===day?'시작 · ':e.endDate===day?'종료 · ':'진행 중 · '):'';
-const dayTimeLabel=(e,day)=>e.allDay?'종일':!isRange(e)?`${e.time}–${e.end}`:e.date===day?`시작 ${e.time}`:e.endDate===day?`종료 ${e.end}`:'진행 중';
+const isRange=e=>eventEndDate(e)>e.date;
+const dateRangeText=e=>isRange(e)?`${e.date} ~ ${eventEndDate(e)}`:e.date;
+const timeText=e=>e.allDay?`종일 · ${dateRangeText(e)}`:isRange(e)?`${e.date} ${e.time} → ${eventEndDate(e)} ${e.end}`:`${e.time}–${e.end}`;
+const rangeLabel=(e,day)=>isRange(e)?(e.date===day?'시작 · ':eventEndDate(e)===day?'종료 · ':'진행 중 · '):'';
+const dayTimeLabel=(e,day)=>{
+ if(e.allDay)return '종일';
+ if(!isRange(e))return `${e.time}–${e.end}`;
+ const last=eventEndDate(e);
+ if(e.date===day){
+   if(last===datekey(addDays(parseDate(day),1)))return `${e.time} → 다음 날 ${e.end}`;
+   return `시작 ${e.time} →`;
+ }
+ if(last===day)return `00:00–${e.end} (이전 날부터)`;
+ return '이전 날부터 진행 중';
+};
+const eventStartForDay=(e,day)=>e.date<day?'00:00':e.time;
+const sortEventsForDay=(list,day)=>list.sort((a,b)=>eventStartForDay(a,day).localeCompare(eventStartForDay(b,day)));
 const save=()=>{try{localStorage.setItem('hope-demo-tasks-v1',JSON.stringify(tasks));localStorage.setItem('hope-demo-events-v1',JSON.stringify(events));localStorage.setItem('hope-demo-categories-v2',JSON.stringify(cats));saveExtra()}catch(e){}};
 let todoBulkMode=false;
 const selectedTodoIds=new Set();
@@ -1264,7 +1381,7 @@ function saveQuoteForm(form){const text=document.getElementById('quoteText').val
  else quotes.push({id:newId('q'),text,author,createdAt:Date.now()});
  saveQuotes();closeModal();render();toast(old?'명언을 수정했어요.':'새 명언을 추가했어요.');
 }
-function dashboardScreen(){let p=progress(),todayEvents=eventsOn(todayKey).sort((a,b)=>a.time.localeCompare(b.time)),todayTasks=tasks.filter(t=>todoOn(t,todayKey));return `
+function dashboardScreen(){let p=progress(),todayEvents=sortEventsForDay(eventsOn(todayKey),todayKey),todayTasks=tasks.filter(t=>todoOn(t,todayKey));return `
 ${pageHeader('MY DASHBOARD','오늘을 한눈에.',`${fmtLong.format(today)} · 나만의 하루를 계획하는 공간`,`<button class="primary" data-open="event">${ico('plus')} 새 일정</button>`)}
 <div class="stats">${stat('오늘 일정',`${todayEvents.length}개`,'캘린더에서 확인','calendar','#dfdfdf','#5b6067')}${stat('오늘 할 일',`${p.done}/${p.all}`,'체크하면 자동 반영','todo','#e4e8e4','#5e8377')}${stat('오늘 기록',`${fmtDuration(totalMinutes('day'))}`,'타임트래커 자동 반영','clock','#e6e5e7','#777580')}</div>
 <div class="two-col"><section class="card glass"><div class="card-heading"><div><h2 class="card-title">오늘의 일정</h2><div class="card-muted">기간 일정도 여기에 표시돼요</div></div><button class="text-button" data-nav="calendar">전체 보기 ${ico('right','sm')}</button></div><div class="timeline">${todayEvents.length?todayEvents.map(e=>`<div class="timeline-row"><span class="t-time">${esc(dayTimeLabel(e,todayKey))}</span><div class="t-line" style="--line:${catOf(e.category).color}"></div><button class="t-event" data-edit-event="${esc(e.id)}" style="text-align:left"><strong>${esc(e.title)} ${isRange(e)?'↔':''}</strong><small>${esc(timeText(e))} · ${esc(catOf(e.category).label)}</small></button></div>`).join(''):'<p class="empty-note">오늘 등록된 일정이 없어요.</p>'}</div><button class="text-button" data-open="event" style="margin-top:15px">${ico('plus','sm')} 일정 추가하기</button></section>
@@ -1283,8 +1400,8 @@ function monthView(){
     const weekStart=week[0].key,weekEnd=week[6].key;
     // 기간 일정만 일주일 안에서 하나의 막대로 배치한다.
     // 겹치는 일정은 별도의 행을 배정하여 막대가 포개지지 않도록 한다.
-    const spans=events.filter(e=>matchesCategory(e.category,'calendar')&&isRange(e)&&e.date<=weekEnd&&(e.endDate||e.date)>=weekStart)
-      .map(e=>({e,start:Math.max(0,week.findIndex(d=>d.key>=e.date)),end:Math.min(6,6-[...week].reverse().findIndex(d=>d.key<=(e.endDate||e.date)))}))
+    const spans=events.filter(e=>matchesCategory(e.category,'calendar')&&isRange(e)&&e.date<=weekEnd&&eventEndDate(e)>=weekStart)
+      .map(e=>({e,start:Math.max(0,week.findIndex(d=>d.key>=e.date)),end:Math.min(6,6-[...week].reverse().findIndex(d=>d.key<=eventEndDate(e)))}))
       .sort((a,b)=>a.start-b.start||b.end-a.end||a.e.id.localeCompare(b.e.id));
     const lanes=[];
     for(const item of spans){let lane=lanes.findIndex(lastEnd=>lastEnd<item.start);if(lane===-1){lane=lanes.length;lanes.push(-1)}lanes[lane]=item.end;item.lane=lane}
@@ -1293,14 +1410,17 @@ function monthView(){
       const cMarkup=singles.slice(0,2).map(e=>{const c=catOf(e.category);return `<span class="date-chip custom" style="--chip-bg:${c.color}24;--chip-fg:${c.color};--cat-color:${c.color}" data-event-id="${esc(e.id)}" title="${esc(e.title)}">${esc(e.title)}</span>`}).join('');
       return `<button class="date-cell ${!d.monthSame?'other':''} ${d.key===state.selected?'selected':''} ${d.key===todayKey?'today':''}" style="--week-lanes:${lanes.length}" data-day="${d.key}" aria-label="${d.key} 선택"><span class="date-num">${d.d.getDate()}</span><span class="cell-items">${cMarkup}${hiddenCalendarDots(d.key)}${d.td.some(t=>matchesCategory(t.category,'calendar'))?'<span class="date-dots"><i class="todo-dot"></i></span>':''}${singles.length>2?'<span class="date-dots"><i></i><i></i></span>':''}${singles.length?`<span class="mobile-event-mark">${singles.slice(0,2).map(e=>`<i style="--cat-color:${catOf(e.category).color}"></i>`).join('')}</span>`:''}</span></button>`;
     }).join('');
-    const bars=spans.map(({e,start,end,lane})=>{const c=catOf(e.category),begins=e.date>=weekStart,ends=(e.endDate||e.date)<=weekEnd;return `<button class="range-strip ${begins?'begins':'continues'} ${ends?'ends':'to-next'}" style="grid-column:${start+1} / span ${end-start+1};grid-row:${lane+1};--range-color:${c.color}" data-event-id="${esc(e.id)}" aria-label="${esc(e.title)} ${esc(dateRangeText(e))} 일정 수정" title="${esc(e.title+' · '+dateRangeText(e))}"><span>${esc(e.title)}</span></button>`}).join('');
+    const bars=spans.map(({e,start,end,lane})=>{const c=catOf(e.category),begins=e.date>=weekStart,ends=eventEndDate(e)<=weekEnd;return `<button class="range-strip ${begins?'begins':'continues'} ${ends?'ends':'to-next'}" style="grid-column:${start+1} / span ${end-start+1};grid-row:${lane+1};--range-color:${c.color}" data-event-id="${esc(e.id)}" aria-label="${esc(e.title)} ${esc(dateRangeText(e))} 일정 수정" title="${esc(e.title+' · '+dateRangeText(e))}"><span>${esc(e.title)}</span></button>`}).join('');
     return `<div class="calendar-week" style="--week-lanes:${lanes.length}">${weekDates}<div class="week-range-layer" aria-label="기간 일정">${bars}</div></div>`;
   }).join('');
   return `<div class="month-grid">${headings}${rows}</div>`;
 }
-function weekView(){const d=parseDate(state.selected),mon=weekBegin(d);return `<div class="week-grid">${Array.from({length:7},(_,i)=>{const x=addDays(mon,i),key=datekey(x),e=eventsOn(key).filter(e=>matchesCategory(e.category,'calendar'));return `<button class="week-col ${key===state.selected?'selected':''}" data-day="${key}"><span class="wday">${weekDays()[i]}</span><span class="wnum">${x.getDate()}</span>${hiddenCalendarDots(key,'in-week')}${e.length?e.map(v=>`<div class="week-item" style="border-left:3px solid ${catOf(v.category).color}">${esc(dayTimeLabel(v,key))}<br>${esc(v.title)}</div>`).join(''):'<span style="font-size:9px;color:#95999d">표시할 일정 없음</span>'}</button>`}).join('')}</div>`}
-function dayView(){const ev=eventsOn(state.selected).filter(e=>matchesCategory(e.category,'calendar'));return `<div class="day-agenda">${hiddenCalendarDots(state.selected,'in-day')}${ev.filter(e=>e.allDay||e.date!==state.selected).length?`<div class="agenda-hour"><span>종일/진행</span><div>${ev.filter(e=>e.allDay||e.date!==state.selected).map(e=>`<button class="agenda-event" data-edit-event="${esc(e.id)}" style="display:block;width:100%;text-align:left;margin-bottom:6px;border-left:3px solid ${catOf(e.category).color}">${esc(e.title)}<small>${esc(timeText(e))}</small></button>`).join('')}</div></div>`:''}${Array.from({length:24},(_,h)=>{let e=ev.filter(v=>!v.allDay&&v.date===state.selected&&Number(v.time.split(':')[0])===h);return `<div class="agenda-hour"><span>${String(h).padStart(2,'0')}:00</span><div>${e.map(v=>`<button class="agenda-event" data-edit-event="${esc(v.id)}" style="display:block;width:100%;text-align:left;margin-bottom:6px;border-left:3px solid ${catOf(v.category).color}">${esc(v.title)}<small>${esc(timeText(v))} · ${esc(catOf(v.category).label)}</small></button>`).join('')}</div></div>`}).join('')}</div>`}
-function dayDetail(){const dt=parseDate(state.selected),e=eventsOn(state.selected).filter(e=>matchesCategory(e.category,'calendar')).sort((a,b)=>a.time.localeCompare(b.time)),t=tasks.filter(t=>todoOn(t,state.selected)&&matchesCategory(t.category,'calendar'));return `<div class="card glass day-detail"><div class="detail-date">${fmtDay.format(dt)}</div><div class="detail-sub">선택한 날짜의 일정 및 할 일</div>${hiddenCalendarDots(state.selected,'in-detail')}<div class="day-detail-group">일정 · ${e.length}</div>${e.map(v=>`<div class="detail-item"><span class="detail-color" style="background:${catOf(v.category).color}"></span><div class="detail-event-content"><button class="event-edit" data-edit-event="${esc(v.id)}" aria-label="${esc(v.title)} 일정 수정"><span><strong>${esc(v.title)}</strong><small>${esc(rangeLabel(v,state.selected))}${esc(timeText(v))}</small></span>${ico('edit','sm')}</button></div><button class="copy-action detail-copy" data-copy-event="${esc(v.id)}" aria-label="${esc(v.title)} 일정 복사" title="이 일정 복사">${ico('copy','sm')}</button></div>`).join('')||'<p class="empty-note">표시할 일정이 없어요.</p>'}<div class="day-detail-group" style="margin-top:17px">할 일 · ${t.length}</div>${t.map(v=>`<div class="todo-row" style="padding:8px 0"><button class="check ${v.done?'done':''}" data-toggle="${v.id}" aria-label="완료 상태 변경">${v.done?ico('check'):''}</button><div class="todo-main"><button class="todo-title ${v.done?'done':''}" data-edit-task="${v.id}">${esc(v.title)}</button>${todoEnd(v)!==v.date?`<div style="margin-top:5px">${todoDateBadge(v,state.selected)}</div>`:''}</div></div>`).join('')||'<p class="empty-note">등록된 할 일이 없어요.</p>'}<button class="secondary" data-open="event" style="width:100%;margin-top:13px">${ico('plus')} 일정 추가</button></div>`}
+function weekView(){const d=parseDate(state.selected),mon=weekBegin(d);return `<div class="week-grid">${Array.from({length:7},(_,i)=>{const x=addDays(mon,i),key=datekey(x),e=sortEventsForDay(eventsOn(key).filter(e=>matchesCategory(e.category,'calendar')),key);return `<button class="week-col ${key===state.selected?'selected':''}" data-day="${key}"><span class="wday">${weekDays()[i]}</span><span class="wnum">${x.getDate()}</span>${hiddenCalendarDots(key,'in-week')}${e.length?e.map(v=>`<div class="week-item" style="border-left:3px solid ${catOf(v.category).color}">${esc(dayTimeLabel(v,key))}<br>${esc(v.title)}</div>`).join(''):'<span style="font-size:9px;color:#95999d">표시할 일정 없음</span>'}</button>`}).join('')}</div>`}
+function dayView(){const ev=eventsOn(state.selected).filter(e=>matchesCategory(e.category,'calendar'));
+ const spanning=ev.filter(e=>e.allDay||(!e.allDay&&e.date<state.selected&&eventEndDate(e)>state.selected));
+ return `<div class="day-agenda">${hiddenCalendarDots(state.selected,'in-day')}${spanning.length?`<div class="agenda-hour"><span>종일/진행</span><div>${spanning.map(e=>`<button class="agenda-event" data-edit-event="${esc(e.id)}" style="display:block;width:100%;text-align:left;margin-bottom:6px;border-left:3px solid ${catOf(e.category).color}">${esc(e.title)}<small>${esc(dayTimeLabel(e,state.selected))}</small></button>`).join('')}</div></div>`:''}${Array.from({length:24},(_,h)=>{let group=ev.filter(v=>!v.allDay&&((v.date===state.selected&&Number(v.time.split(':')[0])===h)||(h===0&&v.date<state.selected&&eventEndDate(v)===state.selected&&v.end!=='00:00')));return `<div class="agenda-hour"><span>${String(h).padStart(2,'0')}:00</span><div>${group.map(v=>`<button class="agenda-event" data-edit-event="${esc(v.id)}" style="display:block;width:100%;text-align:left;margin-bottom:6px;border-left:3px solid ${catOf(v.category).color}">${esc(v.title)}<small>${esc(dayTimeLabel(v,state.selected))} · ${esc(catOf(v.category).label)}</small></button>`).join('')}</div></div>`}).join('')}</div>`}
+
+function dayDetail(){const dt=parseDate(state.selected),e=sortEventsForDay(eventsOn(state.selected).filter(e=>matchesCategory(e.category,'calendar')),state.selected),t=tasks.filter(t=>todoOn(t,state.selected)&&matchesCategory(t.category,'calendar'));return `<div class="card glass day-detail"><div class="detail-date">${fmtDay.format(dt)}</div><div class="detail-sub">선택한 날짜의 일정 및 할 일</div>${hiddenCalendarDots(state.selected,'in-detail')}<div class="day-detail-group">일정 · ${e.length}</div>${e.map(v=>`<div class="detail-item"><span class="detail-color" style="background:${catOf(v.category).color}"></span><div class="detail-event-content"><button class="event-edit" data-edit-event="${esc(v.id)}" aria-label="${esc(v.title)} 일정 수정"><span><strong>${esc(v.title)}</strong><small>${esc(rangeLabel(v,state.selected))}${esc(timeText(v))}</small></span>${ico('edit','sm')}</button></div><button class="copy-action detail-copy" data-copy-event="${esc(v.id)}" aria-label="${esc(v.title)} 일정 복사" title="이 일정 복사">${ico('copy','sm')}</button></div>`).join('')||'<p class="empty-note">표시할 일정이 없어요.</p>'}<div class="day-detail-group" style="margin-top:17px">할 일 · ${t.length}</div>${t.map(v=>`<div class="todo-row" style="padding:8px 0"><button class="check ${v.done?'done':''}" data-toggle="${v.id}" aria-label="완료 상태 변경">${v.done?ico('check'):''}</button><div class="todo-main"><button class="todo-title ${v.done?'done':''}" data-edit-task="${v.id}">${esc(v.title)}</button>${todoEnd(v)!==v.date?`<div style="margin-top:5px">${todoDateBadge(v,state.selected)}</div>`:''}</div></div>`).join('')||'<p class="empty-note">등록된 할 일이 없어요.</p>'}<button class="secondary" data-open="event" style="width:100%;margin-top:13px">${ico('plus')} 일정 추가</button></div>`}
 function calendarScreen(){let dt=state.calView==='month'?state.visibleMonth:parseDate(state.selected),y=dt.getFullYear(),m=dt.getMonth();const heading=state.calView==='month'?`${y}년 ${m+1}월`:state.calView==='week'?(()=>{const [a,b]=periodBounds('week',state.selected);return `${a} ~ ${b}`})():`${y}년 ${m+1}월 ${dt.getDate()}일`;const weekMeta=state.calView==='week'?weekLabel(dt):'';return `
 ${pageHeader('SCHEDULE & EVENTS','캘린더','월·주·일 보기 · 기간 일정은 하나의 연속된 막대로 표시',`<button class="primary" data-open="event">${ico('plus')} 일정 추가</button>`)}
 <div class="category-tools"><small>일정과 목표를 한 화면에서 확인하고, 원하는 카테고리만 볼 수 있어요.</small><button class="secondary" data-manage-categories>${ico('settings','sm')} 카테고리 관리</button></div>
@@ -1543,7 +1663,7 @@ function trackerPngModal(){
 
 function trackerScreen(){return state.trackerView==='day'?dailyJournal():weeklyJournal()}
 function journalModal(kind='plan',date=state.trackerDate,hour=9,id=''){let entry=kind==='plan'?plannerPlans.find(x=>x.id===id):kind==='actual'?timeLogs.find(x=>x.id===id):null;if(kind==='event'){editModal('event',id);return}const editing=!!entry;
-const start=entry?.start||hhmm(hour*60),end=entry?.end||hhmm(((hour+1)%24)*60),category=entry?.category||'basic';document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true" aria-labelledby="jTitle"><div class="modal-head"><div><h2 id="jTitle">${editing?'시간 블록 수정':'시간 블록 추가'}</h2><small>하루를 계획하거나 실제 사용 시간을 남겨요.</small></div><button class="close-btn" data-close aria-label="닫기">${ico('close')}</button></div><form id="journalForm" data-id="${esc(id)}" data-original-kind="${kind}"><div class="form-field"><label for="jKind">기록 유형</label><select id="jKind" class="field-input"><option value="plan" ${kind==='plan'?'selected':''}>시간 계획</option><option value="actual" ${kind==='actual'?'selected':''}>실제 시간 사용</option></select></div>${inputField('jTitleInput','활동 이름','text',entry?.title||'','required maxlength="90" placeholder="예: 공부, 운동, 알바"')}<div class="form-row">${inputField('jDate','날짜','date',entry?.date||date,'required')}<div class="inline-manage"><div class="form-field"><label for="jCat">카테고리</label><select class="field-input" id="jCat">${categoryOptions(category,false)}</select></div><button type="button" class="secondary" data-manage-categories>${ico('settings','sm')} 관리</button></div></div><div class="form-row">${inputField('jStart','시작 시간','time',start,'required')}${inputField('jEnd','종료 시간','time',end,'required')}</div><p class="input-help">04:00부터 다음 날 04:00까지 한 날로 표시돼요. 예: 23:00~01:00은 자정을 넘기는 활동이에요.</p><div class="form-field"><label for="jMemo">메모</label><textarea id="jMemo" class="field-input textarea" placeholder="선택 사항">${esc(entry?.memo||'')}</textarea></div><div class="form-foot">${editing?`<button class="danger" type="button" data-journal-delete="${esc(kind)}" data-journal-id="${esc(id)}">${ico('trash','sm')} 삭제</button><button type="button" class="copy-action" data-copy-journal="${esc(kind)}" data-journal-id="${esc(id)}">${ico('copy','sm')} 시간 복사</button>`:'<span class="sample">기존 기록과 연결돼요</span>'}<button class="primary" type="submit">${ico('check','sm')} 저장하기</button></div></form></div></div>`;document.getElementById('jTitleInput').focus()}
+const start=entry?.start||hhmm(hour*60),end=entry?.end||hhmm(((hour+1)%24)*60),category=entry?.category||'basic';document.getElementById('modalRoot').innerHTML=`<div class="overlay journal-edit-dialog" data-overlay><div class="modal" role="dialog" aria-modal="true" aria-labelledby="jTitle"><div class="modal-head"><div><h2 id="jTitle">${editing?'시간 블록 수정':'시간 블록 추가'}</h2><small>하루를 계획하거나 실제 사용 시간을 남겨요.</small></div><button class="close-btn" data-close aria-label="닫기">${ico('close')}</button></div><form id="journalForm" data-id="${esc(id)}" data-original-kind="${kind}"><div class="journal-form-fields" tabindex="0" role="region" aria-label="시간 블록 설정 스크롤 영역"><div class="form-field"><label for="jKind">기록 유형</label><select id="jKind" class="field-input"><option value="plan" ${kind==='plan'?'selected':''}>시간 계획</option><option value="actual" ${kind==='actual'?'selected':''}>실제 시간 사용</option></select></div>${inputField('jTitleInput','활동 이름','text',entry?.title||'','required maxlength="90" placeholder="예: 공부, 운동, 알바"')}<div class="form-row journal-date-category">${inputField('jDate','날짜','date',entry?.date||date,'required')}<div class="inline-manage"><div class="form-field"><label for="jCat">카테고리</label><select class="field-input" id="jCat">${categoryOptions(category,false)}</select></div><button type="button" class="secondary" data-manage-categories>${ico('settings','sm')} 관리</button></div></div><div class="form-row">${inputField('jStart','시작 시간','time',start,'required')}${inputField('jEnd','종료 시간','time',end,'required')}</div><p class="input-help">04:00부터 다음 날 04:00까지 한 날로 표시돼요. 예: 23:00~01:00은 자정을 넘기는 활동이에요.</p><div class="form-field"><label for="jMemo">메모</label><textarea id="jMemo" class="field-input textarea" placeholder="선택 사항">${esc(entry?.memo||'')}</textarea></div></div><div class="form-foot journal-form-actions">${editing?`<button class="danger" type="button" data-journal-delete="${esc(kind)}" data-journal-id="${esc(id)}">${ico('trash','sm')} 삭제</button><button type="button" class="copy-action" data-copy-journal="${esc(kind)}" data-journal-id="${esc(id)}">${ico('copy','sm')} 시간 복사</button>`:'<span class="sample">기존 기록과 연결돼요</span>'}<button class="primary" type="submit">${ico('check','sm')} 저장하기</button></div></form></div></div>`;document.getElementById('jTitleInput').focus()}
 function saveJournalForm(form){const id=form.dataset.id,oldKind=form.dataset.originalKind,newKind=document.getElementById('jKind').value,title=document.getElementById('jTitleInput').value.trim(),date=document.getElementById('jDate').value,start=document.getElementById('jStart').value,end=document.getElementById('jEnd').value,category=document.getElementById('jCat').value,memo=document.getElementById('jMemo').value.trim();if(!title||!date||!start||!end){toast('활동, 날짜, 시간을 입력해 주세요.');return}const minutes=journalMinutes({start,end});if(minutes<=0||minutes>1440){toast('시간은 최대 24시간으로 설정할 수 있어요.');return}if(oldKind==='plan')plannerPlans=plannerPlans.filter(e=>e.id!==id);if(oldKind==='actual')timeLogs=timeLogs.filter(e=>e.id!==id);const obj={id:id&&oldKind===newKind?id:newId(newKind==='plan'?'p':'l'),date,start,end,title,category,memo,minutes,source:newKind==='actual'?'planner':'plan'};if(newKind==='plan')plannerPlans.unshift(obj);else timeLogs.unshift(obj);state.trackerDate=date;savePlanner();saveExtra();closeModal();render();toast('시간 블록을 저장했어요.')}
 function manageHabits(){document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>매일 체크할 습관</h2><small>주간·일간 플래너에 함께 표시돼요.</small></div><button class="close-btn" data-close>${ico('close')}</button></div><div class="utility-list">${plannerHabitNames.map((h,i)=>`<div class="utility-item"><strong style="flex:1;font-size:13px">${esc(h)}</strong><button class="danger" data-delete-habit="${i}" type="button">삭제</button></div>`).join('')}</div><form id="habitForm" style="margin-top:15px;display:flex;gap:8px"><input class="field-input" id="habitName" placeholder="새 습관 이름" maxlength="18" required style="min-width:0;flex:1"><button class="primary" type="submit">추가</button></form></div></div>`}
 function goalsScreen(){let period=state.goalPeriod||'week',data=goals.filter(g=>g.period===period&&matchesCategory(g.category,'goals'));return `${pageHeader('WEEKLY & MONTHLY GOALS','작은 목표를 꾸준하게.','할 일 완료 수와 타임트래커 기록이 목표에 자동 반영돼요',`<div class="title-actions"><button class="secondary" data-manage-categories>${ico('settings','sm')} 카테고리 관리</button><button class="primary" data-open-goal>${ico('plus')} 목표 추가</button></div>`)}<div class="action-row"><div class="segment"><button class="${period==='week'?'selected':''}" data-goal-period="week">주간 목표</button><button class="${period==='month'?'selected':''}" data-goal-period="month">월간 목표</button></div><span class="muted-label">${period==='week'?(weekStartDay===0?'이번 주 (일~토)':'이번 주 (월~일)'):'이번 달'} 목표</span></div>${categoryFilterBar('goals','카테고리별 목표와 달성률만 표시')}<div class="metric-grid"><div class="card glass metric"><small>등록된 목표</small><strong>${data.length}개</strong><span>현재 ${period==='week'?'주':'월'}</span></div><div class="card glass metric"><small>달성한 목표</small><strong>${data.filter(g=>goalStatus(g).pct===100).length}개</strong><span>진행률 100%</span></div><div class="card glass metric"><small>평균 달성률</small><strong>${data.length?Math.round(data.reduce((a,g)=>a+goalStatus(g).pct,0)/data.length):0}%</strong><span>현재 목표 기준</span></div></div><div class="goal-list">${data.map(g=>{let a=goalStatus(g);return `<article class="card glass goal-card"><div class="goal-card-head"><div><strong>${esc(g.title)}</strong><small style="display:block;margin-top:5px">${g.mode==='time'?'⏱ 시간 누적':g.mode==='todo'?'☑ 투두 완료':'✦ 직접 체크'} · ${g.mode==='manual'?'수동':esc(g.category==='all'?'전체':catOf(g.category).label)}</small></div><button class="secondary" data-edit-goal="${esc(g.id)}" style="padding:7px 10px;min-height:30px">수정 ${ico('edit','sm')}</button></div><div class="goal-progress-text">${esc(a.label)} <small>달성</small></div><div class="thin-progress"><div style="width:${a.pct}%"></div></div><div class="goal-card-head"><span class="goal-percent">${a.pct}% 진행</span>${g.mode==='manual'?`<div class="item-actions"><button class="secondary" data-goal-step="${esc(g.id)}" data-step="-1" aria-label="진행률 줄이기">−</button><button class="secondary" data-goal-step="${esc(g.id)}" data-step="1" aria-label="진행률 올리기">＋</button></div>`:`<small>자동 업데이트</small>`}</div></article>`}).join('')||emptyUi('아직 목표가 없어요','시간형·투두형·직접 체크형 목표를 만들 수 있어요.',`<button class="primary" data-open-goal>${ico('plus')} 목표 만들기</button>`)}</div><p class="focus-note">시간형 목표는 해당 기간의 타임트래커 기록, 투두형 목표는 완료된 할 일의 카테고리와 완료일을 기준으로 계산해요.</p>`}
@@ -1666,10 +1786,42 @@ function render(){document.querySelector('.shell').classList.toggle('tracker-mod
 
 function inputField(id,title,type,value,extra=''){return `<div class="form-field"><label for="${id}">${title}</label><input class="field-input" id="${id}" type="${type}" value="${esc(value||'')}" ${extra}></div>`}
 function editModal(kind,id){let isTodo=kind==='todo',origin=isTodo?tasks.find(x=>x.id===id):events.find(x=>x.id===id),isEdit=!!origin,record=origin||{title:'',date:state.page==='calendar'?state.selected:todayKey,endDate:state.page==='calendar'?state.selected:todayKey,time:'09:00',end:'10:00',allDay:false,category:'basic',memo:'',priority:'normal'};
-document.getElementById('modalRoot').innerHTML=`<div class="overlay item-edit-dialog" data-overlay><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><h2 id="modalTitle">${isEdit?(isTodo?'할 일 수정':'일정 수정'):isTodo?'새 할 일 추가':'새 일정 추가'}</h2><small>${isTodo?'제목과 상세 메모, 시작일·종료일을 설정하세요.':'하루 일정 또는 여러 날에 걸친 일정을 등록해요.'}</small></div><button class="close-btn" data-close aria-label="닫기">${ico('close')}</button></div><form id="itemForm" data-kind="${kind}" data-id="${id||''}">${inputField('fTitle',isTodo?'할 일 제목':'일정 제목','text',record.title,'required maxlength="100" placeholder="제목을 입력하세요"')}${isTodo?`<div class="form-row">${inputField('fDate','시작일','date',record.date,'required')}${inputField('fEndDate','종료일 (마감일)','date',record.endDate||record.date,'required')}</div><p class="todo-period-help">하루짜리 할 일은 시작일과 종료일을 같게 설정하세요. 기간 동안 매일 할 일에 표시돼요.</p>`:`<div class="form-row">${inputField('fDate','시작 날짜','date',record.date,'required')}${inputField('fEndDate','종료 날짜','date',record.endDate||record.date,'required')}</div><label class="all-day-toggle"><input id="fAllDay" type="checkbox" ${record.allDay?'checked':''}/> 하루 종일 / 시간 미지정</label><div class="form-row" id="timeFields" ${record.allDay?'hidden':''}>${inputField('fTime','시작 시간','time',record.time||'09:00')}${inputField('fEnd','종료 시간','time',record.end||'10:00')}</div>`}
+document.getElementById('modalRoot').innerHTML=`<div class="overlay item-edit-dialog" data-overlay><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><h2 id="modalTitle">${isEdit?(isTodo?'할 일 수정':'일정 수정'):isTodo?'새 할 일 추가':'새 일정 추가'}</h2><small>${isTodo?'제목과 상세 메모, 시작일·종료일을 설정하세요.':'하루 일정 또는 여러 날에 걸친 일정을 등록해요.'}</small></div><button class="close-btn" data-close aria-label="닫기">${ico('close')}</button></div><form id="itemForm" data-kind="${kind}" data-id="${id||''}">${inputField('fTitle',isTodo?'할 일 제목':'일정 제목','text',record.title,'required maxlength="100" placeholder="제목을 입력하세요"')}${isTodo?`<div class="form-row">${inputField('fDate','시작일','date',record.date,'required')}${inputField('fEndDate','종료일 (마감일)','date',record.endDate||record.date,'required')}</div><p class="todo-period-help">하루짜리 할 일은 시작일과 종료일을 같게 설정하세요. 기간 동안 매일 할 일에 표시돼요.</p>`:`<div class="form-row">${inputField('fDate','시작 날짜','date',record.date,'required')}${inputField('fEndDate','종료 날짜','date',record.endDate||record.date,'required')}</div><label class="all-day-toggle"><input id="fAllDay" type="checkbox" ${record.allDay?'checked':''}/> 하루 종일 / 시간 미지정</label><div class="form-row" id="timeFields" ${record.allDay?'hidden':''}>${inputField('fTime','시작 시간','time',record.time||'09:00')}${inputField('fEnd','종료 시간','time',record.end||'10:00')}</div><p class="input-help overnight-hint" id="overnightHint" aria-live="polite">종료 시간이 시작 시간보다 빠르거나 같으면 다음 날 종료로 저장돼요. 예: 금 21:00 → 토 05:00</p>`}
 <div class="form-row"><div class="form-field"><label for="fCat">카테고리</label><select class="field-input" id="fCat">${Object.entries(cats).map(([k,v])=>`<option value="${esc(k)}" ${record.category===k?'selected':''}>${esc(v.label)}</option>`).join('')}</select></div>${isTodo?`<div class="form-field"><label for="fPriority">우선순위</label><select class="field-input" id="fPriority"><option value="normal" ${record.priority==='normal'?'selected':''}>보통</option><option value="high" ${record.priority==='high'?'selected':''}>높음</option><option value="low" ${record.priority==='low'?'selected':''}>낮음</option></select></div>`:`<div class="form-field" style="display:flex;align-items:end"><button type="button" class="secondary" data-manage-categories style="width:100%;height:42px">${ico('settings','sm')} 카테고리 관리</button></div>`}</div>
 <div class="form-field"><label for="fMemo">${isTodo?'투두 메모':'일정 메모'} (선택)</label><textarea class="field-input textarea" id="fMemo" placeholder="내용을 자유롭게 기록하세요">${esc(record.memo)}</textarea></div><div class="form-foot">${isEdit?`<button type="button" class="danger" data-delete="${esc(id)}" data-kind="${kind}">${ico('trash','sm')} 삭제</button>${!isTodo?`<button type="button" class="copy-action" data-copy-event="${esc(id)}">${ico('copy','sm')} 일정 복사</button>`:''}`:'<span class="sample">이 기기에 자동 저장돼요</span>'}<button type="submit" class="primary">${ico('check')} ${isEdit?'변경사항 저장':'저장하기'}</button></div></form></div></div>`;
-const endDate=document.getElementById('fEndDate');const startDate=document.getElementById('fDate');if(endDate){startDate.addEventListener('change',()=>{if(endDate.value<startDate.value)endDate.value=startDate.value;endDate.min=startDate.value});endDate.min=startDate.value;if(!isTodo)document.getElementById('fAllDay').addEventListener('change',e=>{document.getElementById('timeFields').hidden=e.target.checked})}
+const endDate=document.getElementById('fEndDate'),startDate=document.getElementById('fDate');
+if(endDate){
+ // 새 일정과 하루짜리 일정에서는 시간을 바꿀 때 종료일도 자동으로 따라갑니다.
+ // 종료일을 사람이 직접 선택하면 선택한 값을 우선시해요.
+ let autoEndDate=!isTodo&&!origin;
+ const startTime=document.getElementById('fTime'),endTime=document.getElementById('fEnd');
+ const allDayInput=document.getElementById('fAllDay');
+ const hint=document.getElementById('overnightHint');
+ const syncEventEndDate=()=>{
+   if(isTodo||!startDate.value)return;
+   const isOvernight=!allDayInput.checked&&startTime.value&&endTime.value&&endTime.value<=startTime.value;
+   const recommended=isOvernight?datekey(addDays(parseDate(startDate.value),1)):startDate.value;
+   if(autoEndDate)endDate.value=recommended;
+   if(hint){
+     const actualEnd=endDate.value===startDate.value&&isOvernight?recommended:endDate.value;
+     hint.textContent=isOvernight
+       ?`자정을 넘기는 일정이에요. ${startDate.value} ${startTime.value}부터 ${actualEnd} ${endTime.value}까지 이어져요.`
+       :'종료 시간이 시작 시간보다 빠르거나 같으면 자동으로 다음 날 일정으로 저장돼요.';
+   }
+ };
+ startDate.addEventListener('change',()=>{
+   if(endDate.value<startDate.value)endDate.value=startDate.value;
+   endDate.min=startDate.value;
+   syncEventEndDate();
+ });
+ endDate.min=startDate.value;
+ if(!isTodo){
+   for(const el of [startTime,endTime]){el.addEventListener('input',syncEventEndDate);el.addEventListener('change',syncEventEndDate)}
+   endDate.addEventListener('input',()=>{autoEndDate=false;syncEventEndDate()});
+   allDayInput.addEventListener('change',e=>{document.getElementById('timeFields').hidden=e.target.checked;syncEventEndDate()});
+   syncEventEndDate();
+ }
+}
 if(window.matchMedia('(min-width:801px)').matches)document.getElementById('fTitle').focus({preventScroll:true})}
 
 function copyScheduleModal(kind,id,date){
@@ -1737,10 +1889,17 @@ function appearanceModal(){
  </div></div>`;
  applyAppearance();
 }
-function infoModal(){document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>hope. v2.8</h2><small>일정과 메모를 한곳에 모은 개인 플래너</small></div><button class="close-btn" data-close>${ico('close')}</button></div><p style="font-size:12px;color:var(--sub);line-height:1.9">일기 달력과 챌린지, 체중 기록 및 변화 그래프, 캘린더·투두·메모·플레이리스트·타임트래커·목표·타이머 등의 기능을 사용할 수 있어요.</p><p style="font-size:12px;color:var(--sub);line-height:1.9">데이터는 <b>현재 브라우저의 로컬 저장소</b>에 저장됩니다. 클라우드 연결 전에는 이 기기에만 저장됩니다. 상단 구름 아이콘에서 Supabase를 연결하면 기기 간 동기화할 수 있어요.</p><button class="primary" data-close>확인</button></div></div>`}
+function infoModal(){document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>hope. v3.0</h2><small>일정과 메모를 한곳에 모은 개인 플래너</small></div><button class="close-btn" data-close>${ico('close')}</button></div><p style="font-size:12px;color:var(--sub);line-height:1.9">일기 달력과 챌린지, 체중 기록 및 변화 그래프, 캘린더·투두·메모·플레이리스트·타임트래커·목표·타이머 등의 기능을 사용할 수 있어요.</p><p style="font-size:12px;color:var(--sub);line-height:1.9">데이터는 <b>현재 브라우저의 로컬 저장소</b>에 저장됩니다. 클라우드 연결 전에는 이 기기에만 저장됩니다. 상단 구름 아이콘에서 Supabase를 연결하면 기기 간 동기화할 수 있어요.</p><button class="primary" data-close>확인</button></div></div>`}
 
 function searchModal(){document.getElementById('modalRoot').innerHTML=`<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true" aria-labelledby="searchTitle"><div class="modal-head"><div><h2 id="searchTitle">빠른 검색</h2><small>일정과 할 일의 제목을 검색해요.</small></div><button class="close-btn" data-close aria-label="닫기">${ico('close')}</button></div><input id="searchInput" class="field-input" type="search" placeholder="예: 강의, 과제, 운동..." autofocus/><div id="searchResults" style="margin-top:16px;color:var(--sub);font-size:12px">검색어를 입력해 주세요.</div></div></div>`;document.getElementById('searchInput').focus()}
-function handleSave(form){let k=form.dataset.kind,id=form.dataset.id,title=document.getElementById('fTitle').value.trim(),date=document.getElementById('fDate').value,memo=document.getElementById('fMemo').value.trim(),cat=document.getElementById('fCat').value;if(!title||!date){toast('제목과 날짜를 입력해 주세요.');return}if(!hasCat(cat)){toast('카테고리를 선택해 주세요.');return}const endDate=document.getElementById('fEndDate').value;if(!endDate||endDate<date){toast('종료일은 시작일과 같거나 이후여야 해요.');return}if(k==='event'){const allDay=document.getElementById('fAllDay').checked,time=document.getElementById('fTime').value,end=document.getElementById('fEnd').value;if(!allDay&&(!time||!end||(endDate===date&&end<=time))){toast('같은 날 일정은 종료 시간이 시작 시간보다 늦어야 해요.');return}let obj={id:id||'e'+Date.now(),title,date,endDate,time:allDay?'00:00':time,end:allDay?'23:59':end,allDay,category:cat,memo};events=id?events.map(v=>v.id===id?obj:v):[...events,obj];state.selected=date;state.visibleMonth=new Date(parseDate(date).getFullYear(),parseDate(date).getMonth(),1)}else{let prev=tasks.find(v=>v.id===id),obj={id:id||'t'+Date.now(),title,date,endDate,category:cat,memo,priority:document.getElementById('fPriority').value,done:prev?prev.done:false,completedAt:prev?.completedAt||null};tasks=id?tasks.map(v=>v.id===id?obj:v):[...tasks,obj]}save();closeModal();render();toast(k==='todo'?'할 일이 저장되었어요.':'일정이 저장되었어요.')}
+function handleSave(form){let k=form.dataset.kind,id=form.dataset.id,title=document.getElementById('fTitle').value.trim(),date=document.getElementById('fDate').value,memo=document.getElementById('fMemo').value.trim(),cat=document.getElementById('fCat').value;if(!title||!date){toast('제목과 날짜를 입력해 주세요.');return}if(!hasCat(cat)){toast('카테고리를 선택해 주세요.');return}let endDate=document.getElementById('fEndDate').value;
+if(!endDate||endDate<date){toast('종료일은 시작일과 같거나 이후여야 해요.');return}
+if(k==='event'){
+ const allDay=document.getElementById('fAllDay').checked,time=document.getElementById('fTime').value,end=document.getElementById('fEnd').value;
+ if(!allDay&&(!time||!end)){toast('시작 시간과 종료 시간을 입력해 주세요.');return}
+ const overnight=!allDay&&endDate===date&&end<=time;
+ if(overnight)endDate=datekey(addDays(parseDate(date),1));
+ let obj={id:id||'e'+Date.now(),title,date,endDate,time:allDay?'00:00':time,end:allDay?'23:59':end,allDay,category:cat,memo};events=id?events.map(v=>v.id===id?obj:v):[...events,obj];state.selected=date;state.visibleMonth=new Date(parseDate(date).getFullYear(),parseDate(date).getMonth(),1)}else{let prev=tasks.find(v=>v.id===id),obj={id:id||'t'+Date.now(),title,date,endDate,category:cat,memo,priority:document.getElementById('fPriority').value,done:prev?prev.done:false,completedAt:prev?.completedAt||null};tasks=id?tasks.map(v=>v.id===id?obj:v):[...tasks,obj]}save();closeModal();render();toast(k==='todo'?'할 일이 저장되었어요.':'일정이 저장되었어요.')}
 
 function timeFmt(n){let m=Math.floor(Math.max(0,n)/60),s=Math.max(0,Math.floor(n))%60;return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`}
 function updateSearch(q){const r=document.getElementById('searchResults');if(!r)return;if(!q.trim()){r.innerHTML='검색어를 입력해 주세요.';return}let s=q.trim().toLocaleLowerCase(),items=[...tasks.filter(v=>v.title.toLowerCase().includes(s)).map(v=>({kind:'todo',...v})),...events.filter(v=>v.title.toLowerCase().includes(s)).map(v=>({kind:'event',...v}))].slice(0,12);r.innerHTML=items.length?items.map(v=>`<button data-search-result="${v.kind}" data-id="${v.id}" style="width:100%;text-align:left;background:#fff;padding:12px;border-radius:10px;margin-bottom:7px;font-size:12px"><strong>${esc(v.title)}</strong><span style="color:var(--sub);margin-left:8px">${v.kind==='todo'?'할 일':'일정'} · ${v.kind==='event'?dateRangeText(v):todoPeriodText(v)}</span></button>`).join(''):'검색 결과가 없어요.'}
